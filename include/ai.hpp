@@ -1,4 +1,5 @@
-#include "vector2d.hpp"
+#include <SFML/System.hpp>
+#include <vector>
 #include "neuralNetwork.hpp"
 #include "raycast.hpp"
 
@@ -6,12 +7,13 @@ struct ai
 {
     int health = 100;
 
-    vector2 prevPos = {0, 0};
-    vector2 pos = {0, 0}; // Bottom left of map
-    vector2 accel = {0, 0};
-    vector2 aimVector = {0, 0};
+    sf::Vector2 prevPos = {0, 0};
+    sf::Vector2 pos = {0, 0}; // Bottom left of map
+    sf::Vector2 hitBoxSize = {10, 25};
+    sf::Vector2 accel = {0, 0};
+    sf::Vector2 aimVector = {0, 0};
 
-    neuralNetwork brain;
+    neuralNetwork nn;
     int gen = 0;
 
     void calculate()
@@ -23,9 +25,11 @@ struct ai
         // Update variables
     };
 
-    void ai(bool saveGeneration)
+    ai(bool saveGeneration)
     {
-        calculate
+        calculate();
+
+        AI_List.push_back(nn);
     };
 };
 
