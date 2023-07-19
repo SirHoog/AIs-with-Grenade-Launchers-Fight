@@ -1,0 +1,153 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "AI_with_jetpack_and_grenade_launcher.exe"
+		},
+		{
+			"path" : "AI_with_jetpack_and_grenade_launcher.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 17,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 19,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 16,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "C:/Users/defga/OneDrive/Documents/GitHub/AI-with-jetpack-and-gun/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Users/defga/OneDrive/Documents/GitHub/AI-with-jetpack-and-gun/lib"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"id" : "AI_with_jetpack_and_grenade_launcher::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,--dependency-file,CMakeFiles\\AI_with_jetpack_and_grenade_launcher.dir\\link.d",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "C:\\msys64\\mingw64\\lib\\libsfml-graphics.dll.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "C:\\msys64\\mingw64\\lib\\libsfml-window.dll.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "C:\\msys64\\mingw64\\lib\\libsfml-system.dll.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "AI_with_jetpack_and_grenade_launcher",
+	"nameOnDisk" : "AI_with_jetpack_and_grenade_launcher.exe",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

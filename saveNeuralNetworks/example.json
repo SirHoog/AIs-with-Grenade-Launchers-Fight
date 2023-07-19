@@ -1,25 +1,29 @@
 {
-    "input": [
-        0.5,
-        0.1,
-        0.8
-    ],
-    "hiddenLayersAndBiases": [
-        [
-            0,
-            5,
-            2,
-            3,
-            8,
-            12
-        ],
-        [
-            6,
-            21,
-            11
+    "input": {
+        "bias": 1,
+        "neuronWeights": [
+            -1,
+            1,
+            -1,
+            -1,
+            1
         ]
-    ],
-    "output": [
-
-    ]
+    },
+    "hiddenLayers": {
+        "0": {
+            "bias": 1,
+            "neuronWeights": [
+                -1,
+                1,
+                1,
+                1
+            ]
+        },
+        "1": {
+            "bias": -1,
+            "neuronWeights": [
+                0
+            ]
+        }
+    }
 }

@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/defga/OneDrive/Documents/GitHub/AI-with-jetpack-and-gun/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/includes_CXX.rsp -g -o CMakeFiles\\AI_with_jetpack_and_grenade_launcher.dir\\main.cpp.obj -c C:\\Users\\defga\\OneDrive\\Documents\\GitHub\\AI-with-jetpack-and-gun\\main.cpp",
+  "file": "C:/Users/defga/OneDrive/Documents/GitHub/AI-with-jetpack-and-gun/main.cpp",
+  "output": "CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj"
+}
+]

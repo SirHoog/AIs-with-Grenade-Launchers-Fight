@@ -1,2 +1,2 @@
-# AI with jetpack and gun
- First time making an AI
+# AI Grenade Launcher Fighting
+ This AI is trained through a **Genetic Algorithm**

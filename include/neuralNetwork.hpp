@@ -1,20 +1,13 @@
 #include <vector>
 #include <string>
-#include <json
+#include <json>
 
 struct neuralNetwork
 {
-    std::vector<std::vector<float>> layers =
+    
+
+    neuralNetwork()
     {
-        // Input
 
-        // Hidden LayerSSssSSSS
-
-        // Output
-    };
-
-    neuralNetwork(std::string jsonFileName)
-    {
-        layers.push_back({0.5, 0.5});
     };
 };
