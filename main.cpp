@@ -4,4 +4,4 @@
 #include "screen.hpp"
 #include "ai.hpp"
 
-float timeMultiplier =  1;
+float timeMultiplier = 1;
