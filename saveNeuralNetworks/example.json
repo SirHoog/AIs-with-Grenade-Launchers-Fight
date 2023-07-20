@@ -1,29 +1,66 @@
 {
     "input": {
         "bias": 1,
-        "neuronWeights": [
-            -1,
-            1,
-            -1,
-            -1,
-            1
-        ]
-    },
-    "hiddenLayers": {
-        "0": {
-            "bias": 1,
-            "neuronWeights": [
+        "neuronWeights": {
+            "x": [
                 -1,
+                1
+            ],
+            "y": [
                 1,
+                1
+            ],
+            "closestEnemyX": [
+                1,
+                -1
+            ],
+            "closestEnemyY": [
+                1,
+                1
+            ],
+            "distanceFromGrenade":
+            [
                 1,
                 1
             ]
+        }       
+    },
+    "hiddenLayers": [
+        {
+            "bias": 1,
+            "neuronWeights": [
+                [
+                    1,
+                    -1
+                ],
+                [
+                    -1,
+                    -1
+                ]
+            ]
         },
-        "1": {
+        {
             "bias": -1,
             "neuronWeights": [
-                0
+                [
+                    1,
+                    -1,
+                    1,
+                    -1
+                ],
+                [
+                    -1,
+                    1,
+                    1,
+                    1
+                ]
             ]
         }
-    }
+    ],
+    "output": [
+        "left",
+        "right",
+        "jump",
+        "aimAngle"
+    ]
 }
