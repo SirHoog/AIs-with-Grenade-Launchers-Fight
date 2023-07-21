@@ -52,10 +52,10 @@ RM = C:\msys64\mingw64\CMake\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun
+CMAKE_SOURCE_DIR = C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun\build
+CMAKE_BINARY_DIR = C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/depend.make
@@ -70,18 +70,18 @@ include CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/flags.make
 
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/flags.make
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/includes_CXX.rsp
-CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj: C:/Users/defga/OneDrive/Documents/GitHub/AI-with-jetpack-and-gun/main.cpp
+CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj: C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/main.cpp
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj -MF CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.obj.d -o CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.obj -c C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj -MF CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.obj.d -o CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.obj -c C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\main.cpp
 
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.i"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun\main.cpp > CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.i
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\main.cpp > CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.i
 
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.s"
-	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun\main.cpp -o CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.s
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\main.cpp -o CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.s
 
 # Object files for target AI_with_jetpack_and_grenade_launcher
 AI_with_jetpack_and_grenade_launcher_OBJECTS = \
@@ -99,7 +99,7 @@ AI_with_jetpack_and_grenade_launcher.exe: C:/msys64/mingw64/lib/libsfml-system.d
 AI_with_jetpack_and_grenade_launcher.exe: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/linkLibs.rsp
 AI_with_jetpack_and_grenade_launcher.exe: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/objects1.rsp
 AI_with_jetpack_and_grenade_launcher.exe: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable AI_with_jetpack_and_grenade_launcher.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable AI_with_jetpack_and_grenade_launcher.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -111,6 +111,6 @@ CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/clean:
 .PHONY : CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/clean
 
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun\build C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun\build C:\Users\defga\OneDrive\Documents\GitHub\AI-with-jetpack-and-gun\build\CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build\CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/depend
 

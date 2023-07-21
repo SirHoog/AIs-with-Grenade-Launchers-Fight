@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/defga/OneDrive/Documents/GitHub/AI-with-jetpack-and-gun/main.cpp" "CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj" "gcc" "CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj.d"
+  "C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/main.cpp" "CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj" "gcc" "CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj.d"
   "" "AI_with_jetpack_and_grenade_launcher.exe" "gcc" "CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/link.d"
   )
 

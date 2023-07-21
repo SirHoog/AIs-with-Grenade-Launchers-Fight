@@ -1,6 +1,5 @@
 ## ⚠️ Disclaimer
- I have no idea what category of machine learning I'm using.
- So, Please tell me what's wrong with my understanding so that future readers (if any 💀) may understand.
+ I have no idea what category of machine learning I'm using. So, please tell me what's wrong with my understanding so that future readers (if any 💀) may understand.
 
  Machine Learning is so complicated, I don't even know what I did. I guess I mixed multiple different approaches. If you want to help me out, check [this](https://en.wikipedia.org/wiki/Machine_learning#Approaches) out.
 
@@ -52,7 +51,7 @@ Ask me questions.
 
 - **Q**: What range of numbers are allowed in a neural network?
     - **A**: [I found this](https://www.quora.com/What-range-of-values-can-a-weight-in-a-neural-network-take-on) <br>
-    Normalized weights and activations are 
+    Normalized (range from -1 to 1) weights and activations are better.
 
 - **Q**: Do Genetic Algorithms / Machine Learning prove that evolution is real?
     - **A**: Genetic Algorithms mimics the process of natural selection according to [Wikipedia](https://en.wikipedia.org/wiki/Machine_learning#Genetic_algorithms). Genetic Algorithms change how the AI functions. It does not transform like evolutionists claim. Many people have programmed evolution in a way, and their AIs did "transform", but it transformed based off of the "experience" of other AIs. In the real world, animals may have *learned* by their parents from experience, but they didn't just gain their parent's knowledge telepathically or genetically. If you want to know more, you can visit [this](https://creation.com/genetic-algorithms-do-they-show-that-evolution-works). If you want to talk to me about this, you can DM me on discord (sirhoog).

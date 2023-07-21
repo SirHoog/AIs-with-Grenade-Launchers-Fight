@@ -38,9 +38,10 @@ struct neuralNetwork
     {
         {}
     };
-    std::array<float, 5> output =
-    {
 
+    void calculateOutput()
+    {
+        
     };
 
     void mutate(json nn, int mutationAmount)
@@ -54,6 +55,7 @@ struct neuralNetwork
 
         json parsedFile = json::parse(file);
 
+        for ()
     };
 
     void write(std::string JSON_FileName, std::string jsonCode)
