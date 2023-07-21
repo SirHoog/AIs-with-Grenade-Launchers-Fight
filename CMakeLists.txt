@@ -22,7 +22,6 @@ target_include_directories(${PROJECT_NAME}
 target_link_directories(${PROJECT_NAME}
     PUBLIC lib/sfml
 )
-target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window sfml-system)
 target_include_directories(${PROJECT_NAME} PRIVATE "include" "lib")
 target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics)
 
