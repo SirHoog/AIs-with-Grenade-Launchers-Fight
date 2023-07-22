@@ -9,7 +9,7 @@ struct ai
 {
     float health = 100;
     int fitness = 0; // 30 per 30 sec of survival and 10 per kill
-
+    sf::Color color = sf::Color(rand() % 255, rand() % 255, rand() % 255, 255);
     sf::Vector2f pos = {rand() % map.size.x, rand() % map.size.y};
     sf::Vector2f accel = {0, 0};
     float aimAngle = 0; // 0 is pointing right, and positive is clockwise
@@ -26,6 +26,4 @@ struct ai
 
 std::vector<int> saveGenChampion = {0, 1, 2, 3, 4, 5, 10, 20, 50, 75, 100, 200, 300, 400, 500};
 const int AI_Count = 50;
-
-ai champion(0, neuralNetwork); // store the previous generations neural network to build upon for the next generation
 std::vector<ai> AI_List;
