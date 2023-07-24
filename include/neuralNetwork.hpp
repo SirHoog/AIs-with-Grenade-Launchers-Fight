@@ -2,7 +2,7 @@
 #include <string>
 #include <random>
 #include <fstream>
-#include <xtensor/include/xtensor/xtensor.hpp>
+#include <xtensor/xtensor.hpp>
 #include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
@@ -42,7 +42,7 @@ struct neuralNetwork
 
     void propagateForward(std::array<neuron, 5> _input)
     {
-        xt::
+        xt
     };
 
     void mutate(json nn, int mutationAmount)
