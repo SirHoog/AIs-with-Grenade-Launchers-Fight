@@ -2,7 +2,7 @@
 #include <string>
 #include <random>
 #include <fstream>
-#include <xtensor/xtensor.hpp>
+#include <xtensor/include/xtensor/xtensor.hpp>
 #include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
@@ -19,8 +19,8 @@ struct neuron
         for (int i = 0; i < wCount; i++)
         {
             w.push_back(rand());
-        };
-    };
+        }
+    }
 };
 
 struct neuralNetwork
@@ -62,5 +62,5 @@ struct neuralNetwork
     void write(std::string JSON_FileName, std::string jsonCode)
     {
 
-    };
+    }
 };

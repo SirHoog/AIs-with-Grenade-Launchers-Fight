@@ -53,6 +53,8 @@ Ask me questions... Please
  - **Q**: Do I need to know a lot of math to learn about Machine Learning?
     - **A**: Possibly. Neural Networks are complex, and easier ways of visualizing them is with Linear Algebra. That is why I am using the xtensor library. For other applications different from my own, use Gradient Descent, which is some Calculus thing that I don't care about. <br><br>
     If you want to learn Linear Algebra or Calculus, you can go to [3Blue1Brown's Youtube Channel](https://www.youtube.com/@3blue1brown)
+    <br>
+    Example of some of the math: https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
  
  - **Q**: How do you know how many hidden layers to use and the size of them?
     - **A**: [I found this](https://stats.stackexchange.com/questions/181/how-to-choose-the-number-of-hidden-layers-and-nodes-in-a-feedforward-neural-netw) <br>

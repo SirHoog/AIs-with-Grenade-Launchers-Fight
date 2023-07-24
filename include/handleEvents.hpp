@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <SFML/Graphics.hpp>
+#include "ai.hpp"
 
 bool fullscreened = false;
 
