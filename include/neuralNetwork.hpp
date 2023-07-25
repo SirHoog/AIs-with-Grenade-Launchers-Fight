@@ -2,47 +2,47 @@
 #include <string>
 #include <random>
 #include <fstream>
-#include <xtensor/xtensor.hpp>
+#include "neuron.hpp"
+#include <xtensor/xjson.hpp>
+#include <xtensor/xarray.hpp>
 #include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
 
-struct neuron
-{
-    float a; // Activation
-    std::vector<float> w; // Weights
-
-    neuron(float _a, int wCount)
-    {
-        a = _a;
-        
-        for (int i = 0; i < wCount; i++)
-        {
-            w.push_back(rand());
-        }
-    }
-};
-
 struct neuralNetwork
 {
-    std::array<neuron, 5> input =
+    xt::xarray<neuron> input;
+    xt::xarray<neuron> hidden;
+    xt::xarray<neuron> output;
+
+    neuralNetwork(std::string fileName = "", std::vector<auto&> linkOutputWith, int is = 0, int hs = 0, int os = 0)
     {
-        neuron(0, 5), // Position X
-        neuron(0, 5), // Position Y
-        neuron(0, 5), // Closest enemy X
-        neuron(0, 5), // Closest enemy Y
-        neuron(0, 5)  // Distance from Closest Enemy Grenade
-    };
-    std::array<std::array<neuron, 5>, 1> hiddenLayers =
-    {
+        if (fileName != "")
         {
-            neuron()
+            read(fileName);
+        }
+        else
+        {
+            for (int i = 0; i < is; i++)
+            {
+                input.fill(neuron(0, {}, is));
+            };
+
+            for (int i = 0; i < hs; i++)
+            {
+                input.fill(neuron(0, {}, hs));
+            };
+
+            for (int i = 0; i < os; i++)
+            {
+                input.fill(neuron(0, {}, os));
+            }
         }
     };
 
-    void propagateForward(std::array<neuron, 5> _input)
+    void propagateForward()
     {
-        xt
+        
     };
 
     void mutate(json nn, int mutationAmount)
@@ -55,12 +55,15 @@ struct neuralNetwork
         std::ifstream file(JSON_FileName);
 
         json parsedFile = json::parse(file);
-
-
+        
+        xt::from_json(parsedFile, input);
     };
 
     void write(std::string JSON_FileName, std::string jsonCode)
     {
+        std::ofstream file(JSON_FileName);
 
+        file << jsonCode << std::endl;
+        file.close();
     }
 };

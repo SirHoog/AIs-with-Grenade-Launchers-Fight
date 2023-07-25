@@ -1,7 +1,7 @@
 ## ⚠️ Disclaimer
  I have no idea what category of machine learning I'm using. So, please tell me what's wrong with my understanding so that future readers (if any 💀) may understand.
 
- Machine Learning is so complicated, I don't even know what I did. I guess I mixed multiple different approaches. If you want to help me out, check [this wikipedia page](https://en.wikipedia.org/wiki/Machine_learning#Approaches) out.
+ Machine Learning is so complicated, I don't even know what I did. I guess I mixed multiple different approaches. If you want to help me out, check [this Wikipedia page](https://en.wikipedia.org/wiki/Machine_learning#Approaches) out.
 
 ## Usage:
 
@@ -10,7 +10,7 @@ Download, build, run.
 ### Keybinds:
 - Spacebar: Play/pause : TPS = DefaultTPS/TPS = 0
 - Tab: Display performance
-- F11: Fullscreen
+- F11: Toggle fullscreen
 - Up: TPS++
 - Down: TPS--
 - Numpad 0: TPS = DefaultTPS
@@ -51,26 +51,26 @@ Ask me questions... Please
 ## My FAQ:
  This exists because no one asked me any questions (yet), so these are just the things that stumped me when learning about Machine Learning.
  - **Q**: Do I need to know a lot of math to learn about Machine Learning?
-    - **A**: Possibly. Neural Networks are complex, and easier ways of visualizing them is with Linear Algebra. That is why I am using the xtensor library. For other applications different from my own, use Gradient Descent, which is some Calculus thing that I don't care about. <br><br>
-    If you want to learn Linear Algebra or Calculus, you can go to [3Blue1Brown's Youtube Channel](https://www.youtube.com/@3blue1brown)
+    - **A**: Depends on what your goal is. Neural Networks are complex, and easier ways of visualizing them is in matrix form. That is why I am using the xtensor library. For other categories of Machine Learning, you can use Gradient Descent, which is some Calculus thing that I don't understand or care about. <br><br>
+    If you want to learn Linear Algebra or Calculus, you can go to [3Blue1Brown's Youtube Channel](https://www.youtube.com/@3blue1brown/courses)
     <br>
-    Example of some of the math: https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
+    Example of some of the math (timestamp at 13:26): https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
  
  - **Q**: How do you know how many hidden layers to use and the size of them?
     - **A**: [I found this](https://stats.stackexchange.com/questions/181/how-to-choose-the-number-of-hidden-layers-and-nodes-in-a-feedforward-neural-netw) <br>
-    There can be any amount of hidden layers, but too much can decrease performance, and usually one is enough.
-    The size of the layer is typically the average between the input and output layer's size.
+    There can be any amount of hidden layers, but too many can decrease performance, but one is enough.
+    The amount of neurons in the hidden layers is typically the average of the amount of neurons in the input and output layer.
 
 - **Q**: How do you know which neurons to connect?
     - **A**: [This video at 1:27](https://www.youtube.com/watch?v=9RN2Wr8xvro&t=87s). <br>
-    Fully connected layers is most used.
+    Fully connected layers are most used.
 
 - **Q**: What range of numbers are allowed in a neural network?
     - **A**: [I found this](https://www.quora.com/What-range-of-values-can-a-weight-in-a-neural-network-take-on) <br>
     Normalized (range from -1 to 1) weights and activations are better.
 
 - **Q**: Do Genetic Algorithms / Machine Learning prove that evolution is real?
-    - **A**: Genetic Algorithms mimics the process of natural selection according to [Wikipedia](https://en.wikipedia.org/wiki/Machine_learning#Genetic_algorithms). Genetic Algorithms change how the AI functions. It does not transform like evolutionists claim. Many people have programmed evolution in a way, and their AIs did "transform", but it transformed based off of the "experience" of other AIs. In the real world, animals may have *learned* by their parents from experience, but they didn't just gain their parent's knowledge telepathically or genetically. If you want to know more, you can visit [this](https://creation.com/genetic-algorithms-do-they-show-that-evolution-works). If you want to talk to me about this, you can DM me on discord (sirhoog).
+    - **A**: Genetic Algorithms mimic the process of natural selection according to [Wikipedia](https://en.wikipedia.org/wiki/Machine_learning#Genetic_algorithms). Genetic Algorithms change how the AI functions. It does not transform. Many people have programmed evolution, and their AIs did transform, but it transformed based off of the experience of other AIs. In the real world, animals may have *learned* from watching their parents, but they didn't just gain their parents' knowledge genetically. If you want to know more, you can visit [this](https://creation.com/genetic-algorithms-do-they-show-that-evolution-works). If you want to discuss this topic personally, you can DM me on discord (sirhoog).
 
 ## Libraries used:
 - https://www.sfml-dev.org/index.php

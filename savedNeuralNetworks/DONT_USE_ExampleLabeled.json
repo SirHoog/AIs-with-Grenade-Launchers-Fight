@@ -1,5 +1,6 @@
 {
     "input": {
+        "bias": 1,
         "neuronWeights": {
             "X": [
                 0.426,
@@ -26,6 +27,7 @@
     },
     "hiddenLayers": [
         {
+            "bias": 1,
             "neuronWeights": [
                 [
                     1,
@@ -38,6 +40,7 @@
             ]
         },
         {
+            "bias": 1,
             "neuronWeights": [
                 [
                     1,

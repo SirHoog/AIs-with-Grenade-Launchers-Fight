@@ -66,6 +66,9 @@
         "chrono": "cpp",
         "complex": "cpp",
         "regex": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "cfenv": "cpp",
+        "list": "cpp",
+        "typeindex": "cpp"
     }
 }
