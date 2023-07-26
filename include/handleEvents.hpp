@@ -41,7 +41,7 @@ void handleEvents(sf::RenderWindow& window, int defaultTPS, int& TPS, float FPS,
                             "dt: " + std::to_string(dt.asSeconds()) + "s" + "\n"
                             "Sim. Time: " + std::to_string(simTime) + "s" + "\n"
                             "Run Time: " + std::to_string(runTime.getElapsedTime().asSeconds()) + "s" + "\n"
-                            "AI's left: " + std::to_string(sizeof(AI_List))
+                            "AI's left: " + std::to_string(AI_List.size())
                         );
                         text.setCharacterSize(14);
                         text.setFillColor(sf::Color::White);
@@ -69,7 +69,7 @@ void handleEvents(sf::RenderWindow& window, int defaultTPS, int& TPS, float FPS,
                         break;
                 }
 
-            break;
+                break;
         }
     }
 }

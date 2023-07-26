@@ -5,7 +5,7 @@
 
 ## Usage:
 
-Download, build, run.
+Download, build, run. That's it.
 
 ### Keybinds:
 - Spacebar: Play/pause : TPS = DefaultTPS/TPS = 0
@@ -52,8 +52,7 @@ Ask me questions... Please
  This exists because no one asked me any questions (yet), so these are just the things that stumped me when learning about Machine Learning.
  - **Q**: Do I need to know a lot of math to learn about Machine Learning?
     - **A**: Depends on what your goal is. Neural Networks are complex, and easier ways of visualizing them is in matrix form. That is why I am using the xtensor library. For other categories of Machine Learning, you can use Gradient Descent, which is some Calculus thing that I don't understand or care about. <br><br>
-    If you want to learn Linear Algebra or Calculus, you can go to [3Blue1Brown's Youtube Channel](https://www.youtube.com/@3blue1brown/courses)
-    <br>
+    If you want to learn Linear Algebra or Calculus, you can go to [3Blue1Brown's Youtube Channel](https://www.youtube.com/@3blue1brown/courses) <br>
     Example of some of the math (timestamp at 13:26): https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
  
  - **Q**: How do you know how many hidden layers to use and the size of them?
