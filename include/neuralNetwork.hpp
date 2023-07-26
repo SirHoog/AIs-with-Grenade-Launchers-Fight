@@ -4,10 +4,10 @@
 #include <random>
 #include <cstdlib>
 #include <fstream>
-#include <xtensor/xjson.hpp>
 #include <xtensor/xarray.hpp>
-#include "layer.hpp"
+#include <xtensor/xjson.hpp>
 #include "nlohmann/json.hpp"
+#include "layer.hpp"
 
 using json = nlohmann::json;
 
@@ -124,6 +124,7 @@ struct neuralNetwork
     void propagateForward(std::vector<float> _input)
     {
         // https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
+        // Formula = ReLU(Wa+b) or o(Wa+b)
 
         for (int i = 0; i < _input.size(); i++) // Initialize input activations
         {
@@ -132,12 +133,19 @@ struct neuralNetwork
 
         for (int i = 1; i < layers.size(); i++) // i = 1 to skip the input layer
         {
-            layer layerL = layers[i];
+            layer prevLayer = layers[i - 1];
+            xt::xarray<float> a;
+            xt::xarray<float> w;
 
-            for (int j = 0; j < layerL.neurons.size(); j++)
+            for (int j = 0; j < prevLayer.neurons.size(); j++)
             {
-                 
-            }
+                a.fill(prevLayer.neurons[j].activation);
+
+                for (int k = 0; k < layers[i].neurons.size(); k++)
+                {
+                    w.fill(prevLayer.neurons[k].weights[j]);
+                }
+            };
         }
     };
 

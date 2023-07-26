@@ -11,5 +11,5 @@ struct layer
     {
         bias = _bias;
         neurons = _neurons;
-    };
+    }
 };
