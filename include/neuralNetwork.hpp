@@ -166,7 +166,7 @@ struct neuralNetwork
                 w.fill(rowOfWeights); // w
             };
 
-            xt::array<float> formula = xt::operator*(w, a);
+            xt::xarray<float> formula = xt::operator+(xt::operator*(w, a), b);
 
             for (int j = 0; j < curLayer.neurons.size(); j++)
             {
