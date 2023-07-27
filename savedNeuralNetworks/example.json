@@ -1,0 +1,40 @@
+[
+    [ // input
+        [
+            0.1, // bias term
+            [
+                0.2,
+                0.1
+                // ... any other neuron weights
+            ]
+        ],
+        [
+            0.21, // bias term
+            [
+                0.12,
+                0.13
+                // ... any other neuron weights
+            ]
+        ]
+        // ...
+    ],
+    [ // hidden
+        [
+            0.215, // bias term
+            [
+                0.12,
+                0.41
+                // ... any other neuron weights
+            ]
+        ],
+        [
+            0.121, // bias term
+            [
+                // ...
+            ]
+        ]
+        // ...
+    ],
+    // ... any other hiddden layers
+    // no output layer cuz obviously not needed
+]

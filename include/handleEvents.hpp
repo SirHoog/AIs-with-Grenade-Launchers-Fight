@@ -18,58 +18,53 @@ void handleEvents(sf::RenderWindow& window, int defaultTPS, int& TPS, float FPS,
 
                 break;
             case sf::Event::KeyPressed:
-                switch (event.key.code)
+                if (event.key.code == sf::Keyboard::Space)
                 {
-                    case sf::Keyboard::Space:
-                        TPS = defaultTPS * (TPS == 0);
+                    TPS = defaultTPS * (TPS == 0);
+                };
+                if (event.key.code == sf::Keyboard::Tab)
+                {
+                    sf::Font font;
 
-                        break;
-                    case sf::Keyboard::Tab:
-                        sf::Font font;
+                    if (!font.loadFromFile("ARLRDBD.TTF"))
+                    {
+                        std::cout << "Error when trying to load sf::Font 'ARLRDBD.TTF'";
+                    };
 
-                        if (!font.loadFromFile("ARLRDBD.TTF"))
-                        {
-                            std::cout << "Error when trying to load sf::Font 'ARLRDBD.TTF'";
-                        };
+                    sf::Text text;
 
-                        sf::Text text;
-
-                        text.setFont(font);
-                        text.setString(
-                            "FPS: " + std::to_string(FPS) + "\n"
-                            "TPS: " + std::to_string(TPS) + "\n"
-                            "dt: " + std::to_string(dt.asSeconds()) + "s" + "\n"
-                            "Sim. Time: " + std::to_string(simTime) + "s" + "\n"
-                            "Run Time: " + std::to_string(runTime.getElapsedTime().asSeconds()) + "s" + "\n"
-                            "AI's left: " + std::to_string(AI_List.size())
-                        );
-                        text.setCharacterSize(14);
-                        text.setFillColor(sf::Color::White);
-                        window.draw(text);
-
-                        break;
-                    case sf::Keyboard::F11:
-                        window.create(sf::VideoMode(1280, 700), "AI with Grenade Launchers Fight", ((fullscreened) ? sf::Style::None : sf::Style::Fullscreen));
-                        
-                        break;
-                    case sf::Keyboard::Up:
-                        TPS++;
-
-                        break;
-                    case sf::Keyboard::Down:
-                        if (TPS != 0)
-                        {
-                            TPS--;
-                        };
-
-                        break;
-                    case sf::Keyboard::Num0:
-                        TPS = defaultTPS;
-
-                        break;
+                    text.setFont(font);
+                    text.setString(
+                        "FPS: " + std::to_string(FPS) + "\n"
+                        "TPS: " + std::to_string(TPS) + "\n"
+                        "dt: " + std::to_string(dt.asSeconds()) + "s" + "\n"
+                        "Sim. Time: " + std::to_string(simTime) + "s" + "\n"
+                        "Run Time: " + std::to_string(runTime.getElapsedTime().asSeconds()) + "s" + "\n"
+                        "AI's left: " + std::to_string(AI_List.size())
+                    );
+                    text.setCharacterSize(14);
+                    text.setFillColor(sf::Color::White);
+                    window.draw(text);
+                };
+                if (event.key.code == sf::Keyboard::F11)
+                {
+                    window.create(sf::VideoMode(1280, 700), "AI with Grenade Launchers Fight", ((fullscreened) ? sf::Style::None : sf::Style::Fullscreen));
+                };
+                if (event.key.code == sf::Keyboard::Up)
+                {
+                    TPS++;
                 }
-
-                break;
+                if (event.key.code == sf::Keyboard::Down)
+                {
+                    if (TPS != 0)
+                    {
+                        TPS--;
+                    }
+                };
+                if (event.key.code == sf::Keyboard::Num0)
+                {
+                    TPS = defaultTPS;
+                }
         }
     }
 }
