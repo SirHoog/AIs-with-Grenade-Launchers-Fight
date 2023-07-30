@@ -36,13 +36,16 @@ Download, build, run. That's it.
 - https://github.com/johnBuffer
 
 ## Learn about Neural Networks:
-- https://www.youtube.com/watch?v=rEDzUT3ymw4 (Watch this if your lazy. You do learn the basics)
+ Of course, I can just add more videos to this list, but if you want to look for yourself, [here](https://www.youtube.com/hashtag/some2) is a **great** place to look for videos on neural networks (and many other math related videos)
+
+- https://www.youtube.com/watch?v=rEDzUT3ymw4 (Watch this if your lazy, but you learn **a lot** for just 1 minute)
 - https://www.youtube.com/watch?v=VMp6pq6_QjI
 - https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi (I learned most of the fundamental ideas here)
+- https://www.youtube.com/watch?v=FBpPjjhJGhk
 - https://www.youtube.com/watch?v=w8yWXqWQYmU (This is in python, but IDC, I think you can still learn from it)
 - https://www.youtube.com/watch?v=9RN2Wr8xvro **(I learned the most from this)**
 - https://reference.wolfram.com/language/guide/MachineLearning.html (I didn't read this, I'm just including it so you don't have to search any further) <br><br>
- **(<u>I personally don't recommend</u> learning from <u>Brilliant.org</u> because it is *extremely* slow and basic at the start)**
+ (<u>I personally don't recommend</u> learning from <u>Brilliant.org</u> because it is **extremely** slow and basic at the start, and I think they're just there for your money)
 
 ## The FAQ:
 ...
