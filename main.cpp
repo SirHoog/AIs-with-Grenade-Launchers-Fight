@@ -1,9 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include "ai.hpp"
-#include "grenade.hpp"
-#include "map.hpp"
+#include "include/ai.hpp"
 
 const int defaultTPS = 50;
 int TPS = 50;
