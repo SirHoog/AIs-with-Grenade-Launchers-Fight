@@ -2,6 +2,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "ai.hpp"
+#include "grenade.hpp"
 #include "map.hpp"
 
 const int defaultTPS = 50;
@@ -25,6 +26,11 @@ int main()
 
     view.setSize(size.x, size.y);
     view.setCenter(window.getSize().x / 2, window.getSize().y / 2);
+
+    for (int i = 0; i < AI_Count; i++)
+    {
+        AI_List.push_back(ai());
+    };
 
     while (window.isOpen())
     {
@@ -93,14 +99,43 @@ int main()
                 };
             case sf::Event::MouseButtonPressed:
             {
-                if (sf::Mouse::Left)
-
                 break;
             }
-        }
+        };
 
         if (simTimeMS / (1000 / (TPS / defaultTPS)) > 1)
         {
+            for (int i = 0; i < AI_List.size(); i++)
+            {
+                ai AI = AI_List[i];
+                sf::Vector2f closestPos;
+                float closest = 1000;
+
+                for (int j = 0; j < AI_List.size(); j++)
+                {
+                    if (j == i)
+                    {
+                        break;
+                    };
+                    
+                    float distance = sqrt(pow(AI.pos.x - AI_List[j].pos.x, 2) + pow(AI.pos.y - AI_List[j].pos.y, 2));
+
+                    if (distance > closest)
+                    {
+                        closestPos = AI_List[j].pos;
+                        closest = distance;
+                    }
+                };
+
+                AI.nn.propagateForward({
+                    AI.pos.x,
+                    AI.pos.y,
+                    closestPos.x,
+                    closestPos.y,
+                    100
+                });
+            };
+
             simTimeMS = 0;
         };
 
@@ -174,9 +209,9 @@ int main()
             AI_Sprite.setOrigin({12.5, 40}); // Bottom middle
             AI_Sprite.setScale({3, 3});
             AI_Sprite.setPosition(AI.pos);
-            AI_Sprite.move(AI.accel);
+            AI_Sprite.move(AI.vel + AI.accel);
 
-            AI.vel += AI.accel;
+            AI.vel = AI.accel;
             AI.accel = {0, 0};
             AI.pos = AI_Sprite.getPosition();
         };

@@ -1,9 +1,9 @@
-#include <SFML/System.hpp>
 #include <array>
 #include <random>
 #include "map.hpp"
 #include "neuralNetwork.hpp"
 #include "nlohmann/json.hpp"
+#include "grenade.hpp"
 
 struct ai
 {
@@ -18,7 +18,7 @@ struct ai
     neuralNetwork nn;
     int gen;
 
-    ai(int _gen, neuralNetwork _nn)
+    ai(int _gen = 0, neuralNetwork _nn = neuralNetwork("", 5, 2, 5, 5))
     {
         gen = _gen;
         nn = _nn;
@@ -56,3 +56,4 @@ struct ai
 std::vector<int> saveGenChampion = {0, 1, 2, 3, 4, 5, 10, 25, 50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 2000};
 const int AI_Count = 50;
 std::vector<ai> AI_List;
+std::vector<grenade> grenadeList;
