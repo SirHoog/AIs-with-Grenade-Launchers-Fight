@@ -1,5 +1,6 @@
 #include <vector>
 #include <string>
+#include <bitset>
 #include <algorithm>
 #include <random>
 #include <cstdlib>
@@ -12,11 +13,13 @@
 
 using json = nlohmann::json;
 
+int TPC = 5; // Ticks per calculation
+
 struct neuralNetwork
 {
     std::vector<layer> layers;
 
-    neuralNetwork(std::string fileName = "", int inputSize = 0, int hiddenLayerCount, int hiddenLayerSize = 0, int outputSize = 0)
+    neuralNetwork(std::string fileName = "", int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0)
     {
         if (fileName != "")
         {
@@ -29,7 +32,7 @@ struct neuralNetwork
 
             for (int i = 0; i < inputSize + 1; i++) // + 1 because of the bias neuron
             {
-                input.neurons.push_back(neuron(0 + (i == inputSize + 1), {}, hiddenLayerSize)); // I did `0 + (i == inputSize + 1)` instead of doing an if statement. It's to check if it's the last neuron (bias neuron / term) and set it's value to 1
+                input.neurons.push_back(neuron(0 + (i == inputSize), {}, hiddenLayerSize)); // I did `0 + (i == inputSize)` instead of doing an if statement. It's to check if it's the last neuron (bias neuron / term) and set it's value to 1
             };
 
             layers.push_back(input);
@@ -40,7 +43,7 @@ struct neuralNetwork
 
                 for (int j = 0; j < hiddenLayerSize + 1; j++)  // + 1 because of the bias neuron
                 {
-                    hidden.neurons.push_back(neuron(0 + (i == inputSize + 1), {}, outputSize)); // Same as the input layer pretty much
+                    hidden.neurons.push_back(neuron(0 + (i == hiddenLayerSize), {}, outputSize)); // Same as the input layer pretty much
                 };
                 
                 layers.push_back(hidden);
@@ -123,6 +126,88 @@ struct neuralNetwork
         file.close();
     };
 
+    std::string toBinary()
+    {
+        std::string binaryFloats = "";
+
+        for (int i = 0; i < layers.size(); i++) // For every layer
+        {
+            for (int j = 0; j < layers[i].neurons.size(); j++) // For every neuron
+            {
+                for (int k = 0; k < layers[i].neurons[j].weights.size(); k++) // For every weight
+                {
+                    std::bitset<32> weight = layers[i].neurons[j].weights[k];
+
+                    binaryFloats.append(weight.to_string());
+                }
+            }
+        };
+
+        return binaryFloats;
+    };
+
+    void fromBinary(std::string binary, int inputSize = 0, int hiddenLayerCount, int hiddenLayerSize = 0, int outputSize = 0)
+    {
+        layers = {};
+
+        layer input;
+        layer output;
+
+        for (int i = 0; i < inputSize + 1; i++) // + 1 because of the bias neuron
+        {
+            std::vector<float> weights;
+
+            for (int j = 0; j < hiddenLayerSize; j++)
+            {
+                unsigned long long weightBinary = std::bitset<32>(binary.substr(0, 32)).to_ullong();
+                float weight;
+
+                memcpy(&weight, &weightBinary, 4);
+
+                binary = binary.substr(32); // Remove the float we just translated
+
+                weights.push_back(weight);
+            };
+
+            input.neurons.push_back(neuron(0 + (i == inputSize), weights)); // I did `0 + (i == inputSize)` instead of doing an if statement. It's to check if it's the last neuron (bias neuron / term) and set it's value to 1
+        };
+
+        layers.push_back(input);
+
+        for (int i = 0; i < hiddenLayerCount; i++)
+        {
+            layer hidden;
+
+            for (int j = 0; j < hiddenLayerSize + 1; j++)  // + 1 because of the bias neuron
+            {
+                std::vector<float> weights;
+
+                for (int k = 0; k < ((i == hiddenLayerSize) ? outputSize : hiddenLayerSize); k++) // `((i == hiddenLayerSize) ? outputSize : hiddenLayerSize)` checks to see if `i` is the last hidden layer, and if it is, then k < outputSize
+                {
+                    unsigned long long weightBinary = std::bitset<32>(binary.substr(0, 32)).to_ullong();
+                    float weight;
+
+                    memcpy(&weight, &weightBinary, 4);
+
+                    binary = binary.substr(32);
+
+                    weights.push_back(weight);
+                };
+
+                hidden.neurons.push_back(neuron(0 + (i == hiddenLayerSize), weights)); // Same as the input layer pretty much
+            };
+            
+            layers.push_back(hidden);
+        };
+
+        for (int i = 0; i < outputSize; i++) // No + 1, because output doesn't have bias neuron ofc
+        {
+            output.neurons.push_back(neuron(0, {}, 0));
+        };
+
+        layers.push_back(output);
+    };
+
     void propagateForward(std::vector<float> _input)
     {
         // https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
@@ -173,27 +258,6 @@ struct neuralNetwork
 
                 formula.fill(temp);
             }
-        }
-    };
-
-    // https://web.stanford.edu/group/sisl/k12/optimization/MO-unit2-pdfs/2.15stochastic2annealing,genetic.pdf#page=15
-    void crossOver(neuralNetwork with)
-    {
-
-    };
-
-    // https://web.stanford.edu/group/sisl/k12/optimization/MO-unit2-pdfs/2.15stochastic2annealing,genetic.pdf#page=17
-    void mutate(int mutationAmount, float mutationStrength = 0.5)
-    {
-        std::vector<float*> changedElements = {};
-
-        for (int i = 0; i < mutationAmount; i++)
-        {
-            layer randL = layers[std::rand() % (layers.size() - 1)]; // Subtract 1, because the output layer can't be "mutated"
-            neuron randN = randL.neurons[std::rand() % (randL.neurons.size() + 1) - 1];
-            float randW = randN.weights[std::rand() % randN.weights.size()];
-
-            randW = 
         }
     }
 };

@@ -62,6 +62,7 @@ Ask me questions... Please
     - **A**: [I found this](https://stats.stackexchange.com/questions/181/how-to-choose-the-number-of-hidden-layers-and-nodes-in-a-feedforward-neural-netw) <br>
     There can be any amount of hidden layers, but too many can decrease performance, but one is enough.
     The amount of neurons in the hidden layers is typically the average of the amount of neurons in the input and output layer.
+ - **Q**: What is a bias neuron
 
 - **Q**: How do you know which neurons to connect?
     - **A**: [This video at 1:27](https://www.youtube.com/watch?v=9RN2Wr8xvro&t=87s). <br>
@@ -71,8 +72,8 @@ Ask me questions... Please
     - **A**: [I found this](https://www.quora.com/What-range-of-values-can-a-weight-in-a-neural-network-take-on) <br>
     Normalized (range from -1 to 1) weights and activations are better.
 
-- **Q**: Do Genetic Algorithms / Machine Learning prove that evolution is real?
-    - **A**: Genetic Algorithms mimic the process of natural selection according to [Wikipedia](https://en.wikipedia.org/wiki/Machine_learning#Genetic_algorithms). Genetic Algorithms change how the AI functions. It does not transform. Many people have programmed evolution, and their AIs did transform, but it transformed based off of the experience of other AIs. In the real world, animals may have *learned* from watching their parents, but they didn't just gain their parents' knowledge genetically. If you want to know more, you can visit [this](https://creation.com/genetic-algorithms-do-they-show-that-evolution-works). If you want to discuss this topic personally, you can DM me on discord (sirhoog).
+- **Q**: Do Genetic Algorithms / Evolutionary Algorithms prove evolution in real life?
+    - **A**: Genetic Algorithms **mimic** the process of natural selection. Genetic Algorithms change how the AI functions. In the real world, animals may have *learned* from watching their parents, but they didn't just gain their parents' knowledge genetically. In machine learning, the AI "learns", not evolves. You can say that it "learns" from its mistakes, and each generation, is another trial. If you want to know more, you can visit [this](https://creation.com/genetic-algorithms-do-they-show-that-evolution-works). If you want to discuss this topic to me personally, you can DM me on discord (sirhoog).
 
 ## Libraries used:
 - https://www.sfml-dev.org/index.php
