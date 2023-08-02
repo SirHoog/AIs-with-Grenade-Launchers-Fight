@@ -15,8 +15,8 @@ Download, build, run. That's it.
 - Down: TPS--
 - Numpad 0: TPS = DefaultTPS
 ### Mouse:
-- MB1 on AI: View Neural Network
-- MB1 on map: Move camera around
+- click on AI: View Neural Network
+- hold on map: Move camera around
 - Scroll on map: Zoom in or out
 
 ## Genetic Algorithms in my own words:
