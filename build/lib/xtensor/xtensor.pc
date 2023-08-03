@@ -1,0 +1,7 @@
+prefix=C:/Program Files (x86)/AI_with_jetpack_and_grenade_launcher
+includedir=${prefix}/include
+
+Name: xtensor
+Description: xtensor is a C++ library meant for numerical analysis with multi-dimensional array expressions.
+Version: 0.24.6
+Cflags: -I${includedir}

@@ -146,7 +146,7 @@ struct neuralNetwork
         return binaryFloats;
     };
 
-    void fromBinary(std::string binary, int inputSize = 0, int hiddenLayerCount, int hiddenLayerSize = 0, int outputSize = 0)
+    void fromBinary(std::string binary, int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0)
     {
         layers = {};
 

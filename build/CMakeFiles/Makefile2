@@ -63,15 +63,68 @@ CMAKE_BINARY_DIR = C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Lau
 
 # The main recursive "all" target.
 all: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/all
+all: lib/xsimd/all
+all: lib/xtl/all
+all: lib/xtensor/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: lib/xsimd/preinstall
+preinstall: lib/xtl/preinstall
+preinstall: lib/xtensor/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/clean
+clean: lib/xsimd/clean
+clean: lib/xtl/clean
+clean: lib/xtensor/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory lib/xsimd
+
+# Recursive "all" directory target.
+lib/xsimd/all:
+.PHONY : lib/xsimd/all
+
+# Recursive "preinstall" directory target.
+lib/xsimd/preinstall:
+.PHONY : lib/xsimd/preinstall
+
+# Recursive "clean" directory target.
+lib/xsimd/clean:
+.PHONY : lib/xsimd/clean
+
+#=============================================================================
+# Directory level rules for directory lib/xtensor
+
+# Recursive "all" directory target.
+lib/xtensor/all:
+.PHONY : lib/xtensor/all
+
+# Recursive "preinstall" directory target.
+lib/xtensor/preinstall:
+.PHONY : lib/xtensor/preinstall
+
+# Recursive "clean" directory target.
+lib/xtensor/clean:
+.PHONY : lib/xtensor/clean
+
+#=============================================================================
+# Directory level rules for directory lib/xtl
+
+# Recursive "all" directory target.
+lib/xtl/all:
+.PHONY : lib/xtl/all
+
+# Recursive "preinstall" directory target.
+lib/xtl/preinstall:
+.PHONY : lib/xtl/preinstall
+
+# Recursive "clean" directory target.
+lib/xtl/clean:
+.PHONY : lib/xtl/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir
