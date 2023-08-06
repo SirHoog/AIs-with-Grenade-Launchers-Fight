@@ -73,15 +73,15 @@ CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj: CMakeFiles/AI_
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj: C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/main.cpp
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj -MF CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.obj.d -o CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.obj -c C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\main.cpp
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.obj -MF CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.obj.d -o CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.obj -c C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\main.cpp
 
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.i"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\main.cpp > CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.i
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\main.cpp > CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.i
 
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/main.cpp.s"
-	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\main.cpp -o CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.s
+	C:\msys64\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\main.cpp -o CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\main.cpp.s
 
 # Object files for target AI_with_jetpack_and_grenade_launcher
 AI_with_jetpack_and_grenade_launcher_OBJECTS = \

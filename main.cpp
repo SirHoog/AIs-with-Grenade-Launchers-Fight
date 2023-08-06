@@ -180,12 +180,12 @@ int main()
         {
             for (int j = 0; j < view.getSize().y / gridSize; j++) // For row
             {
-                sf::RectangleShape rect({gridSize, gridSize});
+                sf::RectangleShape rect({(float)gridSize, (float)gridSize});
 
                 rect.setFillColor(sf::Color::Transparent);
                 rect.setOutlineThickness(gridLineThickness);
                 rect.setOutlineColor(sf::Color(100));
-                rect.setPosition({i * gridSize, j * gridSize});
+                rect.setPosition({i * (float)gridSize, j * (float)gridSize});
 
                 gridCells.push_back(rect);
             }

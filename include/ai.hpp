@@ -10,7 +10,7 @@ struct ai
     float health = 100;
     int fitness = 0; // 20 per 20 sec of survival and 15 per kill, but deduct 15 points if survived 30 seconds without a kill
     sf::Color color = sf::Color(rand() % 255, rand() % 255, rand() % 255, 255);
-    sf::Vector2f pos = {rand() % size.x, rand() % size.y};
+    sf::Vector2f pos = {rand() % 1 * size.x, rand() % 1 * size.y};
     sf::Vector2f accel = {0, 0};
     sf::Vector2f vel = {0, 0};
     float aimAngle = 0;
@@ -56,4 +56,3 @@ struct ai
 std::vector<int> saveGenChampion = {0, 1, 2, 3, 4, 5, 10, 25, 50, 75, 100, 150, 200, 300, 400, 500, 750, 1000, 1250, 1500, 2000};
 const int AI_Count = 50;
 std::vector<ai> AI_List;
-std::vector<grenade> grenadeList;
