@@ -1,6 +1,5 @@
 #include <vector>
 #include <random>
-#include "xtensor/xarray.hpp"
 
 struct neuron
 {

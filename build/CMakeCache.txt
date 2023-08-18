@@ -23,14 +23,62 @@ AI_with_jetpack_and_grenade_launcher_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 AI_with_jetpack_and_grenade_launcher_SOURCE_DIR:STATIC=C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight
 
+//Build All targets
+BUILD_ALL:BOOL=OFF
+
 //xtensor benchmark
 BUILD_BENCHMARK:BOOL=OFF
+
+//Build the cppcheck test
+BUILD_CPPCHECK_TEST:BOOL=OFF
+
+//Build the doxygen documentation
+BUILD_DOCS:BOOL=OFF
 
 //xsimd examples
 BUILD_EXAMPLES:BOOL=OFF
 
-//xtensor test suite
+//Build all of the examples
+BUILD_EXAMPLE_ALL:BOOL=OFF
+
+//Build the Gauss-Newton NLLS example
+BUILD_EXAMPLE_GAUSS_NEWTON_NLLS:BOOL=OFF
+
+//Build the Interface with Eigen example
+BUILD_EXAMPLE_INTERFACE_WITH_EIGEN:BOOL=OFF
+
+//Build the Interface with OpenCV example
+BUILD_EXAMPLE_INTERFACE_WITH_OPENCV:BOOL=OFF
+
+//Build the README example
+BUILD_EXAMPLE_README:BOOL=OFF
+
+//Build the multiple translation unit test
+BUILD_MULTIPLE_TEST:BOOL=OFF
+
+//Build the unit tests
 BUILD_TESTS:BOOL=OFF
+
+//Boost date_time library (debug)
+Boost_DATE_TIME_LIBRARY_DEBUG:FILEPATH=Boost_DATE_TIME_LIBRARY_DEBUG-NOTFOUND
+
+Boost_DATE_TIME_LIBRARY_RELEASE:STRING=C:/msys64/mingw64/lib/libboost_date_time-mt.dll
+
+//The directory containing a CMake configuration file for Boost.
+Boost_DIR:PATH=C:/msys64/mingw64/lib/cmake/Boost-1.81.0
+
+//Path to a file.
+Boost_INCLUDE_DIR:PATH=C:/msys64/mingw64/include
+
+//Boost log library (debug)
+Boost_LOG_LIBRARY_DEBUG:FILEPATH=Boost_LOG_LIBRARY_DEBUG-NOTFOUND
+
+Boost_LOG_LIBRARY_RELEASE:STRING=C:/msys64/mingw64/lib/libboost_log-mt.dll
+
+//Boost log_setup library (debug)
+Boost_LOG_SETUP_LIBRARY_DEBUG:FILEPATH=Boost_LOG_SETUP_LIBRARY_DEBUG-NOTFOUND
+
+Boost_LOG_SETUP_LIBRARY_RELEASE:STRING=C:/msys64/mingw64/lib/libboost_log_setup-mt.dll
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=C:/msys64/mingw64/bin/addr2line.exe
@@ -38,15 +86,14 @@ CMAKE_ADDR2LINE:FILEPATH=C:/msys64/mingw64/bin/addr2line.exe
 //Path to a program.
 CMAKE_AR:FILEPATH=C:/msys64/mingw64/bin/ar.exe
 
-//Choose the type of build, options are: None Debug Release RelWithDebInfo
-// MinSizeRel ...
-CMAKE_BUILD_TYPE:STRING=
+//No help, variable specified on the command line.
+CMAKE_BUILD_TYPE:STRING=Debug
 
 //Enable/Disable color output during build.
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
-//CXX compiler
-CMAKE_CXX_COMPILER:STRING=C:/msys64/mingw64/bin/g++.exe
+//No help, variable specified on the command line.
+CMAKE_CXX_COMPILER:FILEPATH=C:/msys64/mingw64/bin/g++.exe
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -74,8 +121,8 @@ CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 //Libraries linked by default with all C++ applications.
 CMAKE_CXX_STANDARD_LIBRARIES:STRING=-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
 
-//C compiler
-CMAKE_C_COMPILER:STRING=C:/msys64/mingw64/bin/gcc.exe
+//No help, variable specified on the command line.
+CMAKE_C_COMPILER:FILEPATH=C:/msys64/mingw64/bin/gcc.exe
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -222,6 +269,21 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 //Value Computed by CMake
 CMAKE_PROJECT_NAME:STATIC=AI_with_jetpack_and_grenade_launcher
 
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION:STATIC=2.11.0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=2
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MINOR:STATIC=11
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_PATCH:STATIC=0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_TWEAK:STATIC=
+
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=C:/msys64/mingw64/bin/ranlib.exe
 
@@ -329,11 +391,29 @@ DOWNLOAD_GTEST:BOOL=OFF
 //enables support for xcomplex defined in xtl
 ENABLE_XTL_COMPLEX:BOOL=OFF
 
+//Don't use the boost libraries
+NUMCPP_NO_USE_BOOST:BOOL=OFF
+
+//Enable multithreading
+NUMCPP_USE_MULTITHREAD:BOOL=OFF
+
+//Value Computed by CMake
+NumCpp_BINARY_DIR:STATIC=C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/build/lib/NumCpp
+
+//Value Computed by CMake
+NumCpp_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+NumCpp_SOURCE_DIR:STATIC=C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/lib/NumCpp
+
 //The directory containing a CMake configuration file for SFML.
 SFML_DIR:PATH=C:/msys64/mingw64/lib/cmake/SFML
 
 //Path to a file.
 SFML_DOC_DIR:PATH=SFML_DOC_DIR-NOTFOUND
+
+//Path to a file.
+VERSION_FILE:FILEPATH=C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/lib/NumCpp/include/NumCpp/Core/Internal/Version.hpp
 
 //install path for xsimdConfig.cmake
 XSIMD_CMAKECONFIG_INSTALL_DIR:STRING=lib/cmake/xsimd
@@ -367,6 +447,33 @@ XTL_CMAKECONFIG_INSTALL_DIR:STRING=share/cmake/xtl
 
 //Disable C++ exceptions
 XTL_DISABLE_EXCEPTIONS:BOOL=OFF
+
+//The directory containing a CMake configuration file for boost_atomic.
+boost_atomic_DIR:PATH=C:/msys64/mingw64/lib/cmake/boost_atomic-1.81.0
+
+//The directory containing a CMake configuration file for boost_chrono.
+boost_chrono_DIR:PATH=C:/msys64/mingw64/lib/cmake/boost_chrono-1.81.0
+
+//The directory containing a CMake configuration file for boost_date_time.
+boost_date_time_DIR:PATH=C:/msys64/mingw64/lib/cmake/boost_date_time-1.81.0
+
+//The directory containing a CMake configuration file for boost_filesystem.
+boost_filesystem_DIR:PATH=C:/msys64/mingw64/lib/cmake/boost_filesystem-1.81.0
+
+//The directory containing a CMake configuration file for boost_headers.
+boost_headers_DIR:PATH=C:/msys64/mingw64/lib/cmake/boost_headers-1.81.0
+
+//The directory containing a CMake configuration file for boost_log.
+boost_log_DIR:PATH=C:/msys64/mingw64/lib/cmake/boost_log-1.81.0
+
+//The directory containing a CMake configuration file for boost_log_setup.
+boost_log_setup_DIR:PATH=C:/msys64/mingw64/lib/cmake/boost_log_setup-1.81.0
+
+//The directory containing a CMake configuration file for boost_regex.
+boost_regex_DIR:PATH=C:/msys64/mingw64/lib/cmake/boost_regex-1.81.0
+
+//The directory containing a CMake configuration file for boost_thread.
+boost_thread_DIR:PATH=C:/msys64/mingw64/lib/cmake/boost_thread-1.81.0
 
 //The directory containing a CMake configuration file for nlohmann_json.
 nlohmann_json_DIR:PATH=nlohmann_json_DIR-NOTFOUND
@@ -403,6 +510,20 @@ xtl_SOURCE_DIR:STATIC=C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_DATE_TIME_LIBRARY_DEBUG
+Boost_DATE_TIME_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_DATE_TIME_LIBRARY_RELEASE
+Boost_DATE_TIME_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_DIR
+Boost_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_LOG_LIBRARY_DEBUG
+Boost_LOG_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_LOG_LIBRARY_RELEASE
+Boost_LOG_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_LOG_SETUP_LIBRARY_DEBUG
+Boost_LOG_SETUP_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_LOG_SETUP_LIBRARY_RELEASE
+Boost_LOG_SETUP_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -475,6 +596,7 @@ CMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
+CMAKE_EXPORT_COMPILE_COMMANDS:INTERNAL=ON
 //Name of external makefile project generator.
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.
@@ -485,6 +607,8 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight
@@ -537,7 +661,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -593,6 +717,8 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_TAPI-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Boost
+FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[C:/msys64/mingw64/lib/cmake/Boost-1.81.0/BoostConfig.cmake][cfound components: date_time log log_setup ][v1.81.0(1.68.0)]
 XSIMD_VERSION_MAJOR:INTERNAL=11
 XSIMD_VERSION_MINOR:INTERNAL=0
 XSIMD_VERSION_PATCH:INTERNAL=1
@@ -606,4 +732,22 @@ XTL_VERSION_PATCH:INTERNAL=5
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/AI_with_jetpack_and_grenade_launcher
+//ADVANCED property for variable: boost_atomic_DIR
+boost_atomic_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_chrono_DIR
+boost_chrono_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_date_time_DIR
+boost_date_time_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_filesystem_DIR
+boost_filesystem_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_headers_DIR
+boost_headers_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_log_DIR
+boost_log_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_log_setup_DIR
+boost_log_setup_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_regex_DIR
+boost_regex_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_thread_DIR
+boost_thread_DIR-ADVANCED:INTERNAL=1
 

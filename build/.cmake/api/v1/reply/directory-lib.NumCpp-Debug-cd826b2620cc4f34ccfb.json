@@ -1,0 +1,87 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"lib/NumCpp/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 205,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 211,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 218,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "share/NumCpp/cmake",
+			"exportName" : "NumCpp_Targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "NumCpp::@1b50b0104846dba95906",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"lib/NumCpp/CMakeFiles/Export/92c9a7fd17518a8ad88a7cfe13174b73/NumCppTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "share/NumCpp/cmake",
+			"paths" : 
+			[
+				"build/lib/NumCpp/NumCppConfig.cmake",
+				"build/lib/NumCpp/NumCppConfigVersion.cmake"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "include",
+			"paths" : 
+			[
+				{
+					"from" : "lib/NumCpp/include",
+					"to" : "."
+				}
+			],
+			"type" : "directory"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "lib/NumCpp",
+		"source" : "lib/NumCpp"
+	}
+}

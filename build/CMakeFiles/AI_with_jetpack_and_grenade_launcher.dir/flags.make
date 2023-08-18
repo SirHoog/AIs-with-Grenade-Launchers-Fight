@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = @CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/includes_CXX.rsp
 
-CXX_FLAGS = 
+CXX_FLAGS = -g
 

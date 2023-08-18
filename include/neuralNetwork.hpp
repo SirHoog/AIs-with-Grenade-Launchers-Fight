@@ -5,9 +5,8 @@
 #include <random>
 #include <cstdlib>
 #include <fstream>
-#include <xtensor/xarray.hpp>
-#include <xtensor/xjson.hpp>
-#include <xtensor/xview.hpp>
+#include <NC/NumCpp/NdArray.hpp>
+#include <NC/NumCpp/Functions/append.hpp>
 #include "nlohmann/json.hpp"
 #include "layer.hpp"
 
@@ -213,16 +212,18 @@ struct neuralNetwork
         // https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
         // Formula: layer = tanh(weights * activations + bias) // tanh means hyperbolic tangent and it's sorta like a sigmoid, but instead of ranging from 0 to 1, it ranges from -1 to 1
 
-        xt::xarray<float> a;
-        xt::xarray<float> w;
-        xt::xarray<float> b;
+        nc::NdArray<float> a;
+        nc::NdArray<float> w;
+        nc::NdArray<float> b;
 
         for (int i = 0; i < _input.size(); i++) // Do not subtract 1, because `_input` doesn't include the bias neuron / bias term ofc
         {
             layers[0].neurons[i].activation = tanh(_input[i]); // normalize input
         };
-        
-        b.fill(layers[0].neurons[layers[0].neurons.size()].weights); // im not sure if the `b` vector is filled with bias activations or bias weights, but bias weights makes the most sense
+
+        std::vector<neuron> temp = layers[0].neurons;
+
+        nc::append(b, static_cast<nc::NdArray<float>>(temp[temp.size()].weights)); // im not sure if the `b` vector is filled with bias activations or bias weights, but bias weights makes the most sense
 
         for (int i = 1; i < layers.size(); i++) // For every layer // i = 1 to skip the input layer
         {
@@ -231,7 +232,7 @@ struct neuralNetwork
 
             for (int j = 0; j < pLayer.neurons.size() - 1; j++) // For every neuron in pLayer // Subtract 1 to not include bias neuron / bias term
             {
-                xt::xarray<float> rowOfWeights; 
+                nc::NdArray<float> rowOfWeights; 
 
                 a.fill(pLayer.neurons[j].activation); // a
 
@@ -240,23 +241,14 @@ struct neuralNetwork
                     rowOfWeights.fill(pLayer.neurons[j].weights[k]);
                 };
 
-                w.fill(rowOfWeights); // w
+                nc::append(w, rowOfWeights); // w
             };
 
-            xt::xarray<float> layerActivations = xt::view((w * a) + b); // not done yet, gotta chuck it in the tanh function
-            xt::xarray<float> formula;
+            nc::NdArray<float> layerActivations = ((w * a) + b); // not done yet, gotta chuck it in the tanh function
 
-            for (int j = 0; j < layerActivations.shape()[0]; j++) // tanh loop // DON'T CHANGE `formula.shape()[0]` TO `formula.size()` BECAUSE SOMETHING MAY NOT WORK (idk)
+            for (int j = 0; j < layerActivations.shape().rows; j++) // tanh loop
             {
-                xt::xarray<float> row = xt::view(layerActivations, j);
-                xt::xarray<float> temp;
-
-                for (int k = 0; k < row.shape()[0]; k++) // SAME HERE
-                {
-                   temp.fill(tanh(xt::view(row, k)));
-                };
-
-                formula.fill(temp);
+                layerActivations[j] = tanh(layerActivations[j]);
             }
         }
     }

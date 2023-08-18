@@ -63,68 +63,49 @@ CMAKE_BINARY_DIR = C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Lau
 
 # The main recursive "all" target.
 all: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/all
-all: lib/xsimd/all
-all: lib/xtl/all
-all: lib/xtensor/all
+all: lib/NumCpp/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall: lib/xsimd/preinstall
-preinstall: lib/xtl/preinstall
-preinstall: lib/xtensor/preinstall
+preinstall: lib/NumCpp/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/clean
-clean: lib/xsimd/clean
-clean: lib/xtl/clean
-clean: lib/xtensor/clean
+clean: lib/NumCpp/clean
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory lib/xsimd
+# Directory level rules for directory lib/NumCpp
 
 # Recursive "all" directory target.
-lib/xsimd/all:
-.PHONY : lib/xsimd/all
+lib/NumCpp/all: lib/NumCpp/examples/all
+.PHONY : lib/NumCpp/all
 
 # Recursive "preinstall" directory target.
-lib/xsimd/preinstall:
-.PHONY : lib/xsimd/preinstall
+lib/NumCpp/preinstall: lib/NumCpp/examples/preinstall
+.PHONY : lib/NumCpp/preinstall
 
 # Recursive "clean" directory target.
-lib/xsimd/clean:
-.PHONY : lib/xsimd/clean
+lib/NumCpp/clean: lib/NumCpp/CMakeFiles/format.dir/clean
+lib/NumCpp/clean: lib/NumCpp/CMakeFiles/tidy.dir/clean
+lib/NumCpp/clean: lib/NumCpp/examples/clean
+.PHONY : lib/NumCpp/clean
 
 #=============================================================================
-# Directory level rules for directory lib/xtensor
+# Directory level rules for directory lib/NumCpp/examples
 
 # Recursive "all" directory target.
-lib/xtensor/all:
-.PHONY : lib/xtensor/all
+lib/NumCpp/examples/all:
+.PHONY : lib/NumCpp/examples/all
 
 # Recursive "preinstall" directory target.
-lib/xtensor/preinstall:
-.PHONY : lib/xtensor/preinstall
+lib/NumCpp/examples/preinstall:
+.PHONY : lib/NumCpp/examples/preinstall
 
 # Recursive "clean" directory target.
-lib/xtensor/clean:
-.PHONY : lib/xtensor/clean
-
-#=============================================================================
-# Directory level rules for directory lib/xtl
-
-# Recursive "all" directory target.
-lib/xtl/all:
-.PHONY : lib/xtl/all
-
-# Recursive "preinstall" directory target.
-lib/xtl/preinstall:
-.PHONY : lib/xtl/preinstall
-
-# Recursive "clean" directory target.
-lib/xtl/clean:
-.PHONY : lib/xtl/clean
+lib/NumCpp/examples/clean:
+.PHONY : lib/NumCpp/examples/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir
@@ -151,6 +132,58 @@ AI_with_jetpack_and_grenade_launcher: CMakeFiles/AI_with_jetpack_and_grenade_lau
 CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\build.make CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/clean
 .PHONY : CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/clean
+
+#=============================================================================
+# Target rules for target lib/NumCpp/CMakeFiles/format.dir
+
+# All Build rule for target.
+lib/NumCpp/CMakeFiles/format.dir/all:
+	$(MAKE) $(MAKESILENT) -f lib\NumCpp\CMakeFiles\format.dir\build.make lib/NumCpp/CMakeFiles/format.dir/depend
+	$(MAKE) $(MAKESILENT) -f lib\NumCpp\CMakeFiles\format.dir\build.make lib/NumCpp/CMakeFiles/format.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build\CMakeFiles --progress-num= "Built target format"
+.PHONY : lib/NumCpp/CMakeFiles/format.dir/all
+
+# Build rule for subdir invocation for target.
+lib/NumCpp/CMakeFiles/format.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build\CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lib/NumCpp/CMakeFiles/format.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build\CMakeFiles 0
+.PHONY : lib/NumCpp/CMakeFiles/format.dir/rule
+
+# Convenience name for target.
+format: lib/NumCpp/CMakeFiles/format.dir/rule
+.PHONY : format
+
+# clean rule for target.
+lib/NumCpp/CMakeFiles/format.dir/clean:
+	$(MAKE) $(MAKESILENT) -f lib\NumCpp\CMakeFiles\format.dir\build.make lib/NumCpp/CMakeFiles/format.dir/clean
+.PHONY : lib/NumCpp/CMakeFiles/format.dir/clean
+
+#=============================================================================
+# Target rules for target lib/NumCpp/CMakeFiles/tidy.dir
+
+# All Build rule for target.
+lib/NumCpp/CMakeFiles/tidy.dir/all:
+	$(MAKE) $(MAKESILENT) -f lib\NumCpp\CMakeFiles\tidy.dir\build.make lib/NumCpp/CMakeFiles/tidy.dir/depend
+	$(MAKE) $(MAKESILENT) -f lib\NumCpp\CMakeFiles\tidy.dir\build.make lib/NumCpp/CMakeFiles/tidy.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build\CMakeFiles --progress-num= "Built target tidy"
+.PHONY : lib/NumCpp/CMakeFiles/tidy.dir/all
+
+# Build rule for subdir invocation for target.
+lib/NumCpp/CMakeFiles/tidy.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build\CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lib/NumCpp/CMakeFiles/tidy.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\defga\OneDrive\Documents\GitHub\AIs-with-Grenade-Launchers-Fight\build\CMakeFiles 0
+.PHONY : lib/NumCpp/CMakeFiles/tidy.dir/rule
+
+# Convenience name for target.
+tidy: lib/NumCpp/CMakeFiles/tidy.dir/rule
+.PHONY : tidy
+
+# clean rule for target.
+lib/NumCpp/CMakeFiles/tidy.dir/clean:
+	$(MAKE) $(MAKESILENT) -f lib\NumCpp\CMakeFiles\tidy.dir\build.make lib/NumCpp/CMakeFiles/tidy.dir/clean
+.PHONY : lib/NumCpp/CMakeFiles/tidy.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

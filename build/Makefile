@@ -173,6 +173,32 @@ AI_with_jetpack_and_grenade_launcher/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\AI_with_jetpack_and_grenade_launcher.dir\build.make CMakeFiles/AI_with_jetpack_and_grenade_launcher.dir/build
 .PHONY : AI_with_jetpack_and_grenade_launcher/fast
 
+#=============================================================================
+# Target rules for targets named format
+
+# Build rule for target.
+format: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 format
+.PHONY : format
+
+# fast build rule for target.
+format/fast:
+	$(MAKE) $(MAKESILENT) -f lib\NumCpp\CMakeFiles\format.dir\build.make lib/NumCpp/CMakeFiles/format.dir/build
+.PHONY : format/fast
+
+#=============================================================================
+# Target rules for targets named tidy
+
+# Build rule for target.
+tidy: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 tidy
+.PHONY : tidy
+
+# fast build rule for target.
+tidy/fast:
+	$(MAKE) $(MAKESILENT) -f lib\NumCpp\CMakeFiles\tidy.dir\build.make lib/NumCpp/CMakeFiles/tidy.dir/build
+.PHONY : tidy/fast
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -209,6 +235,8 @@ help:
 	@echo ... install/strip
 	@echo ... list_install_components
 	@echo ... rebuild_cache
+	@echo ... format
+	@echo ... tidy
 	@echo ... AI_with_jetpack_and_grenade_launcher
 	@echo ... main.obj
 	@echo ... main.i

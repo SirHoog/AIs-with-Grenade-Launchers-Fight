@@ -612,3 +612,48 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/mingw64/CMake/share/cmake-3.27/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/msys64/mingw64/CMake/share/cmake-3.27/Modules/CheckCSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "C:/msys64/mingw64/CMake/share/cmake-3.27/Modules/FindThreads.cmake:97 (CHECK_C_SOURCE_COMPILES)"
+      - "C:/msys64/mingw64/CMake/share/cmake-3.27/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "C:/msys64/mingw64/CMake/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)"
+      - "C:/msys64/mingw64/lib/cmake/boost_thread-1.81.0/boost_thread-config.cmake:118 (find_dependency)"
+      - "C:/msys64/mingw64/lib/cmake/boost_log-1.81.0/boost_log-config.cmake:102 (find_package)"
+      - "C:/msys64/mingw64/lib/cmake/Boost-1.81.0/BoostConfig.cmake:141 (find_package)"
+      - "C:/msys64/mingw64/lib/cmake/Boost-1.81.0/BoostConfig.cmake:262 (boost_find_component)"
+      - "C:/msys64/mingw64/CMake/share/cmake-3.27/Modules/FindBoost.cmake:594 (find_package)"
+      - "lib/NumCpp/CMakeLists.txt:68 (find_package)"
+    directories:
+      source: "C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/build/CMakeFiles/CMakeScratch/TryCompile-67pt6a"
+      binary: "C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/build/CMakeFiles/CMakeScratch/TryCompile-67pt6a"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/cmake_modules;C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/lib/NumCpp/cmake"
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/build/CMakeFiles/CMakeScratch/TryCompile-67pt6a'
+        
+        Run Build Command(s): C:/msys64/mingw64/CMake/bin/cmake.exe -E env VERBOSE=1 C:/msys64/mingw64/bin/mingw32-make.exe -f Makefile cmTC_5c73c/fast
+        C:/msys64/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_5c73c.dir\\build.make CMakeFiles/cmTC_5c73c.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/build/CMakeFiles/CMakeScratch/TryCompile-67pt6a'
+        Building C object CMakeFiles/cmTC_5c73c.dir/src.c.obj
+        C:\\msys64\\mingw64\\bin\\gcc.exe -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles\\cmTC_5c73c.dir\\src.c.obj -c C:\\Users\\defga\\OneDrive\\Documents\\GitHub\\AIs-with-Grenade-Launchers-Fight\\build\\CMakeFiles\\CMakeScratch\\TryCompile-67pt6a\\src.c
+        Linking C executable cmTC_5c73c.exe
+        C:\\msys64\\mingw64\\CMake\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_5c73c.dir\\link.txt --verbose=1
+        C:\\msys64\\mingw64\\CMake\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_5c73c.dir/objects.a
+        C:\\msys64\\mingw64\\bin\\ar.exe qc CMakeFiles\\cmTC_5c73c.dir/objects.a @CMakeFiles\\cmTC_5c73c.dir\\objects1.rsp
+        C:\\msys64\\mingw64\\bin\\gcc.exe -Wl,--dependency-file,CMakeFiles\\cmTC_5c73c.dir\\link.d -Wl,--whole-archive CMakeFiles\\cmTC_5c73c.dir/objects.a -Wl,--no-whole-archive -o cmTC_5c73c.exe -Wl,--out-implib,libcmTC_5c73c.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\\cmTC_5c73c.dir\\linkLibs.rsp
+        mingw32-make[1]: Leaving directory 'C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/build/CMakeFiles/CMakeScratch/TryCompile-67pt6a'
+        
+      exitCode: 0
+...
