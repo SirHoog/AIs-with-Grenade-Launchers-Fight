@@ -5,7 +5,7 @@
 
 ## Usage:
 
-Download, build, run. That's it.
+Download, install [Boost](https://www.boost.org/), build, run. That's it.
 
 ### Keybinds:
 - Spacebar: Play/pause : TPS = DefaultTPS/TPS = 0

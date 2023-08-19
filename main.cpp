@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <SFML/Graphics.hpp>
 #include "include/ai.hpp"
 
 const int defaultTPS = 50;
