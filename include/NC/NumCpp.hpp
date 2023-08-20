@@ -43,7 +43,6 @@
 
 #include "NumCpp/Coordinates.hpp"
 #include "NumCpp/Core.hpp"
-#include "NumCpp/DateTime.hpp"
 #include "NumCpp/Filter.hpp"
 #include "NumCpp/Functions.hpp"
 #include "NumCpp/ImageProcessing.hpp"
