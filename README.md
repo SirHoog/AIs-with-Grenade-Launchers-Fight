@@ -52,8 +52,8 @@ Download, install [Boost](https://www.boost.org/), build, run. That's it.
 - https://www.youtube.com/watch?v=FBpPjjhJGhk
 - https://www.youtube.com/watch?v=w8yWXqWQYmU (This is in python, but IDC, I think you can still learn from it)
 - https://www.youtube.com/watch?v=9RN2Wr8xvro **(I learned the most from this)**
-- https://reference.wolfram.com/language/guide/MachineLearning.html (I didn't read this, I'm just including it so you don't have to search any further) `<br><br>`
-  (`<u>`I personally don't recommend`</u>` learning from `<u>`Brilliant.org`</u>` because it is **extremely** slow and basic at the start, and I think they're just there for your money)
+- https://reference.wolfram.com/language/guide/MachineLearning.html (I didn't read this, I'm just including it so you don't have to search any further) <br><br>
+  (<u>I personally don't recommend</u> learning from <u>Brilliant.org</u> because it is **extremely** slow and basic at the start, and I think they're just there for your money)
 
 ## The FAQ:
 
@@ -66,22 +66,22 @@ Ask me questions... Please
 
 - **Q**: Do I need to know a lot of math to learn about Machine Learning?
 
-  - **A**: Depends on what your goal is. Neural Networks are complex, and easier ways of visualizing them is in matrix form. That is why I am using the xtensor library. For other categories of Machine Learning, you can use Gradient Descent, which is some Calculus thing that I don't understand or care about. `<br><br>`
-    If you want to learn Linear Algebra or Calculus, you can go to [3Blue1Brown&#39;s Youtube Channel](https://www.youtube.com/@3blue1brown/courses) `<br>`
+  - **A**: Depends on what your goal is. Neural Networks are complex, and easier ways of visualizing them is in matrix form. That is why I am using the xtensor library. For other categories of Machine Learning, you can use Gradient Descent, which is some Calculus thing that I don't understand or care about. <br><br>
+    If you want to learn Linear Algebra or Calculus, you can go to [3Blue1Brown&#39;s Youtube Channel](https://www.youtube.com/@3blue1brown/courses) <br>
     Example of some of the math (timestamp at 13:26): https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
 - **Q**: How do you know how many hidden layers to use and the size of them?
 
-  - **A**: [I found this](https://stats.stackexchange.com/questions/181/how-to-choose-the-number-of-hidden-layers-and-nodes-in-a-feedforward-neural-netw) `<br>`
+  - **A**: [I found this](https://stats.stackexchange.com/questions/181/how-to-choose-the-number-of-hidden-layers-and-nodes-in-a-feedforward-neural-netw) <br>
     There can be any amount of hidden layers, but too many can decrease performance, but one is enough.
     The amount of neurons in the hidden layers is typically the average of the amount of neurons in the input and output layer.
 - **Q**: What is a bias neuron
 - **Q**: How do you know which neurons to connect?
 
-  - **A**: [This video at 1:27](https://www.youtube.com/watch?v=9RN2Wr8xvro&t=87s). `<br>`
+  - **A**: [This video at 1:27](https://www.youtube.com/watch?v=9RN2Wr8xvro&t=87s). <br>
     Fully connected layers are most used.
 - **Q**: What range of numbers are allowed in a neural network?
 
-  - **A**: [I found this](https://www.quora.com/What-range-of-values-can-a-weight-in-a-neural-network-take-on) `<br>`
+  - **A**: [I found this](https://www.quora.com/What-range-of-values-can-a-weight-in-a-neural-network-take-on) <br>
     Normalized (range from -1 to 1) weights and activations are better.
 - **Q**: Do Genetic Algorithms / Evolutionary Algorithms prove evolution in real life?
 

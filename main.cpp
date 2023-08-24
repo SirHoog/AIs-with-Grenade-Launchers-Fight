@@ -12,6 +12,7 @@ sf::Clock runTime;
 
 int main()
 {
+    sf::Clock clock;
     float simTimeMS;
 
     sf::RenderWindow window(sf::VideoMode(1280, 720), "AI with Grenade Launchers Fight");
@@ -23,7 +24,6 @@ int main()
     sf::Vector2u mousePosGrid;
 
     view.setSize(size.x, size.y);
-    view.setCenter(window.getSize().x / 2, window.getSize().y / 2);
 
     for (int i = 0; i < AI_Count; i++)
     {
@@ -37,50 +37,41 @@ int main()
         std::cout << "Error when trying to load ttf 'assets/ARLRDBD.TTF'" << std::endl;
     };
 
-    // Uncomment this when you figure out how to create a gridTexture
+    sf::RenderTexture gridRenderTexture;
+    sf::RectangleShape gridTile({(float)gridSize, (float)gridSize});
+    sf::IntRect gridTileIntRect(0, 0,(float)gridSize, (float)gridSize);
 
-    // sf::Texture gridTexture;
-    // sf::Uint8* pixels = new sf::Uint8[gridSize * gridSize * 4];
+    gridTile.setFillColor(sf::Color(100, 100, 100, 255));
+    gridTile.setOutlineThickness(gridLineThickness);
 
-    // if (gridTexture.create(gridSize, gridSize))
-    // {
-    //     std::cout << "Error when trying to create sf::Texture 'gridTexture'";
-    // };
+    if (!gridRenderTexture.create(gridSize + gridLineThickness, gridSize + gridLineThickness))
+    {
+        std::cout << "Error when trying to create sf::RenderTexture 'gridRenderTexture'";
+    };
 
-    // gridTexture.update(pixels);
-    // gridTexture.setRepeated(true);
+    gridRenderTexture.clear();
+    gridRenderTexture.draw(gridTile);
+    gridRenderTexture.display();
+
+    sf::Texture gridTexture = gridRenderTexture.getTexture();
+
+    gridTexture.setRepeated(true);
 
     sf::RectangleShape viewColor(view.getSize());
 
-    std::vector<sf::RectangleShape> gridCells;
-
-    // viewColor.setTexture(&gridTexture);
+    viewColor.setTexture(&gridTexture);
+    viewColor.setTextureRect(gridTileIntRect);
     viewColor.setOutlineThickness(5);
     viewColor.setOutlineColor(sf::Color::White);
-
-    // Remove this when you figure out how to create a gridTexture
-    for (int i = 0; i < view.getSize().x / gridSize; i++) // For column
-    {
-        for (int j = 0; j < view.getSize().y / gridSize; j++) // For row
-        {
-            sf::RectangleShape rect({(float)gridSize, (float)gridSize});
-
-            rect.setFillColor(sf::Color(100, 100, 100, 255));
-            rect.setOutlineThickness(gridLineThickness);
-            rect.setPosition({i * (float)gridSize, j * (float)gridSize});
-
-            gridCells.push_back(rect);
-        }
-    };
 
     window.setKeyRepeatEnabled(false);
 
     while (window.isOpen())
     {
-        sf::Clock clock;
         sf::Time dt = clock.getElapsedTime();
 
         simTimeMS += dt.asMilliseconds() * (TPS / defaultTPS);
+        // std::cout << dt.asMilliseconds();
 
         sf::Event event;
 
@@ -89,23 +80,6 @@ int main()
             if (event.type == sf::Event::Closed)
             {
                 window.close();
-            };
-            if (event.type == sf::Event::Resized)
-            {
-                // Remove this when you figure out how to create a gridTexture
-                for (int i = 0; i < view.getSize().x / gridSize; i++) // For column
-                {
-                    for (int j = 0; j < view.getSize().y / gridSize; j++) // For row
-                    {
-                        sf::RectangleShape rect({(float)gridSize, (float)gridSize});
-
-                        rect.setFillColor(sf::Color(100, 100, 100, 255));
-                        rect.setOutlineThickness(gridLineThickness);
-                        rect.setPosition({i * (float)gridSize, j * (float)gridSize});
-
-                        gridCells.push_back(rect);
-                    }
-                }
             };
             if (event.type == sf::Event::EventType::KeyReleased)
             {
@@ -247,13 +221,9 @@ int main()
 
         window.clear(sf::Color::Black);
         window.draw(viewColor);
-        for (int i = 0; i < gridCells.size(); i++)
-        {
-            window.draw(gridCells[i]);
-        };
         window.display();
 
-        // clock.restart().asMilliseconds();
+        clock.restart().asMilliseconds();
     };
 
     std::cout
