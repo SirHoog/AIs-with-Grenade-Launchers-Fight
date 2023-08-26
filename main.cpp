@@ -13,7 +13,7 @@ sf::Clock runTime;
 int main()
 {
     sf::Clock clock;
-    float simTimeMS;
+    double simTimeMS;
 
     sf::RenderWindow window(sf::VideoMode(1600, 900), "AI with Grenade Launchers Fight", sf::Style::Default);
     sf::View view(sf::FloatRect(0, 0, size.x, size.y));
@@ -27,7 +27,7 @@ int main()
 
     for (int i = 0; i < AI_Count; i++)
     {
-        AI_List.push_back(ai());
+        AI_List.push_back(ai(0, neuralNetwork("", 5, 2, 4, 6)));
     };
 
     sf::Texture AI_Image;
@@ -199,6 +199,24 @@ int main()
                     closestPos.y,
                     100 // Distance from grenade
                 });
+
+                std::vector<sf::Sprite> grenadeSprites;
+                std::vector<neuron> output = AI.nn.layers.back().neurons;
+
+                AI.vel.x += output[1].activation - output[0].activation; // Right - Left
+                AI.vel.y -= (output[2].activation > 0.5) * (AI.pos.y > size.y - 5) + 0.0001; // `-=` because SFML has a flipped Y axis // Jump * Touching Ground + Gravity
+                AI.aimAngle = output[3].activation * 360;
+                
+                for (int j = 0; j < AI.grenadeList.size(); j++)
+                {
+                    AI.grenadeList[j].vel.y += 5; // SFML flipped Y axis
+                };
+
+                if (output[4].activation > 0.5 && AI.lastGrenadeMS > runTime.getElapsedTime().asMilliseconds())
+                {
+                    AI.grenadeList.push_back(grenade(AI.pos, sf::Vector2f(std::sin(AI.aimAngle), -std::cos(AI.aimAngle)) * output[5].activation));
+                    AI.lastGrenadeMS = runTime.getElapsedTime().asMilliseconds();
+                };
             };
 
             simTimeMS = 0;
@@ -230,12 +248,10 @@ int main()
             AI_Sprite.setTexture(AI_Image);
             AI_Sprite.setOrigin(12.5, 40); // Bottom middle
             AI_Sprite.setScale(3, 3);
-            AI_Sprite.setPosition(size / 2.f);
-            AI_Sprite.move(AI.vel + AI.accel);
 
-            AI.vel = AI.accel;
-            AI.accel = {0, 0};
-            AI.pos = AI_Sprite.getPosition();
+            AI_Sprite.setPosition(AI_Sprite.getPosition().x + AI.vel.x, std::max(AI_Sprite.getPosition().y + AI.vel.y, size.y));
+
+            window.draw(AI_Sprite);
         };
         window.display();
 

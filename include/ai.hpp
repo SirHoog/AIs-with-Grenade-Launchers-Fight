@@ -13,9 +13,11 @@ struct ai
     int fitness = 0; // 20 per 20 sec of survival and 15 per kill, but deduct 15 points if survived 30 seconds without a kill
     sf::Color color = sf::Color(rand() % 255, rand() % 255, rand() % 255, 255);
     sf::Vector2f pos = {rand() % 1 * size.x, rand() % 1 * size.y};
-    sf::Vector2f accel = {0, 0};
     sf::Vector2f vel = {0, 0};
-    float aimAngle = 0;
+    float aimAngle = 0; // Degrees
+    float lastGrenadeMS;
+
+    std::vector<grenade> grenadeList;
 
     neuralNetwork nn;
     int gen;
