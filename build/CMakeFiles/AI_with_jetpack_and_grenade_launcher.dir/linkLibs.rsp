@@ -1,1 +1,0 @@
-  -L"C:/Users/defga/OneDrive/Documents/GitHub/AIs-with-Grenade-Launchers-Fight/lib/NumCpp"  "C:/msys64/mingw64/lib/libsfml-graphics.dll.a" -lpthread "C:/msys64/mingw64/lib/libsfml-window.dll.a" "C:/msys64/mingw64/lib/libsfml-system.dll.a" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
