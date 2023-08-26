@@ -30,6 +30,13 @@ int main()
         AI_List.push_back(ai());
     };
 
+    sf::Texture AI_Image;
+
+    if (!AI_Image.loadFromFile("assets/AI/AI_Frame4.png"))
+    {
+        std::cout << "Error when trying to load png 'assets/AI/AI_Frame4.png'";
+    };
+
     sf::Font font;
 
     if (!font.loadFromFile("assets/ARLRDBD.TTF"))
@@ -72,9 +79,6 @@ int main()
     while (window.isOpen())
     {
         sf::Time dt = clock.getElapsedTime();
-
-        simTimeMS += dt.asMilliseconds() * (TPS / defaultTPS);
-        // std::cout << dt.asMilliseconds();
 
         sf::Event event;
 
@@ -161,41 +165,44 @@ int main()
             }
         };
 
-        // if (simTimeMS / (1000 / (TPS / defaultTPS)) > 1)
-        // {
-        //     for (int i = 0; i < AI_List.size(); i++)
-        //     {
-        //         ai AI = AI_List[i];
-        //         sf::Vector2f closestPos;
-        //         float closest = 1000;
+        window.clear(sf::Color::Black);
+        window.draw(viewColor); // Basically the background
 
-        //         for (int j = 0; j < AI_List.size(); j++)
-        //         {
-        //             if (j == i)
-        //             {
-        //                 break;
-        //             };
+        if (simTimeMS / (1000 / (TPS / defaultTPS)) > 1)
+        {
+            for (int i = 0; i < AI_List.size(); i++)
+            {
+                ai AI = AI_List[i];
+                sf::Vector2f closestPos;
+                float closest = 1000;
+
+                for (int j = 0; j < AI_List.size(); j++)
+                {
+                    if (j == i) // If the AI is itself, break the loop
+                    {
+                        break;
+                    };
                     
-        //             float distance = sqrt(pow(AI.pos.x - AI_List[j].pos.x, 2) + pow(AI.pos.y - AI_List[j].pos.y, 2));
+                    float distance = sqrt(pow(AI.pos.x - AI_List[j].pos.x, 2) + pow(AI.pos.y - AI_List[j].pos.y, 2));
 
-        //             if (distance > closest)
-        //             {
-        //                 closestPos = AI_List[j].pos;
-        //                 closest = distance;
-        //             }
-        //         };
+                    if (distance > closest)
+                    {
+                        closestPos = AI_List[j].pos;
+                        closest = distance;
+                    }
+                };
 
-        //         AI.nn.propagateForward({
-        //             AI.pos.x,
-        //             AI.pos.y,
-        //             closestPos.x,
-        //             closestPos.y,
-        //             100
-        //         });
-        //     };
+                AI.nn.propagateForward({
+                    AI.pos.x,
+                    AI.pos.y,
+                    closestPos.x,
+                    closestPos.y,
+                    100 // Distance from grenade
+                });
+            };
 
-        //     simTimeMS = 0;
-        // };
+            simTimeMS = 0;
+        };
 
         if (statsOpen)
         {
@@ -210,36 +217,26 @@ int main()
                 "Run Time: " + std::to_string(runTime.getElapsedTime().asSeconds()) + "s" + "\n"
                 "AI's left: " + std::to_string(AI_List.size())
             );
-            text.setCharacterSize(14);
+            text.setCharacterSize(40);
             text.setFillColor(sf::Color::White);
 
             window.draw(text);
         };
-        // for (int i = 0; i < AI_List.size(); i++)
-        // {
-        //     sf::Texture AI_Image;
-        //     ai AI = AI_List[i];
+        for (int i = 0; i < AI_List.size(); i++)
+        {
+            ai AI = AI_List[i];
+            sf::Sprite AI_Sprite;
 
-        //     if (!AI_Image.loadFromFile("assets/AI/AI_Frame4.png"))
-        //     {
-        //         std::cout << "Error when trying to load png 'assets/AI/AI_Frame4.png'";
-        //     };
+            AI_Sprite.setTexture(AI_Image);
+            AI_Sprite.setOrigin(12.5, 40); // Bottom middle
+            AI_Sprite.setScale(3, 3);
+            AI_Sprite.setPosition(size / 2.f);
+            AI_Sprite.move(AI.vel + AI.accel);
 
-        //     sf::Sprite AI_Sprite;
-
-        //     AI_Sprite.setTexture(AI_Image);
-        //     AI_Sprite.setOrigin({12.5, 40}); // Bottom middle
-        //     AI_Sprite.setScale({3, 3});
-        //     AI_Sprite.setPosition(AI.pos);
-        //     AI_Sprite.move(AI.vel + AI.accel);
-
-        //     AI.vel = AI.accel;
-        //     AI.accel = {0, 0};
-        //     AI.pos = AI_Sprite.getPosition();
-        // };
-
-        window.clear(sf::Color::Black);
-        window.draw(viewColor);
+            AI.vel = AI.accel;
+            AI.accel = {0, 0};
+            AI.pos = AI_Sprite.getPosition();
+        };
         window.display();
 
         clock.restart().asMilliseconds();
