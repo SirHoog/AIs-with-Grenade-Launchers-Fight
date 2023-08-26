@@ -1,5 +1,7 @@
+#pragma once
+
 #include <SFML/Graphics.hpp>
 
-sf::Vector2f size = {1280, 720};
-int gridSize = 80;
-int gridLineThickness = 5;
+sf::Vector2f size = {2400, 1350};
+int gridSubdivisions = 16;
+int gridLineThickness = 7;

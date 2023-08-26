@@ -15,15 +15,15 @@ int main()
     sf::Clock clock;
     float simTimeMS;
 
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "AI with Grenade Launchers Fight");
-    sf::View view;
+    sf::RenderWindow window(sf::VideoMode(1600, 900), "AI with Grenade Launchers Fight", sf::Style::Default);
+    sf::View view(sf::FloatRect(0, 0, size.x, size.y));
+    sf::Vector2i mousePosScreen, lastMousePosScreen;
+    sf::Vector2i mousePosWindow, lastMousePosWindow;
+    sf::Vector2f mousePosView, lastMousePosView;
+    sf::Vector2u mousePosGrid, lastMousePosGrid;
 
-    sf::Vector2i mousePosScreen;
-    sf::Vector2i mousePosWindow;
-    sf::Vector2f mousePosView;
-    sf::Vector2u mousePosGrid;
-
-    view.setSize(size.x, size.y);
+    view.setSize(size);
+    view.setCenter(size.x / 2, size.y / 2);
 
     for (int i = 0; i < AI_Count; i++)
     {
@@ -37,11 +37,13 @@ int main()
         std::cout << "Error when trying to load ttf 'assets/ARLRDBD.TTF'" << std::endl;
     };
 
+    float gridSize = size.y / gridSubdivisions;
     sf::RenderTexture gridRenderTexture;
-    sf::RectangleShape gridTile({(float)gridSize, (float)gridSize});
-    sf::IntRect gridTileIntRect(0, 0,(float)gridSize, (float)gridSize);
+    sf::RectangleShape gridTile({gridSize, gridSize});
+    sf::IntRect gridTileIntRect(0, 0, view.getSize().x, view.getSize().y);
 
-    gridTile.setFillColor(sf::Color(100, 100, 100, 255));
+    gridTile.setFillColor(sf::Color(50, 50, 50, 255));
+    gridTile.setOutlineColor(sf::Color(100, 100, 100, 255));
     gridTile.setOutlineThickness(gridLineThickness);
 
     if (!gridRenderTexture.create(gridSize + gridLineThickness, gridSize + gridLineThickness))
@@ -50,19 +52,20 @@ int main()
     };
 
     gridRenderTexture.clear();
+    gridRenderTexture.setRepeated(true);
     gridRenderTexture.draw(gridTile);
     gridRenderTexture.display();
 
     sf::Texture gridTexture = gridRenderTexture.getTexture();
 
-    gridTexture.setRepeated(true);
-
     sf::RectangleShape viewColor(view.getSize());
 
     viewColor.setTexture(&gridTexture);
     viewColor.setTextureRect(gridTileIntRect);
-    viewColor.setOutlineThickness(5);
+    viewColor.setOutlineThickness(gridLineThickness);
     viewColor.setOutlineColor(sf::Color::White);
+
+    view.setSize(view.getSize() * 1.5f);
 
     window.setKeyRepeatEnabled(false);
 
@@ -75,11 +78,42 @@ int main()
 
         sf::Event event;
 
+        mousePosScreen = sf::Mouse::getPosition();
+        mousePosWindow = sf::Mouse::getPosition(window);
+        mousePosView = window.mapPixelToCoords(mousePosWindow);
+
+        if (mousePosView.x >= 0)
+        {
+            mousePosGrid.x = mousePosView.x / gridSize;
+        };
+        if (mousePosView.y >= 0)
+        {
+            mousePosGrid.y = mousePosView.y / gridSize;
+        };
+
+        window.setView(view);
+
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
             {
                 window.close();
+            };
+            if (event.type == sf::Event::MouseWheelMoved)
+            {
+                view.setSize(((event.mouseWheel.delta == 1) ? 0.8875f : 1.125f) * view.getSize());
+            };
+            if (event.type == sf::Event::Resized)
+            {
+                sf::Vector2f prevViewSize = view.getSize();
+
+                view.setSize(event.size.width, event.size.height);
+
+                view.zoom(prevViewSize.x / view.getSize().x);
+            };
+            if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                view.move(lastMousePosView - mousePosView);
             };
             if (event.type == sf::Event::EventType::KeyReleased)
             {
@@ -178,24 +212,9 @@ int main()
             );
             text.setCharacterSize(14);
             text.setFillColor(sf::Color::White);
+
             window.draw(text);
         };
-
-        window.setView(view);
-
-        mousePosScreen = sf::Mouse::getPosition();
-        mousePosWindow = sf::Mouse::getPosition(window);
-        mousePosView = window.mapPixelToCoords(mousePosWindow);
-
-        if (mousePosView.x >= 0)
-        {
-            mousePosGrid.x = mousePosView.x / gridSize;
-        };
-        if (mousePosView.y >= 0)
-        {
-            mousePosGrid.y = mousePosView.y / gridSize;
-        };
-
         // for (int i = 0; i < AI_List.size(); i++)
         // {
         //     sf::Texture AI_Image;
@@ -224,6 +243,19 @@ int main()
         window.display();
 
         clock.restart().asMilliseconds();
+
+        lastMousePosScreen = sf::Mouse::getPosition();
+        lastMousePosWindow = sf::Mouse::getPosition(window);
+        lastMousePosView = window.mapPixelToCoords(mousePosWindow);
+
+        if (lastMousePosView.x >= 0)
+        {
+            lastMousePosGrid.x = mousePosView.x / gridSize;
+        };
+        if (lastMousePosView.y >= 0)
+        {
+            lastMousePosGrid.y = mousePosView.y / gridSize;
+        };
     };
 
     std::cout

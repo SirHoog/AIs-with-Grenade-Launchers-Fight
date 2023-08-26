@@ -1,3 +1,5 @@
+#pragma once
+
 #include <SFML/System.hpp>
 #include <vector>
 
