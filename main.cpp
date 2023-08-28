@@ -1,9 +1,10 @@
 #include <iostream>
 #include <vector>
+// #include <Kairos/Timestep.hpp>
 #include "ai.hpp"
 
 const int defaultTPS = 50;
-int TPS = 50;
+float TPS = 50;
 int TPR = 1; // Ticks Per Render // How many ticks to wait every render // So you when you increase the TPS, you don't have to render as much
 float FPS = 0;
 bool fullscreened = false;
@@ -13,7 +14,7 @@ sf::Clock runTime;
 int main()
 {
     sf::Clock clock;
-    double simTimeMS;
+    sf::Time simTime;
 
     sf::RenderWindow window(sf::VideoMode(1600, 900), "AI with Grenade Launchers Fight", sf::Style::Default);
     sf::View view(sf::FloatRect(0, 0, size.x, size.y));
@@ -78,9 +79,10 @@ int main()
 
     while (window.isOpen())
     {
-        sf::Time dt = clock.getElapsedTime();
-
+        sf::Time dt = clock.restart();
         sf::Event event;
+
+        simTime += dt * (TPS / defaultTPS);
 
         mousePosScreen = sf::Mouse::getPosition();
         mousePosWindow = sf::Mouse::getPosition(window);
@@ -168,7 +170,7 @@ int main()
         window.clear(sf::Color::Black);
         window.draw(viewColor); // Basically the background
 
-        if (simTimeMS / (1000 / (TPS / defaultTPS)) > 1)
+        if (simTime.asSeconds() / (TPS / defaultTPS))
         {
             for (int i = 0; i < AI_List.size(); i++)
             {
@@ -212,14 +214,12 @@ int main()
                     AI.grenadeList[j].vel.y += 5; // SFML flipped Y axis
                 };
 
-                if (output[4].activation > 0.5 && AI.lastGrenadeMS > runTime.getElapsedTime().asMilliseconds())
+                if (output[4].activation > 0.5 && AI.lastGrenade.getElapsedTime().asSeconds() > 5)
                 {
                     AI.grenadeList.push_back(grenade(AI.pos, sf::Vector2f(std::sin(AI.aimAngle), -std::cos(AI.aimAngle)) * output[5].activation));
-                    AI.lastGrenadeMS = runTime.getElapsedTime().asMilliseconds();
+                    AI.lastGrenade.restart().asMilliseconds();
                 };
             };
-
-            simTimeMS = 0;
         };
 
         if (statsOpen)
@@ -230,9 +230,9 @@ int main()
             text.setString(
                 "FPS: " + std::to_string(FPS) + "\n"
                 "TPS: " + std::to_string(TPS) + "\n"
-                "dt: " + std::to_string(dt.asSeconds()) + "s" + "\n"
-                "Sim. Time: " + std::to_string(std::round(simTimeMS / 1000)) + "s" + "\n"
-                "Run Time: " + std::to_string(runTime.getElapsedTime().asSeconds()) + "s" + "\n"
+                "dt: " + std::to_string(dt.asMilliseconds()) + "ms" + "\n"
+                "Sim. Time: " + std::to_string(std::round(simTime.asSeconds())) + "s" + "\n"
+                "Run Time: " + std::to_string(std::round(runTime.getElapsedTime().asSeconds())) + "s" + "\n"
                 "AI's left: " + std::to_string(AI_List.size())
             );
             text.setCharacterSize(40);
@@ -255,8 +255,6 @@ int main()
         };
         window.display();
 
-        clock.restart().asMilliseconds();
-
         lastMousePosScreen = sf::Mouse::getPosition();
         lastMousePosWindow = sf::Mouse::getPosition(window);
         lastMousePosView = window.mapPixelToCoords(mousePosWindow);
@@ -272,14 +270,14 @@ int main()
     };
 
     std::cout
-    << "Run time: "              << runTime.getElapsedTime().asSeconds() << " seconds" << '\n'
-    << "Sim time: "              << std::round(simTimeMS / 1000) << " seconds" << '\n'
+    << "Run time: "              << runTime.getElapsedTime().asSeconds() << 's' << '\n'
+    << "Sim time: "              << std::round(simTime.asSeconds()) << 's' << '\n'
     << "Generations: "           << AI_List[0].gen << '\n'
     << "Final results:"          << '\n'
-    << "Highest fitness: "       << "" << '\n'
-    << "Average fitness: "       << "" << '\n'
-    << "Highest kill count: "    << "" << '\n'
-    << "Average kill count: "    << "" << '\n'
-    << "Longest survival time: " << "" << '\n'
-    << "Average survival time: " << "";
+    << "Highest fitness: "       << '\n'
+    << "Average fitness: "       << '\n'
+    << "Highest kill count: "    << '\n'
+    << "Average kill count: "    << '\n'
+    << "Longest survival time: " << '\n'
+    << "Average survival time: ";
 };

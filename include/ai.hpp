@@ -15,7 +15,7 @@ struct ai
     sf::Vector2f pos = {rand() % 1 * size.x, rand() % 1 * size.y};
     sf::Vector2f vel = {0, 0};
     float aimAngle = 0; // Degrees
-    float lastGrenadeMS;
+    sf::Clock lastGrenade;
 
     std::vector<grenade> grenadeList;
 
