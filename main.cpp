@@ -3,7 +3,7 @@
 // #include <Kairos/Timestep.hpp>
 #include "ai.hpp"
 
-const int defaultTPS = 50;
+float defaultTPS = 50;
 float TPS = 50;
 int TPR = 1; // Ticks Per Render // How many ticks to wait every render // So you when you increase the TPS, you don't have to render as much
 float FPS = 0;
@@ -115,7 +115,7 @@ int main()
 
                 view.setSize(event.size.width, event.size.height);
 
-                view.zoom(prevViewSize.x / view.getSize().x);
+                view.zoom(prevViewSize.y / view.getSize().y);
             };
             if (event.type == sf::Event::MouseMoved && sf::Mouse::isButtonPressed(sf::Mouse::Left))
             {
@@ -170,7 +170,7 @@ int main()
         window.clear(sf::Color::Black);
         window.draw(viewColor); // Basically the background
 
-        if (simTime.asSeconds() / (TPS / defaultTPS))
+        if (simTime.asSeconds() > 1 / TPS)
         {
             for (int i = 0; i < AI_List.size(); i++)
             {
@@ -206,7 +206,7 @@ int main()
                 std::vector<neuron> output = AI.nn.layers.back().neurons;
 
                 AI.vel.x += output[1].activation - output[0].activation; // Right - Left
-                AI.vel.y -= (output[2].activation > 0.5) * (AI.pos.y > size.y - 5) + 0.0001; // `-=` because SFML has a flipped Y axis // Jump * Touching Ground + Gravity
+                AI.vel.y -= (output[2].activation > 0.5) * (AI.pos.y > size.y - 5) + 0.001f; // `-=` because SFML has a flipped Y axis // Jump * Touching Ground + Gravity
                 AI.aimAngle = output[3].activation * 360;
                 
                 for (int j = 0; j < AI.grenadeList.size(); j++)
