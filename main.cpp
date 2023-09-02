@@ -82,8 +82,6 @@ int main()
         sf::Time dt = clock.restart();
         sf::Event event;
 
-        simTime += dt * (TPS / defaultTPS);
-
         mousePosScreen = sf::Mouse::getPosition();
         mousePosWindow = sf::Mouse::getPosition(window);
         mousePosView = window.mapPixelToCoords(mousePosWindow);
@@ -170,8 +168,11 @@ int main()
         window.clear(sf::Color::Black);
         window.draw(viewColor); // Basically the background
 
+        simTime += dt * (TPS / defaultTPS);
+
         if (simTime.asSeconds() > 1 / TPS)
         {
+
             for (int i = 0; i < AI_List.size(); i++)
             {
                 ai AI = AI_List[i];
