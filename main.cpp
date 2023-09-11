@@ -3,14 +3,15 @@
 // #include <Kairos/Timestep.hpp>
 #include "ai.hpp"
 
-const int defaultTPS = 30;
-int TPS = 30;
+const int defaultTPS = 5;
+int TPS = 5;
 int TPR = 0; // Ticks Per Render // How many ticks are not rendered // So you when you increase the TPS, you don't have to render as much
 float FPS = 0;
 bool fullscreened = false;
 bool statsOpen = false;
 sf::Clock runTime;
 sf::Clock cu; // Clock Update
+sf::Time sinceLastUpdate;
 sf::Time simTime;
 
 int main()
@@ -80,6 +81,8 @@ int main()
     {
         sf::Time dt = cu.getElapsedTime();
         sf::Event event;
+
+        FPS = 1.0f / dt.asSeconds();
 
         mousePosScreen = sf::Mouse::getPosition();
         mousePosWindow = sf::Mouse::getPosition(window);
@@ -167,48 +170,39 @@ int main()
         window.clear(sf::Color::Black);
         window.draw(viewColor); // Basically the background
 
-        std::cout << (TPS / defaultTPS) << std::endl;
-        std::cout << dt.asSeconds() << std::endl;
+        // std::cout << (TPS / defaultTPS) << std::endl;
+        // std::cout << dt.asSeconds() << std::endl;
 
-        simTime = dt * ((float)TPS / (float)defaultTPS);
+        sinceLastUpdate += dt * ((float)TPS / (float)defaultTPS);
+        simTime += dt * ((float)TPS / (float)defaultTPS);
 
-        std::cout << "Test 1" << std::endl;
+        // std::cout << sinceLastUpdate.asSeconds() << std::endl;
 
-        if (simTime.asSeconds() > 1 / TPS)
+        if (sinceLastUpdate.asSeconds() > 1 / TPS)
         {
-            std::cout << "Test 2" << std::endl;
+            std::cout << "Tick" << std::endl;
 
             for (int i = 0; i < AI_List.size(); i++)
             {
-                std::cout << "Test 3 " << i << std::endl;
+                // ai AI = AI_List[i];
+                // sf::Vector2f closestPos;
+                // float closest = 1000;
 
-                ai AI = AI_List[i];
-                sf::Vector2f closestPos;
-                float closest = 1000;
-
-                for (int j = 0; j < AI_List.size(); j++)
-                {
-                    std::cout << "Test 4 " << j << std::endl;
-
-                    if (j == i) // If the AI is itself, break the loop
-                    {
-                        break;
-                    };
-
-                    std::cout << "Test 5 " << j << std::endl;
+                // for (int j = 0; j < AI_List.size(); j++)
+                // {
+                //     if (j == i) // If the AI is itself, break the loop
+                //     {
+                //         break;
+                //     };
                     
-                    float distance = sqrt(pow(AI.pos.x - AI_List[j].pos.x, 2) + pow(AI.pos.y - AI_List[j].pos.y, 2));
+                //     float distance = sqrt(pow(AI.pos.x - AI_List[j].pos.x, 2) + pow(AI.pos.y - AI_List[j].pos.y, 2));
 
-                    if (distance > closest)
-                    {
-                        closestPos = AI_List[j].pos;
-                        closest = distance;
-                    }
-
-                    std::cout << "Test 6 " << j << std::endl;
-                };
-
-                std::cout << "Test 7" << std::endl;
+                //     if (distance > closest)
+                //     {
+                //         closestPos = AI_List[j].pos;
+                //         closest = distance;
+                //     }
+                // };
 
                 // AI.nn.propagateForward({
                 //     AI.pos.x,
@@ -218,38 +212,27 @@ int main()
                 //     100 // Distance from grenade
                 // });
 
-                std::cout << "Test 8" << std::endl;
+                // std::vector<sf::Sprite> grenadeSprites;
+                // std::vector<neuron> output = AI.nn.layers.back().neurons;
 
-                std::vector<sf::Sprite> grenadeSprites;
-                std::vector<neuron> output = AI.nn.layers.back().neurons;
+                // AI.vel.x += output[1].activation - output[0].activation; // Right - Left
+                // AI.vel.y -= (output[2].activation > 0.5) * (AI.pos.y > size.y - 5) + 0.001f; // `-=` because SFML has a flipped Y axis // Jump * Touching Ground + Gravity
+                // AI.aimAngle = output[3].activation * 360;
 
-                AI.vel.x += output[1].activation - output[0].activation; // Right - Left
-                AI.vel.y -= (output[2].activation > 0.5) * (AI.pos.y > size.y - 5) + 0.001f; // `-=` because SFML has a flipped Y axis // Jump * Touching Ground + Gravity
-                AI.aimAngle = output[3].activation * 360;
-                
-                std::cout << "Test 9" << std::endl;
+                // for (int j = 0; j < AI.grenadeList.size(); j++)
+                // {
+                //     AI.grenadeList[j].vel.y += 5; // SFML flipped Y axis
+                // };
 
-                for (int j = 0; j < AI.grenadeList.size(); j++)
-                {
-                    AI.grenadeList[j].vel.y += 5; // SFML flipped Y axis
-                };
-
-                std::cout << "Test 10" << std::endl;
-
-                if (output[4].activation > 0.5 && AI.lastGrenade.getElapsedTime().asSeconds() > 5)
-                {
-                    AI.grenadeList.push_back(grenade(AI.pos, sf::Vector2f(std::sin(AI.aimAngle), -std::cos(AI.aimAngle)) * output[5].activation));
-                    AI.lastGrenade.restart().asMilliseconds();
-                };
-
-                std::cout << "Test 11" << std::endl;
+                // if (output[4].activation > 0.5 && AI.lastGrenade.getElapsedTime().asSeconds() > 5)
+                // {
+                //     AI.grenadeList.push_back(grenade(AI.pos, sf::Vector2f(std::sin(AI.aimAngle), -std::cos(AI.aimAngle)) * output[5].activation));
+                //     AI.lastGrenade.restart().asMilliseconds();
+                // };
             };
+
+            sinceLastUpdate.Zero;
         };
-
-        cu.restart().asSeconds();
-        simTime.Zero;
-
-        std::cout << "Test 12" << std::endl;
 
         if (statsOpen)
         {
@@ -259,9 +242,9 @@ int main()
             text.setString(
                 "FPS: " + std::to_string(FPS) + "\n"
                 "TPS: " + std::to_string(TPS) + "\n"
-                "dt: " + std::to_string(dt.asMilliseconds()) + "ms" + "\n"
-                "Sim. Time: " + std::to_string(std::round(simTime.asSeconds())) + "s" + "\n"
-                "Run Time: " + std::to_string(std::round(runTime.getElapsedTime().asSeconds())) + "s" + "\n"
+                "dt: " + std::to_string(dt.asSeconds()) + "s" + "\n"
+                "Sim. Time: " + std::to_string(simTime.asSeconds()) + "s" + "\n"
+                "Run Time: " + std::to_string(runTime.getElapsedTime().asSeconds()) + "s" + "\n"
                 "AI's left: " + std::to_string(AI_List.size())
             );
             text.setCharacterSize(40);
@@ -278,7 +261,7 @@ int main()
             AI_Sprite.setOrigin(12.5, 40); // Bottom middle
             AI_Sprite.setScale(3, 3);
 
-            AI_Sprite.setPosition(AI_Sprite.getPosition().x + AI.vel.x, std::max(AI_Sprite.getPosition().y + AI.vel.y, size.y));
+            AI_Sprite.setPosition(AI.pos);
 
             window.draw(AI_Sprite);
         };
@@ -296,11 +279,13 @@ int main()
         {
             lastMousePosGrid.y = mousePosView.y / gridSize;
         };
+
+        cu.restart().asSeconds();
     };
 
     std::cout
     << "Run time: "              << runTime.getElapsedTime().asSeconds() << 's' << '\n'
-    << "Sim time: "              << std::round(simTime.asSeconds()) << 's' << '\n'
+    << "Sim time: "              << simTime.asSeconds() << 's' << '\n'
     << "Generations: "           << AI_List[0].gen << '\n'
     << "Final results:"          << '\n'
     << "Highest fitness: "       << '\n'

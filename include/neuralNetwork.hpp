@@ -1,6 +1,5 @@
 #pragma once
 
-#include <vector>
 #include <string>
 #include <bitset>
 #include <algorithm>
@@ -9,10 +8,7 @@
 #include <fstream>
 #include <NC/NumCpp/NdArray.hpp>
 #include <NC/NumCpp/Functions/append.hpp>
-#include "nlohmann/json.hpp"
 #include "layer.hpp"
-
-using json = nlohmann::json;
 
 int TPC = 5; // Ticks per calculation
 
