@@ -55,71 +55,21 @@ struct neuralNetwork
         }
     };
 
-    void read(std::string JSON_FileName)
+    void read(std::string fileName)
     {
-        std::ifstream file("savedNeuralNetworks\\" + JSON_FileName); // `i` stands for `in`
+        std::ifstream file("savedNeuralNetworks\\" + fileName); // `i` stands for in
 
-        json parsedFile = json::parse(file);
-
-        for (int i = 0; i < parsedFile.size(); i++) // For every layer in file
-        {
-            layer temp;
-            
-            if (i != parsedFile.size()) { // If i is not output layer
-                for (int j = 0; j < parsedFile[i].size(); j++)
-                {
-                    json neuronJ = parsedFile[i][j];
-                    neuron neuronN(0, {}, neuronJ.size());
-
-                    for (int k = 0; k < neuronJ.size(); k++)
-                    {
-                        neuronN.weights[k] = neuronJ[k];
-                    };
-
-                    temp.neurons.push_back(neuronN);
-                }
-            }
-            else
-            {
-                for (int j = 0; j < parsedFile[i][0]; j++) // The first value in `parsedFile[i]` (the output layer) is just the amount of neurons in the output layer
-                {
-                    temp.neurons.push_back(neuron(0, {}, 0));
-                }
-            };
-
-            layers.push_back(temp);
-        };
+        
 
         file.close();
     };
 
-    void write(std::string JSON_FileName)
+    void write(std::string fileName)
     {
-        std::ofstream file("savedNeuralNetworks\\" + JSON_FileName); // "o" stands for "out"
+        std::ofstream file("savedNeuralNetworks\\" + fileName); // `o` stands for out
 
-        json jsonCode;
+        
 
-        for (int i = 0; i < layers.size(); i++) // For every layer
-        {
-            jsonCode.push_back({});
-
-            layer layerL = layers[i];
-            json layerJ = jsonCode[i];
-
-            for (int j = 0; j < layerL.neurons.size(); j++) // For every neuron
-            {
-                layerJ.push_back({});
-
-                neuron neuronN = layerL.neurons[j];
-                json neuronJ = layerJ[j];
-
-                neuronJ.push_back(neuronN.weights);
-            };
-
-            jsonCode.push_back(layerJ);
-        };
-
-        file << jsonCode.dump() << std::endl;
         file.close();
     };
 
