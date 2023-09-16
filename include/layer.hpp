@@ -1,13 +1,12 @@
-#pragma once
-
 #include "neuron.hpp"
 
-struct layer
+namespace SirHoog
 {
-    std::vector<neuron> neurons;
-
-    layer(std::vector<neuron> _neurons = {})
+    class Layer
     {
-        neurons = _neurons;
-    }
-};
+        public:
+            std::vector<Neuron> neurons;
+
+            Layer(std::vector<Neuron> neurons = {}): neurons(neurons) {};
+    };
+}

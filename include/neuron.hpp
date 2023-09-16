@@ -1,27 +1,29 @@
-#pragma once
-
+#include <stdint.h>
 #include <vector>
-#include <random>
 
-struct neuron
+namespace SirHoog
 {
-    float activation;
-    std::vector<float> weights;
-
-    neuron(float _activation, std::vector<float> _weights = {}, int weightCount = 0)
+    class Neuron
     {
-        activation = _activation;
+        public:
+            float activation = 0;
+            std::vector<float> weights = {};
 
-        if (_weights.empty())
-        {
-            for (int i = 0; i < weightCount; i++)
+            Neuron(float activation = 0, std::vector<float> weights = {}, uint8_t weightSize = 0)
             {
-                weights.push_back(rand());
+                this->activation = activation;
+
+                if (weightSize > 0)
+                {
+                    for (uint8_t i = 0; i < weightSize; i++)
+                    {
+                        weights.push_back(0.f);
+                    }
+                }
+                else
+                {
+                    this->weights = weights;
+                }
             }
-        }
-        else
-        {
-            weights = _weights;
-        }
-    }
-};
+    };
+}

@@ -1,0 +1,35 @@
+> game
+  > View
+    > Movable
+    > Zoomable
+  > Grid
+  > AI
+    > 50 initialized each round/match
+    > Neural network
+      > Input [values range from -1 to 1]
+        > Position X
+        > Position Y
+        > Closest Enemy X
+        > Closest Enemy Y
+        > Distance from closest grenade
+      > Output [values range from -1 to 1]
+        > Horizontal movement (<0: Left speed * walkspeed, >0: Right speed * walkspeed)
+        > Jump (>0: Jump)
+        > Aim direction (-1: -360, 1: 360)
+        > Launch grenade (>0: Launch)
+        > Launch power (-1: not far, 1: far)
+    > Genetic algorithm
+      > Crossover
+      > Mutation
+      > Fitness
+        > Rewards
+          > Survive 20 seconds: 20 pts
+          > Kill: 15 pts
+          > Moving: 2 pt per second
+        > Punishments
+          > No kill for 30 seconds: -15 pts
+          > Die: -30 pts
+          > Standing still for 5 seconds: -5 pts
+    > Grenade launcher
+      > Grenade
+        > 5 second until explosion
