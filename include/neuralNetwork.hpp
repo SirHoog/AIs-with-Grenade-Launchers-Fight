@@ -9,8 +9,7 @@ namespace SirHoog
 {
     class NeuralNetwork
     {
-        private:
-            std::vector<Layer> layers;
+        std::vector<Layer> layers;
 
         public:
             NeuralNetwork(std::string fileName = "", uint8_t inputSize = 0, uint8_t hiddenLayerCount = 0, uint8_t hiddenLayerSize = 0, uint8_t outputSize = 0)
@@ -51,7 +50,7 @@ namespace SirHoog
                     layers.push_back(output);
                 }
             };
-            void Update(std::vector<float> _input)
+            Layer Update(std::vector<float> _input) // Forward Propagation
             {
                 // https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
                 // Formula: layer = tanh(weights * activations + bias) // tanh means hyperbolic tangent and it's sorta like a sigmoid, but instead of ranging from 0 to 1, it ranges from -1 to 1
@@ -88,13 +87,15 @@ namespace SirHoog
                         nc::append(w, rowOfWeights); // w
                     };
 
-                    nc::NdArray<float> layerActivations = ((w * a) + b); // not done yet, gotta chuck it in the tanh function
+                    nc::NdArray<float> layerActivations = ((w.dot(a)) + b); // not done yet, gotta chuck it in the tanh function
 
                     for (int j = 0; j < layerActivations.shape().rows; j++) // tanh loop
                     {
                         layerActivations[j] = tanh(layerActivations[j]);
                     }
-                }
+                };
+
+                return layers.back();
             }
             void ReadFromFile(std::string fileName)
             {
