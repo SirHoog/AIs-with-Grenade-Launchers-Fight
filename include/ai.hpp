@@ -30,7 +30,7 @@ namespace SirHoog
 
                 for (Grenade grenade : GrenadeList)
                 {
-                    grenade.Update(window, AI_List);
+                    grenade.Update(window, AI_List); // Intellisense bug on `AI_List`
                 }
             };
 
