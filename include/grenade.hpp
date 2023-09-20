@@ -2,10 +2,10 @@
 
 namespace SirHoog
 {
-    bool impact = false; // false = frag, true = impact
-    float maxLifeTime = 5; // Seconds
-    int blastRadius = 100;
-    int maxDamage = 75;
+    bool Impact = false; // false = frag, true = impact
+    float MaxLifeTime = 5; // Seconds
+    int BlastRadius = 100;
+    int MaxDamage = 35; // Idk why, but why not?
 
     class AI : public Entity {};
 
@@ -19,14 +19,14 @@ namespace SirHoog
 
             void Update(sf::RenderWindow &window, std::vector<AI> &AI_List)
             {
-                if (impact)
+                if (Impact)
                 {
                     if (Position.y >= window.getSize().y - 5) // Just in case it's not perfectly at the bottom
                     {
                         Explode(window, AI_List);
                     }
                 }
-                else if (lifeTime.getElapsedTime().asSeconds() >= maxLifeTime)
+                else if (lifeTime.getElapsedTime().asSeconds() >= MaxLifeTime)
                 {
                     Explode(window, AI_List);
                 }
@@ -38,9 +38,9 @@ namespace SirHoog
                 {
                     float distance = std::sqrt(std::pow(Position.x - ai.Position.x, 2) + std::pow(Position.y - ai.Position.y, 2));
 
-                    if (distance < blastRadius)
+                    if (distance < BlastRadius)
                     {
-                        ai.TakeDamage((blastRadius - distance) / blastRadius, *this);
+                        ai.TakeDamage((BlastRadius - distance) / BlastRadius, *this);
                     }
                 }
             }
