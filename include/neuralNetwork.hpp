@@ -125,11 +125,11 @@ namespace SirHoog
             };
             std::string FromBinary()
             {
-
+                return "";
             };
             std::string ToBinary()
             {
-
+                return "";
             };
     };
 }

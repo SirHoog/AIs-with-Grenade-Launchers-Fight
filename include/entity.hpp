@@ -3,6 +3,8 @@
 
 namespace SirHoog
 {
+    float gravitationalConstant = 20; // I know, it sounds very fancy
+
     class Entity
     {
         public:
@@ -13,19 +15,14 @@ namespace SirHoog
             Entity(sf::Vector2f Position = {0, 0}, sf::Vector2f Velocity = {0, 0}, bool affectedByGravity = true): Position(Position), Velocity(Velocity), affectedByGravity(affectedByGravity) {};
             virtual ~Entity() {};
 
-            void Accelerate(sf::Vector2f Velocity2)
-            {
-                Velocity += Velocity2;
-            };
-
-            void Update(float gravity = 0, sf::RenderWindow &window)
+            void Update(sf::RenderWindow &window)
             {
                 Position += Velocity;
                 Velocity = {0, 0};
 
                 if (affectedByGravity)
                 {
-                    Accelerate({0, gravity}); // Not negative since SFML Y axis is flipped
+                    Velocity -= {0, gravitationalConstant}; // Not negative since SFML Y axis is flipped
                 };
 
                 Position.x = std::clamp(Position.x, (float)0, (float)window.getSize().x);

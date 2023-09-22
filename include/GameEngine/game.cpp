@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include "ai.hpp"
 
 namespace SirHoog
 {
