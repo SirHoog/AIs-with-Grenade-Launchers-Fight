@@ -1,9 +1,9 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "layer.hpp"
 #include <NC/NumCpp/NdArray.hpp>
 #include <NC/NumCpp/Functions/append.hpp>
+#include "layer.hpp"
 
 namespace SirHoog
 {
@@ -12,7 +12,7 @@ namespace SirHoog
         std::vector<Layer> layers;
 
         public:
-            NeuralNetwork(std::string fileName = "", int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0)
+            NeuralNetwork(std::string fileName, int inputSize, int hiddenLayerCount, int hiddenLayerSize, int outputSize)
             {
                 if (!fileName.empty())
                 {
@@ -42,7 +42,7 @@ namespace SirHoog
                         layers.push_back(hidden);
                     };
 
-                    for (int i = 0; i < outputSize; i++) // No + 1, because output doesn't have bias neuron ofc
+                    for (int i = 0; i < outputSize; i++) // No `+ 1`, because output doesn't have bias neuron ofc
                     {
                         output.neurons.push_back(Neuron(0, {}, 0));
                     };
@@ -55,9 +55,9 @@ namespace SirHoog
                 // https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
                 // Formula: layer = tanh(weights * activations + bias) // tanh means hyperbolic tangent and it's sorta like a sigmoid, but instead of ranging from 0 to 1, it ranges from -1 to 1
 
-                nc::NdArray<float> a;
-                nc::NdArray<float> w;
-                nc::NdArray<float> b;
+                nc::NdArray<float> a; // Activations
+                nc::NdArray<float> w; // Weights
+                nc::NdArray<float> b; // Biases
 
                 for (int i = 0; i < _input.size(); i++) // Do not subtract 1, because `_input` doesn't include the bias neuron / bias term ofc
                 {
