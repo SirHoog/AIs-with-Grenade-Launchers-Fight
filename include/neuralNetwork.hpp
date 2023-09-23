@@ -50,7 +50,7 @@ namespace SirHoog
                     layers.push_back(output);
                 }
             };
-            Layer Update(std::vector<float> _input) // Forward Propagation
+            Layer Update(Layer _input) // Forward Propagation
             {
                 // https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&index=3&t=806s
                 // Formula: layer = tanh(weights * activations + bias) // tanh means hyperbolic tangent and it's sorta like a sigmoid, but instead of ranging from 0 to 1, it ranges from -1 to 1
@@ -59,9 +59,9 @@ namespace SirHoog
                 nc::NdArray<float> w; // Weights
                 nc::NdArray<float> b; // Biases
 
-                for (int i = 0; i < _input.size(); i++) // Do not subtract 1, because `_input` doesn't include the bias neuron / bias term ofc
+                for (int i = 0; i < _input.neurons.size(); i++) // Do not subtract 1, because `_input` doesn't include the bias neuron / bias term ofc
                 {
-                    layers[0].neurons[i].activation = tanh(_input[i]); // normalize input
+                    layers[0].neurons[i].activation = tanh(_input.neurons[i].activation); // normalize input
                 };
 
                 std::vector<Neuron> temp = layers[0].neurons;
@@ -121,7 +121,7 @@ namespace SirHoog
             };
             void WriteToFile(std::string fileName)
             {
-
+                
             };
             std::string FromBinary()
             {

@@ -10,7 +10,7 @@ namespace SirHoog
     {
         int Generation = 0;
         int Fitness = 0;
-        NeuralNetwork brain("", 6, 3, 8, 4); // Input: X, Y, Closest Enemy X, Closest Enemy Y, Closest Grenade X, Closest Grenade Y // Output: Horizontal Movement, Jump
+        NeuralNetwork brain = NeuralNetwork("", 6, 3, 8, 4); // Input: X, Y, Closest Enemy X, Closest Enemy Y, Closest Grenade X, Closest Grenade Y // Output: Horizontal Movement, Jump
         
         float AimAngle = 0;
         float Power = 0;
