@@ -1,10 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <algorithm>
+#include "definitions.hpp"
 
 namespace SirHoog
 {
-    float gravitationalConstant = 20; // I know, it sounds very fancy
-
     class Entity
     {
         public:

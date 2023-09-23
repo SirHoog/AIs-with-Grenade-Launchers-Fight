@@ -12,7 +12,7 @@ namespace SirHoog
         std::vector<Layer> layers;
 
         public:
-            NeuralNetwork(std::string fileName = "", uint8_t inputSize = 0, uint8_t hiddenLayerCount = 0, uint8_t hiddenLayerSize = 0, uint8_t outputSize = 0)
+            NeuralNetwork(std::string fileName = "", int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0)
             {
                 if (!fileName.empty())
                 {
