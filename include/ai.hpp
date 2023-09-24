@@ -85,7 +85,7 @@ namespace SirHoog
                 float x = output.neurons[0].activation * WalkSpeed; // < 0 = Left // > 0 = Right
                 float jump = (output.neurons[1].activation > 0) * JumpHeight; // > 0 = Decides to jump
                 
-                this->Velocity -= {x, jump};
+                Velocity -= {x, jump};
             };
                 
             // Genetic Algorithm Finally
