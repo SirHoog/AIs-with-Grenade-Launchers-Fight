@@ -8,7 +8,7 @@ namespace SirHoog
 
         if (texture.loadFromFile(fileName))
         {
-            _textures[name] = texture;
+            textures[name] = texture;
         };
     };
     void AssetManager::LoadFont(std::string name, std::string fileName)
@@ -17,15 +17,15 @@ namespace SirHoog
 
         if (font.loadFromFile(fileName))
         {
-            _fonts[name] = font;
+            fonts[name] = font;
         };
     };
     sf::Texture &AssetManager::GetTexture(std::string name)
     {
-        return _textures.at(name);
+        return textures.at(name);
     };
     sf::Font &AssetManager::GetFont(std::string name)
     {
-        return _fonts.at(name);
+        return fonts.at(name);
     };
 }

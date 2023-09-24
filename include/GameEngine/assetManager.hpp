@@ -7,6 +7,9 @@ namespace SirHoog
 {
     class AssetManager
     {
+        std::map<std::string, sf::Texture> textures;
+        std::map<std::string, sf::Font> fonts;
+
         public:
             AssetManager() {};
             ~AssetManager() {};
@@ -16,8 +19,5 @@ namespace SirHoog
 
             void LoadFont(std::string name, std::string fileName);
             sf::Font &GetFont(std::string name);
-        private:
-            std::map<std::string, sf::Texture> _textures;
-            std::map<std::string, sf::Font> _fonts;
     };
 }

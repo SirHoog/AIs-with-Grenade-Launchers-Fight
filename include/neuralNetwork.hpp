@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -101,7 +103,7 @@ namespace SirHoog
             void ReadFromFile(std::string fileName)
             {
                 std::string line;
-                std::ifstream file("savedNeuralNetworks\\" + fileName); // `i` stands for in
+                std::ifstream file("SavedNeuralNetworks\\" + fileName); // `i` stands for in
 
                 if (file.is_open())
                 {
@@ -137,7 +139,7 @@ namespace SirHoog
             };
             void WriteToFile(std::string fileName, int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0, std::string binary)
             {
-                std::ofstream file("savedNeuralNetworks\\" + fileName); // `o` stands for out
+                std::ofstream file("SavedNeuralNetworks\\" + fileName); // `o` stands for out
                 
                 if (file.is_open())
                 {

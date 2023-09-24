@@ -14,18 +14,18 @@ namespace SirHoog
             StateMachine() {};
             ~StateMachine() {};
 
-            void AddState(StateRef newState, bool isReplacing = true);
+            void AddState(StateRef newState, bool _isReplacing = true);
             void RemoveState();
             
             void ProcessStateChanges();
 
             StateRef &GetActiveState();
         private:
-            std::stack<StateRef> _states;
-            StateRef _newState;
+            std::stack<StateRef> states;
+            StateRef newState;
             
-            bool _isRemoving;
-            bool _isAdding;
-            bool _isReplacing;
+            bool isRemoving;
+            bool isAdding;
+            bool isReplacing;
     };
 }

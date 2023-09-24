@@ -21,14 +21,14 @@ namespace SirHoog
 
     class Game
     {
+        const float dt = 1.f / 60.f;
+        sf::Clock _clock;
+
+        GameDataRef data = std::make_shared<GameData>();
+
+        void Run();
+
         public:
             Game(int width, int height, std::string title);
-        private:
-            const float dt = 1.f / 60.f;
-            sf::Clock _clock;
-
-            GameDataRef _data = std::make_shared<GameData>();
-
-            void Run();
     };
 }
