@@ -22,7 +22,8 @@ namespace SirHoog
             float Health = 100;
             sf::Color Color = sf::Color(rand() % 255, rand() % 255, rand() % 255, 255);
 
-            AI(sf::Vector2f Position = {0, 0}, sf::Vector2f Velocity = {0, 0}, bool affectedByGravity = true) : Entity() {};
+            AI(sf::Vector2f Position = {0, 0}, sf::Vector2f Velocity = {0, 0}, bool affectedByGravity = true, NeuralNetwork neuralNetwork = NeuralNetwork("", 6, 3, 8, 4)) : Entity() {};
+            ~AI() {};
 
             void Update(sf::RenderWindow &window)
             {
@@ -85,6 +86,35 @@ namespace SirHoog
                 float jump = (output.neurons[1].activation > 0) * JumpHeight; // > 0 = Decides to jump
                 
                 this->Velocity -= {x, jump};
+            };
+                
+            // Genetic Algorithm Finally
+            // Do it in this order: https://www.researchgate.net/profile/Rakesh-Phanden-2/publication/258477641/figure/fig1/AS:297476348235779@1447935296512/Flow-chart-of-working-of-Genetic-Algorithm.png
+
+            // https://web.stanford.edu/group/sisl/k12/optimization/MO-unit2-pdfs/2.15stochastic2annealing,genetic.pdf#page=15
+            void crossOver(AI with)
+            {
+                int n = std::rand() % (brain.ToBinary().length() - 2) + 1;
+
+                brain.FromBinary(6, 3, 8, 4, brain.ToBinary().substr(0, n) + with.brain.ToBinary().substr(n));
+            };
+
+            // https://web.stanford.edu/group/sisl/k12/optimization/MO-unit2-pdfs/2.15stochastic2annealing,genetic.pdf#page=17
+            void mutate()
+            {
+                std::string binary = brain.ToBinary();
+
+                for (int i = 0; i < binary.size(); i++)
+                {
+                    int chance = std::rand() % binary.size(); // 1 in length of `binary`
+
+                    if (chance == 1)
+                    {
+                        binary[i] = ((binary[i] == '0') ? '1' : '0');
+                    }
+                };
+
+                brain.FromBinary(brain.Layers[0].neurons.size(), brain.Layers.size() - 2, brain.Layers[1].neurons.size(), brain.Layers[brain.Layers.size()].neurons.size(), binary);
             };
 
             void LaunchGrenade()
