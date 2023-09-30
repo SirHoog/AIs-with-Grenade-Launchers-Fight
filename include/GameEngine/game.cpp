@@ -1,11 +1,14 @@
 #include "game.hpp"
 #include "ai.hpp"
+#include "States/mainMenuState.hpp"
 
 namespace SirHoog
 {
     Game::Game(int width, int height, std::string title)
     {
         data->window.create(sf::VideoMode(width, height), title, sf::Style::Default);
+
+        data->stateMachine.AddState(std::unique_ptr<State>(new MainMenuState(data)));
 
         Run();
     };
@@ -30,15 +33,15 @@ namespace SirHoog
             currentTime = newTime;
             accumulator += frameTime;
 
-            while (accumulator >= dt)
+            while (accumulator >= RenderSpeed)
             {
                 data->stateMachine.GetActiveState()->HandleInput();
-                data->stateMachine.GetActiveState()->Update(dt);
+                data->stateMachine.GetActiveState()->Update(RenderSpeed);
 
-                accumulator -= dt;
+                accumulator -= RenderSpeed; // Not `accumulator = 0` to correct time missed
             };
 
-            interpolation = accumulator / dt;
+            interpolation = accumulator / RenderSpeed;
             data->stateMachine.GetActiveState()->Render(interpolation);
         }
     }

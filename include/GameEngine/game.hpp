@@ -21,7 +21,7 @@ namespace SirHoog
 
     class Game
     {
-        const float dt = 1.f / 60.f;
+        const float RenderSpeed = 1.f / 60.f;
         sf::Clock _clock;
 
         GameDataRef data = std::make_shared<GameData>();

@@ -8,8 +8,8 @@ namespace SirHoog
             virtual void Init() = 0;
 
             virtual void HandleInput() = 0;
-            virtual void Update(float dt) = 0;
-            virtual void Render(float dt) = 0;
+            virtual void Update(float UpdateSpeed) = 0;
+            virtual void Render(float RenderSpeed) = 0;
 
             virtual void GameSpeed(int TPS) {};
     };

@@ -137,7 +137,7 @@ namespace SirHoog
 
                 file.close();
             };
-            void WriteToFile(std::string fileName, int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0, std::string binary)
+            void WriteToFile(std::string fileName = "", int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0, std::string binary = "")
             {
                 std::ofstream file("SavedNeuralNetworks\\" + fileName); // `o` stands for out
                 
