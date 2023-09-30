@@ -2,12 +2,12 @@
 
 namespace SirHoog
 {
-    void StateMachine::AddState(std::unique_ptr<State> _newState, bool _isReplacing)
+    void StateMachine::AddState(StateRef _newState, bool _isReplacing)
     {
         isAdding = true;
         isReplacing = _isReplacing;
 
-        newState = std::move(_newState);
+        newState = _newState;
     };
     void StateMachine::RemoveState()
     {
@@ -27,11 +27,11 @@ namespace SirHoog
             }
         };
 
-        states.push(std::move(newState));
+        states.push(newState);
         states.top()->Init();
         isAdding = false;
     };
-    std::unique_ptr<State> &StateMachine::GetActiveState()
+    StateRef &StateMachine::GetActiveState()
     {
         return states.top();
     }

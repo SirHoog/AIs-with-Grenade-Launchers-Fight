@@ -6,7 +6,7 @@
 
 namespace SirHoog
 {
-    // typedef std::unique_ptr<State> StateRef;
+    typedef std::shared_ptr<State> StateRef;
 
     class StateMachine
     {
@@ -14,15 +14,15 @@ namespace SirHoog
             StateMachine() {};
             ~StateMachine() {};
 
-            void AddState(std::unique_ptr<State> newState, bool _isReplacing = true);
+            void AddState(StateRef newState, bool _isReplacing = true);
             void RemoveState();
             
             void ProcessStateChanges();
 
-            std::unique_ptr<State> &GetActiveState();
+            StateRef &GetActiveState();
         private:
-            std::stack<std::unique_ptr<State>> states;
-            std::unique_ptr<State> newState;
+            std::stack<StateRef> states;
+            StateRef newState;
             
             bool isRemoving;
             bool isAdding;
