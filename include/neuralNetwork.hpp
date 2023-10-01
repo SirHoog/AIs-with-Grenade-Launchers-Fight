@@ -4,12 +4,15 @@
 #include <fstream>
 #include <iostream>
 #include <bitset>
+#include <vector>
 #include <NC/NumCpp/NdArray.hpp>
 #include <NC/NumCpp/Functions/append.hpp>
-#include "layer.hpp"
+#include "neuron.hpp"
 
 namespace SirHoog
 {
+    typedef std::vector<Neuron> Layer; 
+
     class NeuralNetwork
     {
         public:
@@ -28,7 +31,7 @@ namespace SirHoog
 
                     for (int i = 0; i < inputSize + 1; i++) // + 1 because of the bias neuron
                     {
-                        input.neurons.push_back(Neuron(0 + (i == inputSize), {}, hiddenLayerSize)); // I did `0 + (i == inputSize)` instead of doing an if statement. It's to check if it's the last neuron (bias neuron / term) and set it's value to 1
+                        input.push_back(Neuron(0 + (i == inputSize), {}, hiddenLayerSize)); // I did `0 + (i == inputSize)` instead of doing an if statement. It's to check if it's the last neuron (bias neuron / term) and set it's value to 1
                     };
 
                     Layers.push_back(input);
@@ -39,7 +42,7 @@ namespace SirHoog
 
                         for (int j = 0; j < hiddenLayerSize + 1; j++)  // + 1 because of the bias neuron
                         {
-                            hidden.neurons.push_back(Neuron(0 + (i == hiddenLayerSize), {}, outputSize)); // Same as the input layer pretty much
+                            hidden.push_back(Neuron(0 + (i == hiddenLayerSize), {}, outputSize)); // Same as the input layer pretty much
                         };
                         
                         Layers.push_back(hidden);
@@ -47,7 +50,7 @@ namespace SirHoog
 
                     for (int i = 0; i < outputSize; i++) // No `+ 1`, because output doesn't have bias neuron ofc
                     {
-                        output.neurons.push_back(Neuron(0, {}, 0));
+                        output.push_back(Neuron(0, {}, 0));
                     };
 
                     Layers.push_back(output);
@@ -62,12 +65,12 @@ namespace SirHoog
                 nc::NdArray<float> w; // Weights
                 nc::NdArray<float> b; // Biases
 
-                for (int i = 0; i < _input.neurons.size(); i++) // Do not subtract 1, because `_input` doesn't include the bias neuron / bias term ofc
+                for (int i = 0; i < _input.size(); i++) // Do not subtract 1, because `_input` doesn't include the bias neuron / bias term ofc
                 {
-                    Layers[0].neurons[i].activation = tanh(_input.neurons[i].activation); // normalize input
+                    Layers[0][i].activation = tanh(_input[i].activation); // normalize input
                 };
 
-                std::vector<Neuron> temp = Layers[0].neurons;
+                std::vector<Neuron> temp = Layers[0];
 
                 nc::append(b, static_cast<nc::NdArray<float>>(temp[temp.size()].weights)); // im not sure if the `b` vector is filled with bias activations or bias weights, but bias weights makes the most sense
 
@@ -76,15 +79,15 @@ namespace SirHoog
                     Layer previousLayer = Layers[i - 1];
                     Layer currentLayer = Layers[i];
 
-                    for (int j = 0; j < previousLayer.neurons.size() - 1; j++) // For every neuron in previousLayer // Subtract 1 to not include bias neuron / bias term
+                    for (int j = 0; j < previousLayer.size() - 1; j++) // For every neuron in previousLayer // Subtract 1 to not include bias neuron / bias term
                     {
                         nc::NdArray<float> rowOfWeights; 
 
-                        a.fill(previousLayer.neurons[j].activation); // a
+                        a.fill(previousLayer[j].activation); // a
 
-                        for (int k = 0; k < currentLayer.neurons.size(); k++)
+                        for (int k = 0; k < currentLayer.size(); k++)
                         {
-                            rowOfWeights.fill(previousLayer.neurons[j].weights[k]);
+                            rowOfWeights.fill(previousLayer[j].weights[k]);
                         };
 
                         nc::append(w, rowOfWeights); // w
@@ -179,7 +182,7 @@ namespace SirHoog
                         weights.push_back(weight);
                     };
 
-                    input.neurons.push_back(Neuron(0 + (i == inputSize), weights)); // I did `0 + (i == inputSize)` instead of doing an if statement. It's to check if it's the last neuron (bias neuron / term) and set it's value to 1
+                    input.push_back(Neuron(0 + (i == inputSize), weights)); // I did `0 + (i == inputSize)` instead of doing an if statement. It's to check if it's the last neuron (bias neuron / term) and set it's value to 1
                 };
 
                 Layers.push_back(input);
@@ -204,7 +207,7 @@ namespace SirHoog
                             weights.push_back(weight);
                         };
 
-                        hidden.neurons.push_back(Neuron(0 + (i == hiddenLayerSize), weights)); // Same as the input layer pretty much
+                        hidden.push_back(Neuron(0 + (i == hiddenLayerSize), weights)); // Same as the input layer pretty much
                     };
 
                     Layers.push_back(hidden);
@@ -212,7 +215,7 @@ namespace SirHoog
 
                 for (int i = 0; i < outputSize; i++) // No + 1, because output doesn't have bias neuron ofc
                 {
-                    output.neurons.push_back(Neuron(0, {}, 0));
+                    output.push_back(Neuron(0, {}, 0));
                 };
 
                 Layers.push_back(output);
@@ -223,11 +226,11 @@ namespace SirHoog
 
                 for (int i = 0; i < Layers.size(); i++) // For every layer
                 {
-                    for (int j = 0; j < Layers[i].neurons.size(); j++) // For every neuron
+                    for (int j = 0; j < Layers[i].size(); j++) // For every neuron
                     {
-                        for (int k = 0; k < Layers[i].neurons[j].weights.size(); k++) // For every weight
+                        for (int k = 0; k < Layers[i][j].weights.size(); k++) // For every weight
                         {
-                            std::bitset<32> weight = Layers[i].neurons[j].weights[k];
+                            std::bitset<32> weight = Layers[i][j].weights[k];
 
                             binary.append(weight.to_string());
                         }

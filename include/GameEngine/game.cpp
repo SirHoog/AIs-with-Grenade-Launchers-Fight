@@ -1,6 +1,6 @@
 #include "game.hpp"
-#include "ai.hpp"
-#include "States/mainMenuState.hpp"
+#include "definitions.hpp"
+#include "States/simulationState.hpp"
 
 namespace SirHoog
 {
@@ -8,41 +8,56 @@ namespace SirHoog
     {
         data->window.create(sf::VideoMode(width, height), title, sf::Style::Default);
 
-        data->stateMachine.AddState(std::unique_ptr<State>(new MainMenuState(data)));
+        data->stateMachine.AddState(StateRef(new MainMenuState(data)));
 
         Run();
     };
     void Game::Run()
     {
-        float newTime, frameTime, interpolation;
+        float newTime, dt, interpolation, UpdateSpeed;
         float currentTime = _clock.getElapsedTime().asSeconds();
-        float accumulator = 0.f;
+        float accumulatorR, accumulatorU = 0;
 
         while (data->window.isOpen()) // Game loop
         {
+            if (MainMenuOpen == true)
+            {
+                data->stateMachine.AddState(StateRef(new MainMenuState(data)));
+
+                MainMenuOpen = false;
+            };
+
             data->stateMachine.ProcessStateChanges();
 
             newTime = _clock.getElapsedTime().asSeconds();
-            frameTime = newTime - currentTime;
+            dt = newTime - currentTime;
+            UpdateSpeed = TPS / DefaultTPS;
 
-            if (frameTime > 0.25f)
+            if (dt > 0.25f)
             {
-                frameTime = 0.25f;
+                dt = 0.25f;
             };
 
             currentTime = newTime;
-            accumulator += frameTime;
+            accumulatorR += dt;
+            accumulatorU += dt;
 
-            while (accumulator >= RenderSpeed)
+            interpolation = accumulatorR / RenderSpeed;
+
+            while (accumulatorR >= RenderSpeed)
             {
                 data->stateMachine.GetActiveState()->HandleInput();
-                data->stateMachine.GetActiveState()->Update(RenderSpeed);
+                data->stateMachine.GetActiveState()->Render(interpolation);
 
-                accumulator -= RenderSpeed; // Not `accumulator = 0` to correct time missed
+                accumulatorR -= RenderSpeed; // Not `accumulatorR = 0` to correct missed time
             };
 
-            interpolation = accumulator / RenderSpeed;
-            data->stateMachine.GetActiveState()->Render(interpolation);
+            while (accumulatorU >= UpdateSpeed)
+            {
+                data->stateMachine.GetActiveState()->Update();
+
+                accumulatorU -= UpdateSpeed; // Not `accumulatorR = 0` to correct missed time
+            };
         }
     }
 }

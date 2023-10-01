@@ -1,5 +1,3 @@
-#include "mainMenuState.hpp"
-
 #include <sstream>
 #include <iostream>
 #include "mainMenuState.hpp"
@@ -61,8 +59,7 @@ namespace SirHoog
             };
         }
     };
-    void MainMenuState::Update(float UpdateSpeed) {};
-    void MainMenuState::Render(float RenderSpeed)
+    void MainMenuState::Render(float Interpolation)
     {
         data->window.clear();
 

@@ -2,21 +2,21 @@
 
 #include "GameEngine/state.hpp"
 #include "GameEngine/game.hpp"
+#include "mainMenuState.hpp"
+#include "ai.hpp"
 
 namespace SirHoog
 {
-    class MainMenuState : public State
+    class SimulationState : public State
     {
         GameDataRef data;
         sf::Clock _clock;
+        sf::View view;
         sf::Sprite background;
-        sf::Sprite title;
-        sf::Sprite playButton;
-        sf::Sprite settingsButton;
-        sf::Sprite quitButton;
+        sf::Sprite mainMenuButton;
 
         public:
-            MainMenuState(GameDataRef data);
+            SimulationState(GameDataRef data);
 
             void Init();
 
