@@ -1,7 +1,4 @@
-#include <sstream>
-#include <iostream>
 #include "mainMenuState.hpp"
-#include "definitions.hpp"
 
 namespace SirHoog
 {

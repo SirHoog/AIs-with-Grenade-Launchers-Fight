@@ -1,7 +1,4 @@
-#include <sstream>
-#include <iostream>
-#include "simulationState.hpp"
-#include "definitions.hpp"
+#include "States/simulationState.hpp"
 
 namespace SirHoog
 {
@@ -10,7 +7,12 @@ namespace SirHoog
     {
         // Draw grid
 
-        // Create AIs
+        for (int i = 0; i < 50; i++)
+        {
+            AI *ai = new AI({0, 0}, {0, 0}, true, false, true, 0, 0.75, generation, NeuralNetwork("", 6, 3, 8, 4), data);
+
+            AI_List.push_back(*ai);
+        }
     };
     void SimulationState::HandleInput()
     {
@@ -29,11 +31,14 @@ namespace SirHoog
             };
         }
     };
-    void SimulationState::Update()
+    void SimulationState::Update(float dt)
     {
-        // Update all the cool parts
+        for (Character character : CharacterList)
+        {
+            character.Update(dt);
+        }
     };
-    void SimulationState::Render(float Interpolation)
+    void SimulationState::Render(float interpolation)
     {
         data->window.clear();
 
@@ -44,7 +49,7 @@ namespace SirHoog
 
         for (AI ai : AI_List)
         {
-            ai.Render(Interpolation);
+            ai.Render(interpolation);
         };
 
         data->window.display();

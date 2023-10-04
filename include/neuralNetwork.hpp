@@ -17,12 +17,12 @@ namespace SirHoog
 
             NeuralNetwork(std::string fileName, int inputSize, int hiddenLayerCount, int hiddenLayerSize, int outputSize) {};
             
-            Layer Update(Layer _input) {}; // Forward Propagation
+            virtual Layer Update(Layer _input); // Forward Propagation
             
-            void ReadFromFile(std::string fileName) {};
-            void WriteToFile(std::string fileName = "", int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0, std::string binary = "") {};
+            virtual void ReadFromFile(std::string fileName);
+            virtual void WriteToFile(std::string fileName = "", int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0, std::string binary = "");
 
-            void FromBinary(int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0, std::string binary = "") {};
-            std::string ToBinary() {};
+            virtual void FromBinary(int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0, std::string binary = "");
+            virtual std::string ToBinary();
     };
 }

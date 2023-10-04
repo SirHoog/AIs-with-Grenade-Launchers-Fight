@@ -2,15 +2,22 @@
 
 namespace SirHoog
 {
-    AI::AI(sf::Vector2f Position = {0, 0}, sf::Vector2f Velocity = {0, 0}, bool affectedByGravity = true, NeuralNetwork neuralNetwork = NeuralNetwork("", 6, 3, 8, 4), GameDataRef data) : Entity(), data(data)
+    AI::AI(sf::Vector2f Position = {0, 0}, sf::Vector2f Velocity = {0, 0}, bool affectedByGravity = true, bool bounces = false, bool friction = false, float bounceAmount = 0.5, float frictionAmount = 0.25, int generation, NeuralNetwork neuralNetwork = NeuralNetwork("", 6, 3, 8, 4), GameDataRef data) : Character()
     {
+        this->generation = generation;
+        brain = neuralNetwork;
+
+        // I should probably just make a spritesheet XD
+
         data->assetManager.LoadTexture("AI Frame 1", assetsPath + "AI/Frame1.png");
         data->assetManager.LoadTexture("AI Frame 2", assetsPath + "AI/Frame2.png");
         data->assetManager.LoadTexture("AI Frame 3", assetsPath + "AI/Frame3.png");
         data->assetManager.LoadTexture("AI Frame 4", assetsPath + "AI/Frame4.png");
     };
-    void AI::Update()
+    void AI::Update(float dt)
     {
+        Character::Update(dt);
+
         // Find input
 
         Layer input = {};
@@ -18,37 +25,34 @@ namespace SirHoog
         input.push_back(Position.x); // X
         input.push_back(Position.y); // Y
 
-        float closestAI_Distance;
-        AI closestAI;
+        float closestCharacterDistance;
+        Character closestCharacter;
 
-        for (AI ai : AI_List)
+        for (Character character : CharacterList)
         {
-            float distance = std::sqrt(std::pow(Position.x - ai.Position.x, 2) + std::pow(Position.y - ai.Position.y, 2));
+            float distance = std::sqrt(std::pow(Position.x - character.Position.x, 2) + std::pow(Position.y - character.Position.y, 2));
 
-            if (distance < closestAI_Distance)
+            if (distance < closestCharacterDistance)
             {
-                closestAI_Distance = distance;
-                closestAI = ai;
+                closestCharacterDistance = distance;
+                closestCharacter = character;
             };
         };
 
-        input.push_back(closestAI.Position.x); // Enemy X
-        input.push_back(closestAI.Position.y); // Enemy Y
+        input.push_back(closestCharacter.Position.x); // Enemy X
+        input.push_back(closestCharacter.Position.y); // Enemy Y
 
         float closestGrenadeDistance;
         Grenade closestGrenade;
 
-        for (AI ai : AI_List)
+        for (Grenade grenade : grenadeList)
         {
-            for (Grenade grenade : ai.grenadeList)
-            {
-                float distance = std::sqrt(std::pow(grenade.Position.x - Position.x, 2) + std::pow(grenade.Position.y - Position.y, 2));
+            float distance = std::sqrt(std::pow(grenade.Position.x - Position.x, 2) + std::pow(grenade.Position.y - Position.y, 2));
 
-                if (distance < closestGrenadeDistance)
-                {
-                    closestGrenadeDistance = distance;
-                    closestGrenade = grenade;
-                }
+            if (distance < closestGrenadeDistance)
+            {
+                closestGrenadeDistance = distance;
+                closestGrenade = grenade;
             }
         };
 
@@ -61,7 +65,7 @@ namespace SirHoog
 
         for (Grenade grenade : grenadeList)
         {
-            grenade.Update();
+            grenade.Update(*this, dt);
         };
 
         // Move
@@ -70,11 +74,6 @@ namespace SirHoog
         float jump = (output[1].activation > 0) * JumpHeight; // > 0 = Decides to jump
         
         Velocity -= {x, jump};
-
-        for (Grenade grenade : grenadeList)
-        {
-            grenade.Update();
-        };
 
         // Launch
 
@@ -85,17 +84,19 @@ namespace SirHoog
             LaunchGrenade(output[3].activation, output[4].activation);
         };
     };
-    void AI::Render(float Interpolation)
+    void AI::Render(float interpolation)
     {
-        if (Interpolation > 0.75)
+        int frame = 0;
+
+        if (interpolation > 0.75)
         {
             frame = 4;
         }
-        else if (Interpolation > 0.5)
+        else if (interpolation > 0.5)
         {
             frame = 3;
         }
-        else if (Interpolation > 0.25)
+        else if (interpolation > 0.25)
         {
             frame = 2;
         }
@@ -104,11 +105,7 @@ namespace SirHoog
             frame = 1;
         };
 
-        sf::Sprite sprite;
-
-        sprite.setTexture(data->assetManager.GetTexture("AI Frame " + std::to_string(frame)));
-        sprite.setScale(0.5, 0.5);
-        sprite.setOrigin((sf::Vector2f)sprite.getTexture()->getSize() / 2.f);
+       Character::Render(interpolation, data->assetManager.GetTexture("AI Frame " + std::to_string(frame)));
     };
     // Genetic Algorithm Finally
     // Do it in this order: https://www.researchgate.net/profile/Rakesh-Phanden-2/publication/258477641/figure/fig1/AS:297476348235779@1447935296512/Flow-chart-of-working-of-Genetic-Algorithm.png

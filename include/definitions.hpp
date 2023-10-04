@@ -1,3 +1,6 @@
+#ifndef definitions_hpp
+#define definitions_hpp
+
 #include <SFML/Graphics.hpp>
 #include <array>
 #include <string>
@@ -9,8 +12,6 @@ const sf::Vector2f Center(ScreenWidth / 2, ScreenHeight / 2);
 const std::string assetsPath = "assets/";
 
 // Main Menu
-
-bool MainMenuOpen = true;
 
 const std::string MainMenuPath = assetsPath + "StatesUI/MainMenu/";
 const std::string MainMenuBackground = MainMenuPath + "Background.png";
@@ -43,3 +44,5 @@ const float GrenadeCooldown = 2;
 
 const float WalkSpeed = 10;
 const float JumpHeight = 5;
+
+#endif

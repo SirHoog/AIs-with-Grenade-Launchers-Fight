@@ -9,17 +9,19 @@ namespace SirHoog
     {
         GameDataRef data;
 
-        std::vector<Grenade> grenadeList = {};
-        sf::Clock grenadeCooldown;
-
         public:
             float Health = 100;
-            Character(sf::Vector2f Position = {0, 0}, sf::Vector2f Velocity = {0, 0}, bool affectedByGravity = true, GameDataRef data) : Entity(), data(data) {}
+            Character(GameDataRef data, sf::Vector2f Position, sf::Vector2f Velocity, bool affectedByGravity, bool bounces, bool friction, float bounceAmount, float frictionAmount) : Entity() {}
             ~Character() {};
 
-            void Update() {};
+            void Update(float dt) {};
             void Render(float interpolation, sf::Texture spriteTexture) {};
 
             void LaunchGrenade(float aimAngle, float power) {};
+        protected:
+            std::vector<Grenade> grenadeList = {};
+            sf::Clock grenadeCooldown;
     };
+
+    std::vector<Character> CharacterList;
 }

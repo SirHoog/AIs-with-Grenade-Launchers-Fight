@@ -1,5 +1,7 @@
 #pragma once
 
+#include <sstream>
+#include <iostream>
 #include "GameEngine/state.hpp"
 #include "GameEngine/game.hpp"
 
@@ -21,7 +23,7 @@ namespace SirHoog
             void Init();
 
             void HandleInput();
-            void Update();
+            void Update(float dt);
             void Render(float Interpolation);
 
             void GameSpeed(int _TPS);

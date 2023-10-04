@@ -10,24 +10,22 @@ namespace SirHoog
     {
         GameDataRef data;
 
-        int frame = 0;
-
         int generation = 0;
         int fitness = 0;
-        NeuralNetwork brain = NeuralNetwork("", 6, 3, 8, 5); // Input: X, Y, Closest Enemy X, Closest Enemy Y, Closest Grenade X, Closest Grenade Y // Output: Horizontal Movement, Jump, Launch grenade, Aim Angle, Power
+        NeuralNetwork brain = NeuralNetwork("", 6, 3, 8, 5); // Input: X, Y, Closest Character X, Closest Character Y, Closest Grenade X, Closest Grenade Y // Output: Horizontal Movement, Jump, Launch grenade, Aim Angle, Power
         
         public:
             sf::Color Color = sf::Color(rand() % 255, rand() % 255, rand() % 255, 255);
 
-            AI(sf::Vector2f Position = {0, 0}, sf::Vector2f Velocity = {0, 0}, bool affectedByGravity = true, NeuralNetwork neuralNetwork = NeuralNetwork("", 6, 3, 8, 4), GameDataRef data) : Character(), data(data) {};
+            AI(sf::Vector2f Position = {0, 0}, sf::Vector2f Velocity = {0, 0}, bool affectedByGravity = true, bool bounces = false, bool friction = false, float bounceAmount = 0.5, float frictionAmount = 0.25, int generation, NeuralNetwork neuralNetwork = NeuralNetwork("", 6, 3, 8, 4), GameDataRef data) : Character() {};
             ~AI() {};
 
-            void Update() {};
-            void Render(float Interpolation) {};
+            void Update(float dt) {};
+            void Render(float interpolation) {};
 
             void CrossOver(AI with) {};
             void Mutate() {};
     };
 
-    std::vector<AI> AI_List = {};
+    std::vector<AI> AI_List;
 }

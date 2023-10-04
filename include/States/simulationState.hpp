@@ -1,5 +1,7 @@
 #pragma once
 
+#include <sstream>
+#include <iostream>
 #include "GameEngine/state.hpp"
 #include "GameEngine/game.hpp"
 #include "mainMenuState.hpp"
@@ -15,13 +17,15 @@ namespace SirHoog
         sf::Sprite background;
         sf::Sprite mainMenuButton;
 
+        int generation = 0;
+
         public:
             SimulationState(GameDataRef data);
 
             void Init();
 
             void HandleInput();
-            void Update();
+            void Update(float dt);
             void Render(float Interpolation);
 
             void GameSpeed(int _TPS);
