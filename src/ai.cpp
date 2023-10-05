@@ -2,11 +2,33 @@
 
 namespace SirHoog
 {
-    AI::AI(sf::Vector2f Position = {0, 0}, sf::Vector2f Velocity = {0, 0}, bool affectedByGravity = true, bool bounces = false, bool friction = false, float bounceAmount = 0.5, float frictionAmount = 0.25, int generation, NeuralNetwork neuralNetwork = NeuralNetwork("", 6, 3, 8, 4), GameDataRef data) : Character()
+    AI::AI
+    (
+        GameDataRef data,
+        NeuralNetwork neuralNetwork,
+        int generation,
+        sf::Vector2f Position,
+        sf::Vector2f Velocity,
+        bool affectedByGravity,
+        bool bounces,
+        bool friction,
+        float bounceAmount,
+        float frictionAmount
+    ) :
+    Character
+    (
+        data,
+        Position,
+        Velocity,
+        affectedByGravity,
+        bounces,
+        friction,
+        bounceAmount,
+        frictionAmount
+    ),
+    brain(neuralNetwork),
+    generation(generation)
     {
-        this->generation = generation;
-        brain = neuralNetwork;
-
         // I should probably just make a spritesheet XD
 
         data->assetManager.LoadTexture("AI Frame 1", assetsPath + "AI/Frame1.png");
@@ -26,7 +48,7 @@ namespace SirHoog
         input.push_back(Position.y); // Y
 
         float closestCharacterDistance;
-        Character closestCharacter;
+        Character closestCharacter(data);
 
         for (Character character : CharacterList)
         {
@@ -43,7 +65,7 @@ namespace SirHoog
         input.push_back(closestCharacter.Position.y); // Enemy Y
 
         float closestGrenadeDistance;
-        Grenade closestGrenade;
+        Grenade closestGrenade(data);
 
         for (Grenade grenade : grenadeList)
         {

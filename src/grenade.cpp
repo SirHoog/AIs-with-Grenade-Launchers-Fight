@@ -2,7 +2,28 @@
 
 namespace SirHoog
 {
-    Grenade::Grenade(GameDataRef data, sf::Vector2f Position, sf::Vector2f Velocity, bool affectedByGravity, bool bounces, bool friction, float bounceAmount, float frictionAmount) : Entity()
+    Grenade::Grenade
+    (
+        GameDataRef data,
+        sf::Vector2f Position,
+        sf::Vector2f Velocity,
+        bool affectedByGravity,
+        bool bounces,
+        bool friction,
+        float bounceAmount,
+        float frictionAmount
+    ) :
+    Entity
+    (
+        data,
+        Position,
+        Velocity,
+        affectedByGravity,
+        bounces,
+        friction,
+        bounceAmount,
+        frictionAmount
+    )
     {
         data->assetManager.LoadTexture("Explosion", assetsPath + "Grenade/explosionSpritesheet.png");
         data->assetManager.LoadTexture("Grenade", assetsPath + "Grenade/grenade.png");

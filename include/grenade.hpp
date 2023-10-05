@@ -3,7 +3,7 @@
 
 namespace SirHoog
 {
-    class Character : public Entity {};
+    class Character;
 
     class Grenade : public Entity
     {
@@ -15,12 +15,22 @@ namespace SirHoog
         float sinceExploded = 0;
 
         public:
-            Grenade(GameDataRef data, sf::Vector2f Position, sf::Vector2f Velocity, bool affectedByGravity, bool bounces, bool friction, float bounceAmount, float frictionAmount) : Entity() {};
+            Grenade
+            (
+                GameDataRef data,
+                sf::Vector2f Position = {0, 0},
+                sf::Vector2f Velocity = {0, 0},
+                bool affectedByGravity = true,
+                bool bounces = false,
+                bool friction = true,
+                float bounceAmount = 0.5,
+                float frictionAmount = 0.75
+            );
             ~Grenade() {};
 
-            void Update(Character &owner, float dt) {};
-            void Render(float interpolation) {};
+            void Update(Character &owner, float dt);
+            void Render(float interpolation);
 
-            void Explode(Character &owner) {};
+            void Explode(Character &owner);
     };
 }

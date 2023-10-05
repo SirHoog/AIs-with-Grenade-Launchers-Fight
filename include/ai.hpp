@@ -2,8 +2,6 @@
 #include "neuralNetwork.hpp"
 #include "character.hpp"
 
-using namespace SirHoog;
-
 namespace SirHoog
 {
     class AI : public Character
@@ -17,14 +15,26 @@ namespace SirHoog
         public:
             sf::Color Color = sf::Color(rand() % 255, rand() % 255, rand() % 255, 255);
 
-            AI(sf::Vector2f Position = {0, 0}, sf::Vector2f Velocity = {0, 0}, bool affectedByGravity = true, bool bounces = false, bool friction = false, float bounceAmount = 0.5, float frictionAmount = 0.25, int generation, NeuralNetwork neuralNetwork = NeuralNetwork("", 6, 3, 8, 4), GameDataRef data) : Character() {};
+            AI
+            (
+                GameDataRef data,
+                NeuralNetwork neuralNetwork = NeuralNetwork("", 6, 3, 8, 5),
+                int generation = 0,
+                sf::Vector2f Position = {0, 0},
+                sf::Vector2f Velocity = {0, 0},
+                bool affectedByGravity = true,
+                bool bounces = false,
+                bool friction = true,
+                float bounceAmount = 0.5,
+                float frictionAmount = 0.75
+            );
             ~AI() {};
 
-            void Update(float dt) {};
-            void Render(float interpolation) {};
+            void Update(float dt);
+            void Render(float interpolation);
 
-            void CrossOver(AI with) {};
-            void Mutate() {};
+            void CrossOver(AI with);
+            void Mutate();
     };
 
     std::vector<AI> AI_List;

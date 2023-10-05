@@ -2,20 +2,25 @@
 
 namespace SirHoog
 {
-    Entity::Entity(GameDataRef data, sf::Vector2f Position, sf::Vector2f Velocity, bool affectedByGravity, bool bounces, bool friction, float bounceAmount, float frictionAmount)
-    {
-        this->data = data;
-        
-        this->Position = Position;
-        this->Velocity = Velocity;
-
-        this->affectedByGravity = affectedByGravity;
-        this->bounces = bounces;
-        this->friction = friction;
-
-        this->bounceAmount = bounceAmount;
-        this->frictionAmount = frictionAmount;
-    };
+    Entity::Entity
+    (
+        GameDataRef data,
+        sf::Vector2f Position,
+        sf::Vector2f Velocity,
+        bool affectedByGravity,
+        bool bounces,
+        bool friction,
+        float bounceAmount,
+        float frictionAmount
+    ) :
+    data(data),
+    Position(Position),
+    affectedByGravity(affectedByGravity),
+    bounces(bounces),
+    friction(friction),
+    bounceAmount(bounceAmount),
+    frictionAmount(frictionAmount)
+    {};
     
     void Entity::Update(float dt)
     {

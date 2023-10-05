@@ -2,6 +2,29 @@
 
 namespace SirHoog
 {
+    Character::Character
+    (
+        GameDataRef data,
+        sf::Vector2f Position,
+        sf::Vector2f Velocity,
+        bool affectedByGravity,
+        bool bounces,
+        bool friction,
+        float bounceAmount,
+        float frictionAmount
+    ) :
+    Entity
+    (
+        data,
+        Position,
+        Velocity,
+        affectedByGravity,
+        bounces,
+        friction,
+        bounceAmount,
+        frictionAmount
+    )
+    {};
     void Character::Update(float dt)
     {
         Entity::Update(dt);
