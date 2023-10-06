@@ -1,3 +1,5 @@
+#pragma once
+
 #include "GameEngine/game.hpp"
 #include <SFML/Graphics.hpp>
 #include <algorithm>

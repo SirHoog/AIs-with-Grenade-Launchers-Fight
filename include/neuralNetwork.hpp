@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -15,7 +17,7 @@ namespace SirHoog
         public:
             std::vector<Layer> Layers;
 
-            NeuralNetwork(std::string fileName, int inputSize, int hiddenLayerCount, int hiddenLayerSize, int outputSize) {};
+            NeuralNetwork(std::string fileName, int inputSize, int hiddenLayerCount, int hiddenLayerSize, int outputSize);
             
             Layer Update(Layer _input); // Forward Propagation
             

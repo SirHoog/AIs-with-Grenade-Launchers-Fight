@@ -1,3 +1,5 @@
+#pragma once
+
 #include "grenade.hpp"
 
 // Made this class to share the same stuff with the AI class and Player class

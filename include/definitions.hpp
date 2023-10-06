@@ -1,5 +1,4 @@
-#ifndef definitions_hpp
-#define definitions_hpp
+#pragma once
 
 #include <SFML/Graphics.hpp>
 #include <array>
@@ -44,5 +43,3 @@ const float GrenadeCooldown = 2;
 
 const float WalkSpeed = 10;
 const float JumpHeight = 5;
-
-#endif

@@ -117,7 +117,7 @@ namespace SirHoog
             std::getline(file, line);
             binary = line;
 
-            FromBinary(inputSize = 0, hiddenLayerCount = 0, hiddenLayerSize = 0, outputSize = 0, binary);
+            FromBinary(inputSize, hiddenLayerCount, hiddenLayerSize , outputSize, binary);
         }
         else
         {
@@ -126,7 +126,7 @@ namespace SirHoog
 
         file.close();
     };
-    void NeuralNetwork::WriteToFile(std::string fileName = "", int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0, std::string binary = "")
+    void NeuralNetwork::WriteToFile(std::string fileName, int inputSize, int hiddenLayerCount, int hiddenLayerSize, int outputSize, std::string binary)
     {
         std::ofstream file("SavedNeuralNetworks\\" + fileName); // `o` stands for out
         
@@ -145,7 +145,7 @@ namespace SirHoog
 
         file.close();
     };
-    void NeuralNetwork::FromBinary(int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0, std::string binary = "")
+    void NeuralNetwork::FromBinary(int inputSize, int hiddenLayerCount, int hiddenLayerSize, int outputSize, std::string binary)
     {
         Layers = {};
 

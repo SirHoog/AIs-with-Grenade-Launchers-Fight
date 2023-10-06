@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 
 namespace SirHoog
@@ -8,6 +10,6 @@ namespace SirHoog
             float activation = 0;
             std::vector<float> weights = {};
 
-            Neuron(float activation = 0, std::vector<float> weights = {}, int weightSize = 0) : activation(activation) {}
+            Neuron(float activation = 0, std::vector<float> weights = {}, int weightSize = 0);
     };
 }

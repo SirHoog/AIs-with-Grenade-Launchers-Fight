@@ -2,7 +2,7 @@
 
 namespace SirHoog
 {
-    Neuron::Neuron(float activation = 0, std::vector<float> weights = {}, int weightSize = 0)
+    Neuron::Neuron(float activation, std::vector<float> weights, int weightSize) : activation(activation)
     {
         if (weightSize > 0)
         {
