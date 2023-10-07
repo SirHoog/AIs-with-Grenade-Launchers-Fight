@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "GameEngine/game.hpp"
 #include "States/simulationState.hpp"
 
 namespace SirHoog
@@ -15,7 +15,7 @@ namespace SirHoog
     {
         float dt, interpolation, UpdateSpeed, accumulatorR, accumulatorU = 0;
 
-        while (data->window.isOpen()) // Game loop
+        while (data->window.isOpen()) // PIN: Game loop
         {
             data->stateMachine.ProcessStateChanges();
 
@@ -32,13 +32,13 @@ namespace SirHoog
                 data->stateMachine.GetActiveState()->HandleInput();
                 data->stateMachine.GetActiveState()->Render(interpolation);
 
-                accumulatorR -= RenderSpeed; // Not `accumulatorR = 0` to correct missed time
+                accumulatorR -= RenderSpeed; // WARNING: Do not change to `accumulatorR = 0`. It's this way to correct missed time
             };
             if (accumulatorU >= UpdateSpeed)
             {
                 data->stateMachine.GetActiveState()->Update(dt);
 
-                accumulatorU -= UpdateSpeed; // Not `accumulatorU = 0` to correct missed time
+                accumulatorU -= UpdateSpeed; // WARNING: Do not change to `accumulatorU = 0`. It's this way to correct missed time
             };
         }
     }

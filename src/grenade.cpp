@@ -63,12 +63,12 @@ namespace SirHoog
             int frame = std::round(sinceExploded * explosion.getSize().x / frameWidth);
             float frameLocationX = frame * frameWidth;
 
-            sprite.setTexture(explosion);
-            sprite.setTextureRect(sf::IntRect(sf::Vector2i(frameLocationX, 0), sf::Vector2i(explosion.getSize().y, explosion.getSize().y)));
-            sprite.setOrigin(explosion.getSize().x / 2.f, explosion.getSize().y); // Middle bottom
-            sprite.setScale({5, 5});
+            Sprite.setTexture(explosion);
+            Sprite.setTextureRect(sf::IntRect(sf::Vector2i(frameLocationX, 0), sf::Vector2i(explosion.getSize().y, explosion.getSize().y)));
+            Sprite.setOrigin(explosion.getSize().x / 2.f, explosion.getSize().y); // Middle bottom
+            Sprite.setScale({5, 5});
 
-            data->window.draw(sprite);
+            data->window.draw(Sprite);
             data->window.display();
         }
         else

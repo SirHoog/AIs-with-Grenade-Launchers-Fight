@@ -5,11 +5,11 @@ namespace SirHoog
     SimulationState::SimulationState(GameDataRef data) : data(data) {};
     void SimulationState::Init()
     {
-        // Draw grid
+        // TODO: Draw grid
 
         for (int i = 0; i < 50; i++)
         {
-            AI *ai = new AI({0, 0}, {0, 0}, true, false, true, 0, 0.75, generation, NeuralNetwork("", 6, 3, 8, 4), data);
+            AI *ai = new AI(data, NeuralNetwork("", 6, 3, 8, 4), generation, Center);
 
             AI_List.push_back(*ai);
         }
@@ -24,11 +24,18 @@ namespace SirHoog
             {
                 data->window.close();
             };
-
             if (data->inputManager.IsSpriteClicked(mainMenuButton, sf::Mouse::Left, data->window))
             {
                 data->stateMachine.AddState(StateRef(new MainMenuState(data)));
             };
+            for (AI ai : AI_List)
+            {
+                if (data->inputManager.IsSpriteClicked(ai.Sprite, sf::Mouse::Left, data->window))
+                {
+                    // TODO: Display AI's neural network and other stats
+                }
+            };
+            // ADD: Player movement control here
         }
     };
     void SimulationState::Update(float dt)
@@ -45,7 +52,7 @@ namespace SirHoog
         data->window.draw(background);
         data->window.draw(mainMenuButton);
 
-        data->window.setView(view);
+        // REMOVING TEMPORARILY: data->window.setView(view);
 
         for (AI ai : AI_List)
         {
@@ -53,5 +60,7 @@ namespace SirHoog
         };
 
         data->window.display();
-    }
+    };
+
+    void GameSpeed(int _TPS) {};
 }

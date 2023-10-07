@@ -1,6 +1,5 @@
 #pragma once
 
-#include <random>
 #include "neuralNetwork.hpp"
 #include "character.hpp"
 
@@ -12,7 +11,8 @@ namespace SirHoog
 
         int generation = 0;
         int fitness = 0;
-        NeuralNetwork brain = NeuralNetwork("", 6, 3, 8, 5); // Input: X, Y, Closest Character X, Closest Character Y, Closest Grenade X, Closest Grenade Y // Output: Horizontal Movement, Jump, Launch grenade, Aim Angle, Power
+        NeuralNetwork brain = NeuralNetwork("", 6, 3, 8, 5);
+        // NAMES: Input: X, Y, Closest Character X, Closest Character Y, Closest Grenade X, Closest Grenade Y // NAMES: Output: Horizontal Movement, Jump, Launch grenade, Aim Angle, Power
         
         public:
             sf::Color Color = sf::Color(rand() % 255, rand() % 255, rand() % 255, 255);
@@ -39,5 +39,5 @@ namespace SirHoog
             void Mutate();
     };
 
-    std::vector<AI> AI_List;
+    static std::vector<AI> AI_List;
 }

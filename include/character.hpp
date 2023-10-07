@@ -2,7 +2,8 @@
 
 #include "grenade.hpp"
 
-// Made this class to share the same stuff with the AI class and Player class
+// MADE TO: Share the same stuff with the AI class and player class
+// CREATE: a player class // PIN
 
 namespace SirHoog
 {
@@ -34,5 +35,5 @@ namespace SirHoog
             sf::Clock grenadeCooldown;
     };
 
-    std::vector<Character> CharacterList;
+    static std::vector<Character> CharacterList;
 }

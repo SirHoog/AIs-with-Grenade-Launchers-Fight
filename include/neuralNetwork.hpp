@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <string.h>
+#include <cstring>
 #include <fstream>
 #include <iostream>
 #include <bitset>
@@ -10,7 +12,7 @@
 
 namespace SirHoog
 {
-    typedef std::vector<Neuron> Layer; 
+    typedef std::vector<Neuron> Layer;
 
     class NeuralNetwork
     {
@@ -19,7 +21,7 @@ namespace SirHoog
 
             NeuralNetwork(std::string fileName, int inputSize, int hiddenLayerCount, int hiddenLayerSize, int outputSize);
             
-            Layer Update(Layer _input); // Forward Propagation
+            Layer Update(Layer _input); // ANOTHER NAME: Forward Propagation
             
             void ReadFromFile(std::string fileName);
             void WriteToFile(std::string fileName = "", int inputSize = 0, int hiddenLayerCount = 0, int hiddenLayerSize = 0, int outputSize = 0, std::string binary = "");

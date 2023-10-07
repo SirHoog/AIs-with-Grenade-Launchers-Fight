@@ -21,7 +21,7 @@ namespace SirHoog
 
     class Game
     {
-        const float RenderSpeed = 1.f / 60.f; // 60 FPS
+        const float RenderSpeed = 1.f / 60.f; // USED TO: Maintain 60 FPS
         sf::Clock _clock;
 
         GameDataRef data = std::make_shared<GameData>();

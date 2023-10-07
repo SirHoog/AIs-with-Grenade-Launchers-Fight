@@ -48,11 +48,11 @@ namespace SirHoog
                 Velocity.y = -std::abs(Velocity.y); // Makes it negative because SFML uses an inverted Y axis
             };
 
-            Velocity *= bounceAmount; // Loses some energy
+            Velocity *= bounceAmount; // PURPOSE: Loses some energy
         };
         if (affectedByGravity)
         {
-            Velocity.y -= GravitationalConstant; // Not negative because SFML uses an inverted Y axis
+            Velocity.y -= GravitationalConstant; // PURPOSE: Not negative because SFML uses an inverted Y axis
         };
         if (Position.y == data->window.getSize().y)
         {
@@ -68,10 +68,10 @@ namespace SirHoog
     };
     void Entity::Render(float interpolation, sf::Texture spriteTexture)
     {
-        sprite.setTexture(spriteTexture);
-        sprite.setOrigin(spriteTexture.getSize().x / 2.f, spriteTexture.getSize().y); // Middle bottom
+        Sprite.setTexture(spriteTexture);
+        Sprite.setOrigin(spriteTexture.getSize().x / 2.f, spriteTexture.getSize().y); // Middle bottom
 
-        data->window.draw(sprite);
+        data->window.draw(Sprite);
         data->window.display();
     }
 }

@@ -13,7 +13,7 @@ namespace SirHoog
     {
         GameDataRef data;
         sf::Clock _clock;
-        sf::View view;
+        // REMOVING TEMPORARILY: sf::View view; // REASON: Annoying to deal with, so I won't add it until I'm finished with everything else
         sf::Sprite background;
         sf::Sprite mainMenuButton;
 

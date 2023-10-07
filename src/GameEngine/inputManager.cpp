@@ -1,4 +1,4 @@
-#include "inputManager.hpp"
+#include "GameEngine/inputManager.hpp"
 
 namespace SirHoog
 {

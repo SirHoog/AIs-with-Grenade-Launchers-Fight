@@ -1,11 +1,7 @@
 #include <iostream>
 #include "GameEngine/game.hpp"
 
-// vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-// vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-// CONSIDER RENAMING GAME TO `AI Bomb Battles`
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// CONSIDER: RENAMING GAME TO "Boom Bots"!
 
 using namespace SirHoog;
 

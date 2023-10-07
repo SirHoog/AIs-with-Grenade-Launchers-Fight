@@ -1,4 +1,4 @@
-#include "assetManager.hpp"
+#include "GameEngine/assetManager.hpp"
 
 namespace SirHoog
 {

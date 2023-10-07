@@ -29,23 +29,25 @@ namespace SirHoog
     brain(neuralNetwork),
     generation(generation)
     {
-        // I should probably just make a spritesheet XD
+        // TODO: Make a spritesheet instead of doing this
 
         data->assetManager.LoadTexture("AI Frame 1", assetsPath + "AI/Frame1.png");
         data->assetManager.LoadTexture("AI Frame 2", assetsPath + "AI/Frame2.png");
         data->assetManager.LoadTexture("AI Frame 3", assetsPath + "AI/Frame3.png");
         data->assetManager.LoadTexture("AI Frame 4", assetsPath + "AI/Frame4.png");
+    
+        CharacterList.push_back(*this);
     };
     void AI::Update(float dt)
     {
         Character::Update(dt);
 
-        // Find input
+        // PURPOSE: Find input
 
         Layer input = {};
 
-        input.push_back(Position.x); // X
-        input.push_back(Position.y); // Y
+        input.push_back(Position.x); // NAME: X
+        input.push_back(Position.y); // NAME: Y
 
         float closestCharacterDistance;
         Character closestCharacter(data);
@@ -61,8 +63,8 @@ namespace SirHoog
             };
         };
 
-        input.push_back(closestCharacter.Position.x); // Enemy X
-        input.push_back(closestCharacter.Position.y); // Enemy Y
+        input.push_back(closestCharacter.Position.x); // NAME: Enemy X
+        input.push_back(closestCharacter.Position.y); // NAME: Enemy Y
 
         float closestGrenadeDistance;
         Grenade closestGrenade(data);
@@ -78,10 +80,10 @@ namespace SirHoog
             }
         };
 
-        input.push_back(closestGrenade.Position.x); // Grenade X
-        input.push_back(closestGrenade.Position.y); // Grenade Y
+        input.push_back(closestGrenade.Position.x); // NAME: Grenade X
+        input.push_back(closestGrenade.Position.y); // NAME: Grenade Y
 
-        // Update attributes
+        // PURPOSE: Update attributes
 
         Layer output = brain.Update(input);
 
@@ -90,16 +92,16 @@ namespace SirHoog
             grenade.Update(*this, dt);
         };
 
-        // Move
+        // MAKES: AI move
 
-        float x = output[0].activation * WalkSpeed; // < 0 = Left // > 0 = Right
-        float jump = (output[1].activation > 0) * JumpHeight; // > 0 = Decides to jump
+        float x = output[0].activation * WalkSpeed; // STATES: < 0 = Left // STATES: > 0 = Right
+        float jump = (output[1].activation > 0) * JumpHeight; // STATES: > 0 = Decides to jump
         
         Velocity -= {x, jump};
 
-        // Launch
+        // MAKES: AI launch grenade
 
-        if (output[2].activation > 0 && grenadeCooldown.getElapsedTime().asSeconds() > GrenadeCooldown) // Decides to launch grenade
+        if (output[2].activation > 0 && grenadeCooldown.getElapsedTime().asSeconds() > GrenadeCooldown) // PURPOSE: Decides to launch grenade
         {
             grenadeCooldown.restart();
 
@@ -129,8 +131,8 @@ namespace SirHoog
 
        Character::Render(interpolation, data->assetManager.GetTexture("AI Frame " + std::to_string(frame)));
     };
-    // Genetic Algorithm Finally
-    // Do it in this order: https://www.researchgate.net/profile/Rakesh-Phanden-2/publication/258477641/figure/fig1/AS:297476348235779@1447935296512/Flow-chart-of-working-of-Genetic-Algorithm.png
+    // NAME: Genetic Algorithm Finally
+    // Call the functions it in this order: https://www.researchgate.net/profile/Rakesh-Phanden-2/publication/258477641/figure/fig1/AS:297476348235779@1447935296512/Flow-chart-of-working-of-Genetic-Algorithm.png
 
     // https://web.stanford.edu/group/sisl/k12/optimization/MO-unit2-pdfs/2.15stochastic2annealing,genetic.pdf#page=15
     void AI::CrossOver(AI with)
@@ -146,7 +148,7 @@ namespace SirHoog
 
         for (int i = 0; i < binary.size(); i++)
         {
-            int chance = std::rand() % binary.size(); // 1 in length of `binary`
+            int chance = std::rand() % binary.size();
 
             if (chance == 1)
             {

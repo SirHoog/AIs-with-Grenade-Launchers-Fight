@@ -8,7 +8,7 @@ namespace SirHoog
         {
             for (int i = 0; i < weightSize; i++)
             {
-                weights.push_back(0.f);
+                weights.push_back(std::rand());
             }
         }
         else

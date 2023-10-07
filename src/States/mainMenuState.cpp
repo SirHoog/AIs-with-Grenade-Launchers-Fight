@@ -1,11 +1,11 @@
-#include "mainMenuState.hpp"
+#include "States/mainMenuState.hpp"
 
 namespace SirHoog
 {
     MainMenuState::MainMenuState(GameDataRef data) : data(data) {};
     void MainMenuState::Init()
     {
-        const int distance = 100;
+        const int distance = 100; // ANOTHER NAME: Distance between buttons
 
         data->assetManager.LoadTexture("Background", MainMenuBackground);
         data->assetManager.LoadTexture("Title", TitlePath);
@@ -44,18 +44,17 @@ namespace SirHoog
             {
                 data->window.close();
             };
-
             if (data->inputManager.IsSpriteClicked(playButton, sf::Mouse::Left, data->window))
             {
-                std::cout << "Start simulation";
+                // TODO: Start simulation // WARNING: (may cause circular dependencies)
             };
-
             if (data->inputManager.IsSpriteClicked(settingsButton, sf::Mouse::Left, data->window))
             {
-                std::cout << "Open settings list";
-            };
+                // CREATE: Settings list state
+            }
         }
     };
+    void MainMenuState::Update(float dt) {};
     void MainMenuState::Render(float Interpolation)
     {
         data->window.clear();
@@ -67,5 +66,6 @@ namespace SirHoog
         data->window.draw(quitButton);
 
         data->window.display();
-    }
+    };
+    void GameSpeed(int _TPS) {};
 }
