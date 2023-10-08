@@ -19,10 +19,10 @@ namespace SirHoog
         settingsButton.setTexture(data->assetManager.GetTexture("Settings Button"));
         quitButton.setTexture(data->assetManager.GetTexture("Quit Button"));
 
-        title.setOrigin((sf::Vector2f)data->assetManager.GetTexture("Title").getSize() / 2.f);
-        playButton.setOrigin((sf::Vector2f)data->assetManager.GetTexture("Play Button").getSize() / 2.f);
-        settingsButton.setOrigin((sf::Vector2f)data->assetManager.GetTexture("Settings Button").getSize() / 2.f);
-        quitButton.setOrigin((sf::Vector2f)data->assetManager.GetTexture("Quit Button").getSize() / 2.f);
+        title.setOrigin(title.getGlobalBounds().getSize() / 2.f);
+        playButton.setOrigin(playButton.getGlobalBounds().getSize() / 2.f);
+        settingsButton.setOrigin(settingsButton.getGlobalBounds().getSize() / 2.f);
+        quitButton.setOrigin(quitButton.getGlobalBounds().getSize() / 2.f);
 
         title.setScale(0.35, 0.35);
         playButton.setScale(0.35, 0.35);
@@ -46,10 +46,14 @@ namespace SirHoog
             };
             if (data->inputManager.IsSpriteClicked(playButton, sf::Mouse::Left, data->window))
             {
-                // TODO: Start simulation // WARNING: (may cause circular dependencies)
+                std::cout << "Play";
+
+                // TODO: Start simulation // WARNING: (may cause circular dependency)
             };
             if (data->inputManager.IsSpriteClicked(settingsButton, sf::Mouse::Left, data->window))
             {
+                std::cout << "Settings";
+
                 // CREATE: Settings list state
             }
         }
@@ -67,5 +71,6 @@ namespace SirHoog
 
         data->window.display();
     };
-    void GameSpeed(int _TPS) {};
+
+    void MainMenuState::GameSpeed(int _TPS) {};
 }

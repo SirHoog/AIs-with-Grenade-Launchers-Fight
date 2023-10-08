@@ -62,5 +62,5 @@ namespace SirHoog
         data->window.display();
     };
 
-    void GameSpeed(int _TPS) {};
+    void SimulationState::GameSpeed(int _TPS) {};
 }
