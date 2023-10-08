@@ -1,23 +1,36 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project(boom_bots)
 
-project(boom_bots VERSION 1.0.0)
-
-add_executable(boombots
+add_executable(boom_bots
     main.cpp
-    src/GameEngine/*.cpp
-    src/States/*.cpp
-    src/*.cpp
-)
 
-find_package(SFML 2 REQUIRED network audio graphics window system) # ADD: `sfml-audio` when you're gonna add the explosion sound effects
+    src/ai.cpp
+    src/character.cpp
+    src/entity.cpp
+    src/grenade.cpp
+    src/neuralNetwork.cpp
+    src/neuron.cpp
+
+    src/GameEngine/assetManager.cpp
+    src/GameEngine/game.cpp
+    src/GameEngine/inputManager.cpp
+    src/GameEngine/stateMachine.cpp
+
+    src/States/mainMenuState.cpp
+    src/States/simulationState.cpp
+)
 
 target_include_directories(boom_bots
     PRIVATE include
+    PRIVATE include/GameEngine
+    PRIVATE include/States
+    PRIVATE include/NC
+    PRIVATE include/NC/NumCpp
 )
 
 target_link_directories(boom_bots
-    PUBLIC lib
+    PUBLIC lib/NumCpp
 )
+
+target_link_libraries(boom_bots sfml-graphics sfml-window sfml-system)
