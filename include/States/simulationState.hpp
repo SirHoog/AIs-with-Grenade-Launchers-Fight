@@ -4,7 +4,6 @@
 #include <iostream>
 #include "GameEngine/state.hpp"
 #include "GameEngine/game.hpp"
-#include "mainMenuState.hpp"
 #include "ai.hpp"
 
 namespace SirHoog

@@ -1,5 +1,5 @@
 #include "GameEngine/game.hpp"
-#include "States/simulationState.hpp"
+#include "States/mainMenuState.hpp"
 
 namespace SirHoog
 {

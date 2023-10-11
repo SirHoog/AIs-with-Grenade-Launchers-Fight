@@ -7,6 +7,8 @@ namespace SirHoog
         GameDataRef data,
         NeuralNetwork neuralNetwork,
         int generation,
+        Animation animation,
+        sf::Texture spriteTexture,
         sf::Vector2f Position,
         sf::Vector2f Velocity,
         bool affectedByGravity,
@@ -18,6 +20,8 @@ namespace SirHoog
     Character
     (
         data,
+        animation,
+        spriteTexture,
         Position,
         Velocity,
         affectedByGravity,
@@ -32,10 +36,7 @@ namespace SirHoog
         // TODO: Make a spritesheet instead of doing this
 
         data->assetManager.LoadTexture("AI Frame 1", assetsPath + "AI/Frame1.png");
-        data->assetManager.LoadTexture("AI Frame 2", assetsPath + "AI/Frame2.png");
-        data->assetManager.LoadTexture("AI Frame 3", assetsPath + "AI/Frame3.png");
-        data->assetManager.LoadTexture("AI Frame 4", assetsPath + "AI/Frame4.png");
-    
+        
         CharacterList.push_back(*this);
     };
     void AI::Update(float dt)

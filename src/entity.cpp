@@ -5,6 +5,8 @@ namespace SirHoog
     Entity::Entity
     (
         GameDataRef data,
+        Animation animation,
+        sf::Texture spriteTexture,
         sf::Vector2f Position,
         sf::Vector2f Velocity,
         bool affectedByGravity,
@@ -14,16 +16,22 @@ namespace SirHoog
         float frictionAmount
     ) :
     data(data),
+    spriteTexture(spriteTexture),
+    animation(animation),
     Position(Position),
     affectedByGravity(affectedByGravity),
     bounces(bounces),
     friction(friction),
     bounceAmount(bounceAmount),
     frictionAmount(frictionAmount)
-    {};
+    {
+        animation = Animation(data, sprite, sf::IntRect(sf::Vector2i(0, 0), (sf::Vector2i)spriteTexture.getSize()), sf::IntRect(sf::Vector2i(0, 0), (sf::Vector2i)spriteTexture.getSize()), 0, false, false); // Not changing
+    };
     
     void Entity::Update(float dt)
     {
+        animation.Update(dt);
+
         Position += Velocity;
 
         Position.x = std::clamp(Position.x, (float)0, (float)data->window.getSize().x);
@@ -45,10 +53,10 @@ namespace SirHoog
             };
             if (Position.y == data->window.getSize().y)
             {
-                Velocity.y = -std::abs(Velocity.y); // Makes it negative because SFML uses an inverted Y axis
+                Velocity.y = -std::abs(Velocity.y);
             };
 
-            Velocity *= bounceAmount; // PURPOSE: Loses some energy
+            Velocity *= bounceAmount; // PURPOSE: Loses some energy from impact
         };
         if (affectedByGravity)
         {
@@ -66,12 +74,13 @@ namespace SirHoog
             }
         };
     };
-    void Entity::Render(float interpolation, sf::Texture spriteTexture)
+    void Entity::Render(float interpolation)
     {
-        Sprite.setTexture(spriteTexture);
-        Sprite.setOrigin(spriteTexture.getSize().x / 2.f, spriteTexture.getSize().y); // Middle bottom
+        sprite.setTexture(spriteTexture);
+        sprite.setOrigin(spriteTexture.getSize().x / 2.f, spriteTexture.getSize().y); // Middle bottom
 
-        data->window.draw(Sprite);
-        data->window.display();
+        animation.Render(interpolation);
+
+        data->window.draw(sprite);
     }
 }

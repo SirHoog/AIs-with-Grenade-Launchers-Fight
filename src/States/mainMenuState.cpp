@@ -1,4 +1,5 @@
 #include "States/mainMenuState.hpp"
+#include "States/simulationState.hpp"
 
 namespace SirHoog
 {
@@ -19,10 +20,10 @@ namespace SirHoog
         settingsButton.setTexture(data->assetManager.GetTexture("Settings Button"));
         quitButton.setTexture(data->assetManager.GetTexture("Quit Button"));
 
-        title.setOrigin(title.getGlobalBounds().getSize() / 2.f);
-        playButton.setOrigin(playButton.getGlobalBounds().getSize() / 2.f);
-        settingsButton.setOrigin(settingsButton.getGlobalBounds().getSize() / 2.f);
-        quitButton.setOrigin(quitButton.getGlobalBounds().getSize() / 2.f);
+        title.setOrigin(title.getGlobalBounds().getSize());
+        playButton.setOrigin(playButton.getGlobalBounds().getSize());
+        settingsButton.setOrigin(settingsButton.getGlobalBounds().getSize());
+        quitButton.setOrigin(quitButton.getGlobalBounds().getSize());
 
         title.setScale(0.35, 0.35);
         playButton.setScale(0.35, 0.35);
@@ -46,9 +47,9 @@ namespace SirHoog
             };
             if (data->inputManager.IsSpriteClicked(playButton, sf::Mouse::Left, data->window))
             {
-                std::cout << "Play";
-
-                // TODO: Start simulation // WARNING: (may cause circular dependency)
+                data->stateMachine.AddState(StateRef(new SimulationState(data))); // WARNING: // ERROR: (may cause circular dependency)
+            
+                break;
             };
             if (data->inputManager.IsSpriteClicked(settingsButton, sf::Mouse::Left, data->window))
             {

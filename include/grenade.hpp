@@ -20,8 +20,10 @@ namespace SirHoog
             Grenade
             (
                 GameDataRef data,
-                sf::Vector2f Position = {0, 0},
-                sf::Vector2f Velocity = {0, 0},
+                Animation animation,
+                sf::Texture spriteTexture = sf::Texture(),
+                sf::Vector2f Position = sf::Vector2f(0, 0),
+                sf::Vector2f Velocity = sf::Vector2f(0, 0),
                 bool affectedByGravity = true,
                 bool bounces = false,
                 bool friction = true,
@@ -30,7 +32,7 @@ namespace SirHoog
             );
             ~Grenade() {};
 
-            void Update(Character &owner, float dt);
+            void Update(float dt, Character &owner);
             void Render(float interpolation);
 
             void Explode(Character &owner);

@@ -22,6 +22,8 @@ namespace SirHoog
                 GameDataRef data,
                 NeuralNetwork neuralNetwork = NeuralNetwork("", 6, 3, 8, 5),
                 int generation = 0,
+                Animation animation,
+                sf::Texture spriteTexture = sf::Texture(),
                 sf::Vector2f Position = {0, 0},
                 sf::Vector2f Velocity = {0, 0},
                 bool affectedByGravity = true,

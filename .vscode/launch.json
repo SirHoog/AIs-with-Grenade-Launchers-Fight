@@ -8,9 +8,9 @@
             "name": "Debug",
             "type": "gdb",
             "request": "launch",
-            "target": "./main.exe",
+            "target": "${workspaceFolder}/build/BoomBots.exe",
             "cwd": "${workspaceRoot}",
-            "valuesFormatting": "parseText"
+            "valuesFormatting": "prettyPrinters"
         }
     ]
 }

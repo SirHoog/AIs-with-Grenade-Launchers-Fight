@@ -66,5 +66,5 @@ Ask me questions
 - https://www.youtube.com/@PezzzasWork
 - https://github.com/johnBuffer
 
-## I'm pretty new to C++, so here's some cool helpful people:
-- https://www.youtube.com/@herbglitch - https://discord.gg/ntXyyEp - https://github.com/HerbGlitch (Do check him out, he helped me with all the C++, mingw, msys2 stuff)
+## MASSIVE Credits to:
+- https://www.youtube.com/@herbglitch - https://discord.gg/ntXyyEp - https://github.com/HerbGlitch (He helped me with basically 50% of my entire project XD. He's very helpful and kind, so do check his discord out)

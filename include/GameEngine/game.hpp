@@ -11,8 +11,8 @@ namespace SirHoog
 {
     struct GameData
     {
-        StateMachine stateMachine;
         sf::RenderWindow window;
+        StateMachine stateMachine;
         AssetManager assetManager;
         InputManager inputManager;
     };

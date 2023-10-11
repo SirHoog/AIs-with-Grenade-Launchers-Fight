@@ -1,8 +1,14 @@
 #include "States/simulationState.hpp"
+#include "mainMenuState.hpp"
 
 namespace SirHoog
 {
-    SimulationState::SimulationState(GameDataRef data) : data(data) {};
+    SimulationState::SimulationState(GameDataRef data) : data(data)
+    {
+        data->assetManager.LoadTexture("Main Menu Button", assetsPath + "StatesUI/Simulation/mainMenuButton.png");
+
+        mainMenuButton.setTexture(data->assetManager.GetTexture("Main Menu Button"));
+    };
     void SimulationState::Init()
     {
         // TODO: Draw grid
@@ -30,7 +36,7 @@ namespace SirHoog
             };
             for (AI ai : AI_List)
             {
-                if (data->inputManager.IsSpriteClicked(ai.Sprite, sf::Mouse::Left, data->window))
+                if (data->inputManager.IsSpriteClicked(ai.sprite, sf::Mouse::Left, data->window))
                 {
                     // TODO: Display AI's neural network and other stats
                 }

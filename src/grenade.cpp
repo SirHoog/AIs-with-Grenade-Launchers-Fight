@@ -5,6 +5,8 @@ namespace SirHoog
     Grenade::Grenade
     (
         GameDataRef data,
+        Animation animation,
+        sf::Texture spriteTexture,
         sf::Vector2f Position,
         sf::Vector2f Velocity,
         bool affectedByGravity,
@@ -16,6 +18,8 @@ namespace SirHoog
     Entity
     (
         data,
+        animation,
+        spriteTexture,
         Position,
         Velocity,
         affectedByGravity,
@@ -29,7 +33,7 @@ namespace SirHoog
         data->assetManager.LoadTexture("Grenade", assetsPath + "Grenade/grenade.png");
     };
 
-    void Grenade::Update(Character &owner, float dt)
+    void Grenade::Update(float dt, Character &owner)
     {
         Entity::Update(dt);
 
@@ -59,22 +63,12 @@ namespace SirHoog
         if (exploded)
         {
             sf::Texture explosion = data->assetManager.GetTexture("Explosion");
-            float frameWidth = explosion.getSize().y;
-            int frame = std::round(sinceExploded * explosion.getSize().x / frameWidth);
-            float frameLocationX = frame * frameWidth;
 
-            Sprite.setTexture(explosion);
-            Sprite.setTextureRect(sf::IntRect(sf::Vector2i(frameLocationX, 0), sf::Vector2i(explosion.getSize().y, explosion.getSize().y)));
-            Sprite.setOrigin(explosion.getSize().x / 2.f, explosion.getSize().y); // Middle bottom
-            Sprite.setScale({5, 5});
+            spriteTexture = explosion;
+            animation = Animation(data, sprite, sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(spriteTexture.getSize().y, spriteTexture.getSize().y)), sf::IntRect(sf::Vector2i(spriteTexture.getSize().x, 0), sf::Vector2i(spriteTexture.getSize().y, spriteTexture.getSize().y)), 1, false);
+        };
 
-            data->window.draw(Sprite);
-            data->window.display();
-        }
-        else
-        {
-            Entity::Render(interpolation, data->assetManager.GetTexture("Grenade"));
-        }
+        Entity::Render(interpolation);
     };
 
     void Grenade::Explode(Character &owner)

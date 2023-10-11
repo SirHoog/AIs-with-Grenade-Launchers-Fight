@@ -10,6 +10,9 @@
 #include <NC/NumCpp/Functions/append.hpp>
 #include "neuron.hpp"
 
+// PIN: // CONSIDER: Using an ML Library like TensorFlow or PyTorch
+// PIN: // TODO: If you don't use an ML library // OPTIMIZE: THIS... EVERYTHING
+
 namespace SirHoog
 {
     typedef std::vector<Neuron> Layer;

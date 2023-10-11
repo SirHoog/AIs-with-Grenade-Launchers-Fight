@@ -3,7 +3,7 @@
 #include "grenade.hpp"
 
 // MADE TO: Share the same stuff with the AI class and player class
-// CREATE: a player class // PIN
+// PIN: // CREATE: a player class
 
 namespace SirHoog
 {
@@ -16,8 +16,10 @@ namespace SirHoog
             Character
             (
                 GameDataRef data,
-                sf::Vector2f Position = {0, 0},
-                sf::Vector2f Velocity = {0, 0},
+                Animation animation,
+                sf::Texture spriteTexture = sf::Texture(),
+                sf::Vector2f Position = sf::Vector2f(0, 0),
+                sf::Vector2f Velocity = sf::Vector2f(0, 0),
                 bool affectedByGravity = true,
                 bool bounces = false,
                 bool friction = true,
@@ -27,7 +29,7 @@ namespace SirHoog
             ~Character() {};
 
             void Update(float dt);
-            void Render(float interpolation, sf::Texture spriteTexture);
+            void Render(float interpolation);
 
             void LaunchGrenade(float aimAngle, float power);
         protected:
