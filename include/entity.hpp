@@ -27,7 +27,7 @@ namespace SirHoog
             Entity
             (
                 GameDataRef data,
-                Animation animation,
+                Animation animation = Animation(),
                 sf::Texture spriteTexture = sf::Texture(),
                 sf::Vector2f Position = sf::Vector2f(0, 0),
                 sf::Vector2f Velocity = sf::Vector2f(0, 0),

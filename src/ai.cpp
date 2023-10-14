@@ -7,8 +7,6 @@ namespace SirHoog
         GameDataRef data,
         NeuralNetwork neuralNetwork,
         int generation,
-        Animation animation,
-        sf::Texture spriteTexture,
         sf::Vector2f Position,
         sf::Vector2f Velocity,
         bool affectedByGravity,
@@ -17,6 +15,8 @@ namespace SirHoog
         float bounceAmount,
         float frictionAmount
     ) :
+    brain(neuralNetwork),
+    generation(generation),
     Character
     (
         data,
@@ -29,18 +29,58 @@ namespace SirHoog
         friction,
         bounceAmount,
         frictionAmount
-    ),
-    brain(neuralNetwork),
-    generation(generation)
+    )
     {
-        // TODO: Make a spritesheet instead of doing this
+        // TODO: Render the grenade launcher
 
-        data->assetManager.LoadTexture("AI Frame 1", assetsPath + "AI/Frame1.png");
+        data->assetManager.reset_cd("assets/AI/");
+
+        data->assetManager.LoadTexture("AIIL", "Idle/Left.png");
+        data->assetManager.LoadTexture("AIIR", "Idle/Right.png");
+
+        data->assetManager.LoadTexture("AIML", "Move/Left.png");
+        data->assetManager.LoadTexture("AIMR", "Move/Right.png");
+
+        spriteTexture = data->assetManager.GetTexture("AIIR");
         
         CharacterList.push_back(*this);
+        AI_List.push_back(*this);
     };
     void AI::Update(float dt)
     {
+        // OPTIMIZE
+        // ORGANIZE
+
+        if (Velocity.x > WalkSpeed / 2)
+        {
+            spriteTexture = data->assetManager.GetTexture("AIMR");
+        }
+        else if (Velocity.x < -WalkSpeed / 2)
+        {
+            spriteTexture = data->assetManager.GetTexture("AIIR");
+        };
+
+        if (Velocity.x < -WalkSpeed / 2)
+        {
+            spriteTexture = data->assetManager.GetTexture("AIML");
+        }
+        else if (Velocity.x > WalkSpeed / 2)
+        {
+            spriteTexture = data->assetManager.GetTexture("AIIL");
+        };
+
+        if (Velocity.y > JumpPower / 2)
+        {
+            if (Velocity.x > WalkSpeed / 2)
+            {
+                spriteTexture = data->assetManager.GetTexture("AIMR");
+            };
+            if (Velocity.x < -WalkSpeed / 2)
+            {
+                spriteTexture = data->assetManager.GetTexture("AIML");
+            }
+        };
+
         Character::Update(dt);
 
         // PURPOSE: Find input
@@ -90,13 +130,13 @@ namespace SirHoog
 
         for (Grenade grenade : grenadeList)
         {
-            grenade.Update(*this, dt);
+            grenade.Update(dt, *this);
         };
 
         // MAKES: AI move
 
         float x = output[0].activation * WalkSpeed; // STATES: < 0 = Left // STATES: > 0 = Right
-        float jump = (output[1].activation > 0) * JumpHeight; // STATES: > 0 = Decides to jump
+        float jump = (output[1].activation > 0) * JumpPower; // STATES: > 0 = Decides to jump
         
         Velocity -= {x, jump};
 
@@ -111,26 +151,7 @@ namespace SirHoog
     };
     void AI::Render(float interpolation)
     {
-        int frame = 0;
-
-        if (interpolation > 0.75)
-        {
-            frame = 4;
-        }
-        else if (interpolation > 0.5)
-        {
-            frame = 3;
-        }
-        else if (interpolation > 0.25)
-        {
-            frame = 2;
-        }
-        else
-        {
-            frame = 1;
-        };
-
-       Character::Render(interpolation, data->assetManager.GetTexture("AI Frame " + std::to_string(frame)));
+       Character::Render(interpolation);
     };
     // NAME: Genetic Algorithm Finally
     // Call the functions it in this order: https://www.researchgate.net/profile/Rakesh-Phanden-2/publication/258477641/figure/fig1/AS:297476348235779@1447935296512/Flow-chart-of-working-of-Genetic-Algorithm.png

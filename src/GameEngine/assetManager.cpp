@@ -2,11 +2,20 @@
 
 namespace SirHoog
 {
+    void AssetManager::cd(std::string path)
+    {
+        cdPath += path;
+    };
+    void AssetManager::reset_cd(std::string to)
+    {
+        cdPath = to;
+    };
+
     void AssetManager::LoadTexture(std::string name, std::string fileName)
     {
         sf::Texture texture;
 
-        if (texture.loadFromFile(fileName))
+        if (texture.loadFromFile(cdPath + fileName))
         {
             textures[name] = texture;
         };
@@ -20,7 +29,7 @@ namespace SirHoog
     {
         sf::Font font;
 
-        if (font.loadFromFile(fileName))
+        if (font.loadFromFile(cdPath + fileName))
         {
             fonts[name] = font;
         };

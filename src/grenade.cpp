@@ -29,8 +29,10 @@ namespace SirHoog
         frictionAmount
     )
     {
-        data->assetManager.LoadTexture("Explosion", assetsPath + "Grenade/explosionSpritesheet.png");
-        data->assetManager.LoadTexture("Grenade", assetsPath + "Grenade/grenade.png");
+        data->assetManager.reset_cd("assets/Grenade/");
+
+        data->assetManager.LoadTexture("Explosion", "ExplosionSpritesheet.png");
+        data->assetManager.LoadTexture("Grenade", "Grenade.png");
     };
 
     void Grenade::Update(float dt, Character &owner)

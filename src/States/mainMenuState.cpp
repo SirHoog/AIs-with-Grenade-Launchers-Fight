@@ -8,11 +8,13 @@ namespace SirHoog
     {
         const int distance = 100; // ANOTHER NAME: Distance between buttons
 
-        data->assetManager.LoadTexture("Background", MainMenuBackground);
-        data->assetManager.LoadTexture("Title", TitlePath);
-        data->assetManager.LoadTexture("Play Button", PlayButtonPath);
-        data->assetManager.LoadTexture("Settings Button", SettingsButtonPath);
-        data->assetManager.LoadTexture("Quit Button", QuitButtonPath);
+        data->assetManager.reset_cd("assets/StatesUI/MainMenu/");
+
+        data->assetManager.LoadTexture("Background", "Background.png");
+        data->assetManager.LoadTexture("Title", "BeautifulTitleScreen.png");
+        data->assetManager.LoadTexture("Play Button", "PlayButton.png");
+        data->assetManager.LoadTexture("Settings Button", "SettingsButton.png");
+        data->assetManager.LoadTexture("Quit Button", "QuitButton.png");
 
         background.setTexture(data->assetManager.GetTexture("Background"));
         title.setTexture(data->assetManager.GetTexture("Title"));
