@@ -2,6 +2,8 @@
 
 namespace SirHoog
 {
+    Animation::Animation() {};
+
     Animation::Animation
     (
         GameDataRef data,
