@@ -17,7 +17,7 @@ namespace SirHoog
 
         for (int i = 0; i < 50; i++)
         {
-            AI *ai = new AI(data, NeuralNetwork("", 6, 3, 8, 4), generation, Center);
+            AI *ai = new AI(data, Animation(), NeuralNetwork("", 6, 3, 8, 4), generation, Center);
 
             AI_List.push_back(*ai);
         }

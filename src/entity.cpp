@@ -25,7 +25,7 @@ namespace SirHoog
     bounceAmount(bounceAmount),
     frictionAmount(frictionAmount)
     {
-        animation = Animation(data, sprite, sf::IntRect(sf::Vector2i(0, 0), (sf::Vector2i)spriteTexture.getSize()), sf::IntRect(sf::Vector2i(0, 0), (sf::Vector2i)spriteTexture.getSize()), 0, false, false); // Not changing
+        animation = Animation(data, sprite, sf::IntRect(sf::Vector2i(0, 0), (sf::Vector2i)spriteTexture.getSize()), sf::IntRect(sf::Vector2i(0, 0), (sf::Vector2i)spriteTexture.getSize()), 0, false, false, false); // Not changing
     };
     
     void Entity::Update(float dt)

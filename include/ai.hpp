@@ -20,6 +20,7 @@ namespace SirHoog
             AI
             (
                 GameDataRef data,
+                Animation animation,
                 NeuralNetwork neuralNetwork = NeuralNetwork("", 6, 3, 8, 5),
                 int generation = 0,
                 sf::Vector2f Position = {0, 0},

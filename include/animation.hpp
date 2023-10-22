@@ -15,12 +15,14 @@ namespace SirHoog
         sf::IntRect startFrame;
         sf::IntRect currentFrame;
         sf::IntRect endFrame;
-        float elapsedTime;
-        float duration;
+        float elapsedTime = 0;
+        float duration = 0;
         bool loop = true;
         bool horizontal = true;
 
         public:
+            bool Playing = false;
+
             Animation();
 
             Animation
@@ -31,9 +33,9 @@ namespace SirHoog
                 sf::IntRect endFrame,
                 float duration,
                 bool loop = true,
+                bool playing = false,
                 bool horizontal = true
             );
-            ~Animation();
 
             void Update(float dt);
             void Render(float interpolation);

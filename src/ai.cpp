@@ -5,6 +5,7 @@ namespace SirHoog
     AI::AI
     (
         GameDataRef data,
+        Animation animation,
         NeuralNetwork neuralNetwork,
         int generation,
         sf::Vector2f Position,

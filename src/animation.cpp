@@ -10,6 +10,7 @@ namespace SirHoog
         sf::IntRect endFrame,
         float duration,
         bool loop,
+        bool Playing,
         bool horizontal
     ) :
     data(data),
@@ -18,33 +19,36 @@ namespace SirHoog
     endFrame(endFrame),
     duration(duration),
     loop(loop),
+    Playing(Playing),
     horizontal(horizontal)
     {
         currentFrame = startFrame;
     };
     void Animation::Update(float dt)
     {
-        float UpdateSpeed = TPS / DefaultTPS;
+        if (Playing) {
+            float UpdateSpeed = TPS / DefaultTPS;
 
-        int animationLength;
-        sf::Vector2i framePosition;
+            int animationLength;
+            sf::Vector2i framePosition;
 
-        if (horizontal)
-        {
-            animationLength = endFrame.getPosition().x - startFrame.getPosition().x;
+            if (horizontal)
+            {
+                animationLength = endFrame.getPosition().x - startFrame.getPosition().x;
 
-            framePosition = sf::Vector2i((elapsedTime / duration) * animationLength, startFrame.getPosition().y);
+                framePosition = sf::Vector2i((elapsedTime / duration) * animationLength, startFrame.getPosition().y);
+            }
+            else
+            {
+                animationLength = endFrame.getPosition().y - startFrame.getPosition().y;
+
+                framePosition = sf::Vector2i(startFrame.getPosition().x, (elapsedTime / duration) * animationLength);
+            };
+            
+            currentFrame = sf::IntRect(framePosition, startFrame.getSize());
+
+            elapsedTime += dt * UpdateSpeed;
         }
-        else
-        {
-            animationLength = endFrame.getPosition().y - startFrame.getPosition().y;
-
-            framePosition = sf::Vector2i(startFrame.getPosition().x, (elapsedTime / duration) * animationLength);
-        };
-        
-        currentFrame = sf::IntRect(framePosition, startFrame.getSize());
-
-        elapsedTime += dt * UpdateSpeed;
     };
     void Animation::Render(float interpolation)
     {

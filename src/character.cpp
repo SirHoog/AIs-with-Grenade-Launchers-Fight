@@ -28,7 +28,9 @@ namespace SirHoog
         bounceAmount,
         frictionAmount
     )
-    {};
+    {
+        animation.Playing = true;
+    };
     void Character::Update(float dt)
     {
         Entity::Update(dt);
