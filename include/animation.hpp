@@ -28,10 +28,10 @@ namespace SirHoog
             Animation
             (
                 GameDataRef data,
-                sf::Sprite sprite,
-                sf::IntRect startFrame,
-                sf::IntRect endFrame,
-                float duration,
+                sf::Sprite sprite = sf::Sprite(),
+                sf::IntRect startFrame = sf::IntRect(),
+                sf::IntRect endFrame = sf::IntRect(),
+                float duration = 0,
                 bool loop = true,
                 bool playing = false,
                 bool horizontal = true
