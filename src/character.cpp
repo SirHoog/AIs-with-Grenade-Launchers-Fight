@@ -6,7 +6,6 @@ namespace SirHoog
     (
         GameDataRef data,
         Animation animation,
-        sf::Texture spriteTexture,
         sf::Vector2f Position,
         sf::Vector2f Velocity,
         bool affectedByGravity,
@@ -18,8 +17,8 @@ namespace SirHoog
     Entity
     (
         data,
-        animation,
         spriteTexture,
+        animation,
         Position,
         Velocity,
         affectedByGravity,
@@ -29,7 +28,20 @@ namespace SirHoog
         frictionAmount
     )
     {
+        // TODO: Render the grenade launcher
+
+        data->assetManager.reset_cd("assets/AI/");
+
+        data->assetManager.LoadTexture("AIIL", "Idle/Left.png");
+        data->assetManager.LoadTexture("AIIR", "Idle/Right.png");
+
+        data->assetManager.LoadTexture("AIML", "Move/Left.png");
+        data->assetManager.LoadTexture("AIMR", "Move/Right.png");
+
+        spriteTexture = data->assetManager.GetTexture("AIIR");
         animation.Playing = true;
+        
+        CharacterList.push_back(*this);
     };
     void Character::Update(float dt)
     {
@@ -47,7 +59,7 @@ namespace SirHoog
 
     void Character::LaunchGrenade(float aimAngle, float power)
     {
-        Grenade *grenade = new Grenade(data, Animation(), sf::Texture(), Position, sf::Vector2f(std::sin(aimAngle), std::cos(aimAngle)) * power);
+        Grenade *grenade = new Grenade(data, Animation(), Position, sf::Vector2f(std::sin(aimAngle), std::cos(aimAngle)) * power);
 
         grenadeList.push_back(*grenade);
     }

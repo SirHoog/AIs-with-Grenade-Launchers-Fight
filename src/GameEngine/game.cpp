@@ -7,6 +7,8 @@ namespace SirHoog
     {
         data->window.create(sf::VideoMode(width, height), title, sf::Style::Default);
 
+        data->assetManager.LoadTexture("Error", "Error.png");
+
         data->stateMachine.AddState(StateRef(new MainMenuState(data)));
 
         Run();

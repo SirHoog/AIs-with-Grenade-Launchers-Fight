@@ -22,7 +22,6 @@ namespace SirHoog
     (
         data,
         animation,
-        spriteTexture,
         Position,
         Velocity,
         affectedByGravity,
@@ -32,19 +31,6 @@ namespace SirHoog
         frictionAmount
     )
     {
-        // TODO: Render the grenade launcher
-
-        data->assetManager.reset_cd("assets/AI/");
-
-        data->assetManager.LoadTexture("AIIL", "Idle/Left.png");
-        data->assetManager.LoadTexture("AIIR", "Idle/Right.png");
-
-        data->assetManager.LoadTexture("AIML", "Move/Left.png");
-        data->assetManager.LoadTexture("AIMR", "Move/Right.png");
-
-        spriteTexture = data->assetManager.GetTexture("AIIR");
-        
-        CharacterList.push_back(*this);
         AI_List.push_back(*this);
     };
     void AI::Update(float dt)

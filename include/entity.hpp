@@ -7,8 +7,6 @@ namespace SirHoog
 {
     class Entity
     {
-        GameDataRef data;
-
         bool affectedByGravity = true;
         bool bounces = false;
         bool friction = false;
@@ -18,19 +16,19 @@ namespace SirHoog
         
 
         public:
-            sf::Sprite sprite;
+            sf::Sprite sprite = sf::Sprite();
             sf::Texture spriteTexture;
-            Animation animation;
+            Animation animation = Animation();
             sf::Vector2f Position = sf::Vector2f(0, 0);
             sf::Vector2f Velocity = sf::Vector2f(0, 0);
 
             Entity
             (
                 GameDataRef data,
+                sf::Texture spriteTexture,
                 Animation animation = Animation(),
-                sf::Texture spriteTexture = sf::Texture(),
                 sf::Vector2f Position = sf::Vector2f(0, 0),
-                sf::Vector2f Velocity = sf::Vector2f(0, 0),
+                sf::Vector2f Velocity =  sf::Vector2f(0, 0),
                 bool affectedByGravity = true,
                 bool bounces = false,
                 bool friction = true,
@@ -41,5 +39,7 @@ namespace SirHoog
 
             void Update(float dt);
             void Render(float interpolation);
+        protected:
+            GameDataRef data;
     };
 }

@@ -5,8 +5,8 @@ namespace SirHoog
     Entity::Entity
     (
         GameDataRef data,
-        Animation animation,
         sf::Texture spriteTexture,
+        Animation animation,
         sf::Vector2f Position,
         sf::Vector2f Velocity,
         bool affectedByGravity,

@@ -5,7 +5,7 @@ namespace SirHoog
 {
     SimulationState::SimulationState(GameDataRef data) : data(data)
     {
-        data->assetManager.reset_cd("StatesUI/Simulation/");
+        data->assetManager.reset_cd("assets/StatesUI/Simulation/");
 
         data->assetManager.LoadTexture("Main Menu Button", "MainMenuButton.png");
 

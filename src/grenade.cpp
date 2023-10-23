@@ -6,7 +6,6 @@ namespace SirHoog
     (
         GameDataRef data,
         Animation animation,
-        sf::Texture spriteTexture,
         sf::Vector2f Position,
         sf::Vector2f Velocity,
         bool affectedByGravity,
@@ -18,8 +17,8 @@ namespace SirHoog
     Entity
     (
         data,
-        animation,
         spriteTexture,
+        animation,
         Position,
         Velocity,
         affectedByGravity,
@@ -31,8 +30,8 @@ namespace SirHoog
     {
         data->assetManager.reset_cd("assets/Grenade/");
 
-        data->assetManager.LoadTexture("Explosion", "ExplosionSpritesheet.png");
         data->assetManager.LoadTexture("Grenade", "Grenade.png");
+        data->assetManager.LoadTexture("Explosion", "ExplosionSpritesheet.png");
     };
 
     void Grenade::Update(float dt, Character &owner)
@@ -62,6 +61,8 @@ namespace SirHoog
     };
     void Grenade::Render(float interpolation)
     {
+        spriteTexture = data->assetManager.GetTexture("Grenade");
+
         if (exploded)
         {
             sf::Texture explosion = data->assetManager.GetTexture("Explosion");

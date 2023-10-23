@@ -7,8 +7,6 @@ namespace SirHoog
 {
     class AI : public Character
     {
-        GameDataRef data;
-
         int generation = 0;
         int fitness = 0;
         NeuralNetwork brain = NeuralNetwork("", 6, 3, 8, 5);
