@@ -26,8 +26,8 @@ namespace SirHoog
             );
             ~Character() {};
 
-            void Update(float dt);
-            void Render(float interpolation);
+            virtual void Update(float dt) override;
+            virtual void Render(float interpolation) override;
 
             void LaunchGrenade(float aimAngle, float power);
         protected:

@@ -10,6 +10,13 @@ namespace SirHoog
 
     class StateMachine
     {
+        std::stack<StateRef> states;
+        StateRef newState;
+        
+        bool isRemoving;
+        bool isAdding;
+        bool isReplacing;
+        
         public:
             StateMachine() {};
             ~StateMachine() {};
@@ -20,12 +27,5 @@ namespace SirHoog
             void ProcessStateChanges();
 
             StateRef &GetActiveState();
-        private:
-            std::stack<StateRef> states;
-            StateRef newState;
-            
-            bool isRemoving;
-            bool isAdding;
-            bool isReplacing;
     };
 }

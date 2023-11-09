@@ -65,9 +65,7 @@ namespace SirHoog
 
         if (exploded)
         {
-            sf::Texture explosion = data->assetManager.GetTexture("Explosion");
-
-            spriteTexture = explosion;
+            spriteTexture = data->assetManager.GetTexture("Explosion");
             animation = Animation(data, sprite, sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(spriteTexture.getSize().y, spriteTexture.getSize().y)), sf::IntRect(sf::Vector2i(spriteTexture.getSize().x, 0), sf::Vector2i(spriteTexture.getSize().y, spriteTexture.getSize().y)), 1, false);
         };
 

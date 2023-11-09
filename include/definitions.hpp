@@ -6,7 +6,6 @@
 
 const int ScreenWidth = 1280;
 const int ScreenHeight = 720;
-const sf::Vector2f Center(ScreenWidth / 2, ScreenHeight / 2);
 
 const std::array<int, 8> saveGenerationChampions = {0, 5, 10, 50, 100, 200, 500, 1000}; // PURPOSE: To add a txt file to `../SavedNeuralNetworks` for these generations
 
@@ -15,7 +14,7 @@ const std::array<int, 8> saveGenerationChampions = {0, 5, 10, 50, 100, 200, 500,
 const int DefaultTPS = 30;
 static int TPS = 50; // NAME: Ticks Per Second // WARNING: Never make this const
 
-const float GravitationalConstant = 20; // I know, it sounds very fancy
+const float Gravity = 20; // I know, it sounds very fancy
 
 const bool Impact = false; // STATES: false = frag, true = impact
 const bool Knockback = false;

@@ -146,25 +146,30 @@ namespace SirHoog
     // https://web.stanford.edu/group/sisl/k12/optimization/MO-unit2-pdfs/2.15stochastic2annealing,genetic.pdf#page=15
     void AI::CrossOver(AI with)
     {
-        int n = std::rand() % (brain.ToBinary().length() - 2) + 1;
+        std::string DNA = brain.ToBinary();
 
-        brain.FromBinary(6, 3, 8, 4, brain.ToBinary().substr(0, n) + with.brain.ToBinary().substr(n));
+        for (int i = 0; i < DNA.length(); i++)
+        {
+            int n = std::rand() % (DNA.length() - 2) + 1;
+
+            brain.FromBinary(6, 3, 8, 4, DNA.substr(0, n) + with.brain.ToBinary().substr(n));
+        }
     };
     // https://web.stanford.edu/group/sisl/k12/optimization/MO-unit2-pdfs/2.15stochastic2annealing,genetic.pdf#page=17
     void AI::Mutate()
     {
-        std::string binary = brain.ToBinary();
+        std::string DNA = brain.ToBinary();
 
-        for (int i = 0; i < binary.size(); i++)
+        for (int i = 0; i < DNA.length(); i++)
         {
-            int chance = std::rand() % binary.size();
+            int chance = std::rand() % DNA.length();
 
             if (chance == 1)
             {
-                binary[i] = ((binary[i] == '0') ? '1' : '0');
+                DNA[i] = ((DNA[i] == '0') ? '1' : '0');
             }
         };
 
-        brain.FromBinary(brain.Layers[0].size(), brain.Layers.size() - 2, brain.Layers[1].size(), brain.Layers[brain.Layers.size()].size(), binary);
+        brain.FromBinary(brain.Layers[0].size(), brain.Layers.size() - 2, brain.Layers[1].size(), brain.Layers[brain.Layers.size()].size(), DNA);
     };
 }

@@ -12,7 +12,7 @@ namespace SirHoog
     {
         GameDataRef data;
         sf::Clock _clock;
-        sf::Sprite background;
+        sf::View view;
         sf::Sprite title;
         sf::Sprite playButton;
         sf::Sprite settingsButton;

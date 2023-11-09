@@ -5,6 +5,8 @@ namespace SirHoog
 {
     SimulationState::SimulationState(GameDataRef data) : data(data)
     {
+        view = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
+        
         data->assetManager.reset_cd("assets/StatesUI/Simulation/");
 
         data->assetManager.LoadTexture("Main Menu Button", "MainMenuButton.png");
@@ -17,7 +19,7 @@ namespace SirHoog
 
         for (int i = 0; i < 50; i++)
         {
-            AI *ai = new AI(data, Animation(), NeuralNetwork("", 6, 3, 8, 4), generation, Center);
+            AI *ai = new AI(data, Animation(), NeuralNetwork("", 6, 3, 8, 4), generation, sf::Vector2f(data->window.getSize().x / 2, data->window.getSize().y / 2));
 
             AI_List.push_back(*ai);
         }
@@ -28,6 +30,10 @@ namespace SirHoog
 
         while (data->window.pollEvent(event))
         {
+            if (event.type == sf::Event::Resized)
+            {
+                // Bro why isn't it working
+            };
             if (event.type == sf::Event::Closed)
             {
                 data->window.close();
@@ -56,6 +62,8 @@ namespace SirHoog
     void SimulationState::Render(float interpolation)
     {
         data->window.clear();
+
+        data->window.setView(view);
 
         data->window.draw(background);
         data->window.draw(mainMenuButton);

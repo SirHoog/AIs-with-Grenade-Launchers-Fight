@@ -37,8 +37,8 @@ namespace SirHoog
             );
             ~Entity() {};
 
-            void Update(float dt);
-            void Render(float interpolation);
+            virtual void Update(float dt);
+            virtual void Render(float interpolation);
         protected:
             GameDataRef data;
     };

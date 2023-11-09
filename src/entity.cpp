@@ -60,7 +60,7 @@ namespace SirHoog
         };
         if (affectedByGravity)
         {
-            Velocity.y -= GravitationalConstant; // PURPOSE: Not negative because SFML uses an inverted Y axis
+            Velocity.y -= Gravity; // PURPOSE: Not negative because SFML uses an inverted Y axis
         };
         if (Position.y == data->window.getSize().y)
         {

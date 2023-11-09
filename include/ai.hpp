@@ -31,8 +31,8 @@ namespace SirHoog
             );
             ~AI() {};
 
-            void Update(float dt);
-            void Render(float interpolation);
+            void Update(float dt) override;
+            void Render(float interpolation) override;
 
             void CrossOver(AI with);
             void Mutate();
