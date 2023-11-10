@@ -28,7 +28,12 @@ namespace SirHoog
         };
 
         states.push(newState);
-        states.top()->Init();
+        
+        if (isAdding)
+        {
+            states.top()->Init();
+        };
+
         isAdding = false;
     };
     StateRef &StateMachine::GetActiveState()

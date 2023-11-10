@@ -46,34 +46,18 @@ namespace SirHoog
         {
             if (event.type == sf::Event::Resized)
             {
-                float windowRatio = data->window.getSize().x / data->window.getSize().y;
-                float viewRatio = view.getSize().x / view.getSize().y;
-                
-                float sizeX = 1;
-                float sizeY = 1;
-                
-                float posX = 0;
-                float posY = 0;
+                sf::Vector2f prevViewSize = view.getSize();
 
-                bool horizontalSpacing = true;
+                view.setSize(event.size.width, event.size.height);
 
-                if (windowRatio < viewRatio)
+                if (data->window.getSize().x > data->window.getSize().y)
                 {
-                    horizontalSpacing = false;
-                };
-                
-                if (horizontalSpacing)
-                {
-                    sizeX = viewRatio / windowRatio;
-                    posX = (1 - sizeX) / 2.f;
+                    view.zoom(prevViewSize.y / view.getSize().y);
                 }
                 else
                 {
-                    sizeY = windowRatio / viewRatio;
-                    posY = (1 - sizeY) / 2.f;
-                };
-
-                view.setViewport(sf::FloatRect(posX, posY, sizeX, sizeY));
+                    view.zoom(prevViewSize.x / view.getSize().x);
+                }
             };
             if (event.type == sf::Event::Closed || data->inputManager.IsSpriteClicked(quitButton, sf::Mouse::Left, data->window))
             {
@@ -96,10 +80,16 @@ namespace SirHoog
     void MainMenuState::Update(float dt) {};
     void MainMenuState::Render(float Interpolation)
     {
+        sf::RectangleShape testBackground;
+
+        testBackground.setSize(view.getSize());
+        testBackground.setFillColor(sf::Color::Green);
+
         data->window.clear();
 
         data->window.setView(view);
 
+        data->window.draw(testBackground);
         data->window.draw(title);
         data->window.draw(playButton);
         data->window.draw(settingsButton);
