@@ -28,7 +28,8 @@ namespace SirHoog
     };
     void Animation::Update(float dt)
     {
-        if (Playing) {
+        if (Playing)
+        {
             float UpdateSpeed = TPS / DefaultTPS;
 
             int animationLength;

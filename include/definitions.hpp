@@ -7,6 +7,8 @@
 const int ScreenWidth = 1280;
 const int ScreenHeight = 720;
 
+static bool Fullscreen = false;
+
 const std::array<int, 8> saveGenerationChampions = {0, 5, 10, 50, 100, 200, 500, 1000}; // PURPOSE: To add a txt file to `../SavedNeuralNetworks` for these generations
 
 // TODO: Make these not `const` if you wanna be able to change them in-game in the future

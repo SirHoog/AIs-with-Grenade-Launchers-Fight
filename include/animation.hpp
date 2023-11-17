@@ -29,8 +29,8 @@ namespace SirHoog
             (
                 GameDataRef data,
                 sf::Sprite sprite = sf::Sprite(),
-                sf::IntRect startFrame = sf::IntRect(),
-                sf::IntRect endFrame = sf::IntRect(),
+                sf::IntRect startFrame = sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(1, 1)),
+                sf::IntRect endFrame = sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(1, 1)),
                 float duration = 0,
                 bool loop = true,
                 bool playing = false,

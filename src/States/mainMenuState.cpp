@@ -8,7 +8,8 @@ namespace SirHoog
     {
         const int distance = 50; // ANOTHER NAME: Distance between buttons
 
-        view = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
+        cameraView = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
+        UI_View = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
 
         data->assetManager.reset_cd("assets/StatesUI/MainMenu/");
 
@@ -33,10 +34,10 @@ namespace SirHoog
         settingsButton.setScale(0.35, 0.35);
         quitButton.setScale(0.35, 0.35);
 
-        title.setPosition(view.getCenter().x, view.getCenter().y - 150);
-        playButton.setPosition(view.getCenter().x, title.getPosition().y + title.getLocalBounds().height / 2 + distance);
-        settingsButton.setPosition(view.getCenter().x, playButton.getPosition().y + playButton.getLocalBounds().height / 2 + distance);
-        quitButton.setPosition(view.getCenter().x, settingsButton.getPosition().y + settingsButton.getLocalBounds().height / 2 + distance);
+        title.setPosition(cameraView.getCenter().x, cameraView.getCenter().y - 150);
+        playButton.setPosition(cameraView.getCenter().x, title.getPosition().y + title.getLocalBounds().height / 2 + distance);
+        settingsButton.setPosition(cameraView.getCenter().x, playButton.getPosition().y + playButton.getLocalBounds().height / 2 + distance);
+        quitButton.setPosition(cameraView.getCenter().x, settingsButton.getPosition().y + settingsButton.getLocalBounds().height / 2 + distance);
     };
     void MainMenuState::HandleInput()
     {
@@ -44,24 +45,22 @@ namespace SirHoog
 
         while (data->window.pollEvent(event))
         {
-            if (event.type == sf::Event::Resized)
-            {
-                sf::Vector2f prevViewSize = view.getSize();
-
-                view.setSize(event.size.width, event.size.height);
-
-                if (data->window.getSize().x > data->window.getSize().y)
-                {
-                    view.zoom(prevViewSize.y / view.getSize().y);
-                }
-                else
-                {
-                    view.zoom(prevViewSize.x / view.getSize().x);
-                }
-            };
             if (event.type == sf::Event::Closed || data->inputManager.IsSpriteClicked(quitButton, sf::Mouse::Left, data->window))
             {
                 data->window.close();
+            };
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::F11))
+            {
+                Fullscreen = !Fullscreen;
+
+                if (Fullscreen)
+                {
+                    data->window.create(sf::VideoMode(ScreenWidth, ScreenHeight), "Boom Bots", sf::Style::Fullscreen);
+                }
+                else
+                {
+                    data->window.create(sf::VideoMode(ScreenWidth, ScreenHeight), "Boom Bots", sf::Style::Default);
+                }
             };
             if (data->inputManager.IsSpriteClicked(playButton, sf::Mouse::Left, data->window))
             {
@@ -74,22 +73,43 @@ namespace SirHoog
                 std::cout << "Settings";
 
                 // CREATE: Settings list state
+            };
+            if (event.type == sf::Event::Resized)
+            {
+                float windowRatio = event.size.width / (float)event.size.height;
+                float cameraViewRatio = cameraView.getSize().x / (float)cameraView.getSize().y;
+                
+                float sizeX = 1;
+                float sizeY = 1;
+
+                float posX = 0;
+                float posY = 0;
+
+                if (cameraViewRatio < windowRatio)
+                {
+                    sizeX = cameraViewRatio / windowRatio;
+                    posX = (1 - sizeX) / 2;
+                }
+                else
+                {
+                    sizeY = windowRatio / cameraViewRatio;
+                    posY = (1 - sizeY) / 2;
+                };
+
+                cameraView.setViewport(sf::FloatRect(posX, posY, sizeX, sizeY));
+        UI_View = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
             }
         }
     };
     void MainMenuState::Update(float dt) {};
     void MainMenuState::Render(float Interpolation)
     {
-        sf::RectangleShape testBackground;
-
-        testBackground.setSize(view.getSize());
-        testBackground.setFillColor(sf::Color::Green);
-
         data->window.clear();
 
-        data->window.setView(view);
+        data->window.draw(background);
 
-        data->window.draw(testBackground);
+        data->window.setView(cameraView);
+
         data->window.draw(title);
         data->window.draw(playButton);
         data->window.draw(settingsButton);

@@ -12,8 +12,10 @@ namespace SirHoog
     {
         GameDataRef data;
         sf::Clock _clock;
-        sf::View view;
-        sf::Sprite background;
+        sf::View cameraView;
+        sf::View UI_View;
+
+        sf::RectangleShape grid;
         sf::Sprite mainMenuButton;
 
         int generation = 0;

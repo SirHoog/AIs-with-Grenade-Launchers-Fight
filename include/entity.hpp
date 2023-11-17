@@ -14,7 +14,6 @@ namespace SirHoog
         float bounceAmount = 0.5; // STATES: 1 = Transfer all velocity in direction of bounce
         float frictionAmount = 0.25; // STATES: 1 = Instant stop
         
-
         public:
             sf::Sprite sprite = sf::Sprite();
             sf::Texture spriteTexture;

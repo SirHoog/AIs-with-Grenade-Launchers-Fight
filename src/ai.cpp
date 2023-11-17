@@ -35,39 +35,6 @@ namespace SirHoog
     };
     void AI::Update(float dt)
     {
-        // OPTIMIZE
-        // ORGANIZE
-
-        if (Velocity.x > WalkSpeed / 2)
-        {
-            spriteTexture = data->assetManager.GetTexture("AIMR");
-        }
-        else if (Velocity.x < -WalkSpeed / 2)
-        {
-            spriteTexture = data->assetManager.GetTexture("AIIR");
-        };
-
-        if (Velocity.x < -WalkSpeed / 2)
-        {
-            spriteTexture = data->assetManager.GetTexture("AIML");
-        }
-        else if (Velocity.x > WalkSpeed / 2)
-        {
-            spriteTexture = data->assetManager.GetTexture("AIIL");
-        };
-
-        if (Velocity.y > JumpPower / 2)
-        {
-            if (Velocity.x > WalkSpeed / 2)
-            {
-                spriteTexture = data->assetManager.GetTexture("AIMR");
-            };
-            if (Velocity.x < -WalkSpeed / 2)
-            {
-                spriteTexture = data->assetManager.GetTexture("AIML");
-            }
-        };
-
         Character::Update(dt);
 
         // PURPOSE: Find input

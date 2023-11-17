@@ -5,7 +5,8 @@ namespace SirHoog
 {
     SimulationState::SimulationState(GameDataRef data) : data(data)
     {
-        view = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
+        cameraView = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
+        UI_View = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
         
         data->assetManager.reset_cd("assets/StatesUI/Simulation/");
 
@@ -30,10 +31,6 @@ namespace SirHoog
 
         while (data->window.pollEvent(event))
         {
-            if (event.type == sf::Event::Resized)
-            {
-                // Bro why isn't it working
-            };
             if (event.type == sf::Event::Closed)
             {
                 data->window.close();
@@ -50,6 +47,44 @@ namespace SirHoog
                 }
             };
             // ADD: Player movement control here
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::F11))
+            {
+                Fullscreen = !Fullscreen;
+
+                if (Fullscreen)
+                {
+                    data->window.create(sf::VideoMode(ScreenWidth, ScreenHeight), "Boom Bots", sf::Style::Fullscreen);
+                }
+                else
+                {
+                    data->window.create(sf::VideoMode(ScreenWidth, ScreenHeight), "Boom Bots", sf::Style::Default);
+                }
+            };
+            if (event.type == sf::Event::Resized)
+            {
+                float windowRatio = event.size.width / (float)event.size.height;
+                float viewRatio = cameraView.getSize().x / (float)cameraView.getSize().y;
+                
+                float sizeX = 1;
+                float sizeY = 1;
+
+                float posX = 0;
+                float posY = 0;
+
+                if (viewRatio < windowRatio)
+                {
+                    sizeX = viewRatio / windowRatio;
+                    posX = (1 - sizeX) / 2;
+                }
+                else
+                {
+                    sizeY = windowRatio / viewRatio;
+                    posY = (1 - sizeY) / 2;
+                };
+
+                cameraView.setViewport(sf::FloatRect(posX, posY, sizeX, sizeY));
+                UI_View = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
+            };
         }
     };
     void SimulationState::Update(float dt)
@@ -63,16 +98,17 @@ namespace SirHoog
     {
         data->window.clear();
 
-        data->window.setView(view);
+        data->window.setView(UI_View);
 
-        data->window.draw(background);
         data->window.draw(mainMenuButton);
 
-        // REMOVING TEMPORARILY: data->window.setView(view);
+        data->window.setView(cameraView);
 
-        for (AI ai : AI_List)
+        data->window.draw(grid);
+
+        for (Character character : CharacterList)
         {
-            ai.Render(interpolation);
+            character.Render(interpolation);
         };
 
         data->window.display();
