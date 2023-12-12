@@ -11,6 +11,6 @@ namespace SirHoog
             virtual void Update(float dt) = 0;
             virtual void Render(float Interpolation) = 0;
 
-            virtual void GameSpeed(int _TPS) = 0;
+            virtual void Pause() = 0;
     };
 }

@@ -16,7 +16,6 @@ namespace SirHoog
         float frictionAmount
     ) :
     data(data),
-    spriteTexture(spriteTexture),
     animation(animation),
     Position(Position),
     affectedByGravity(affectedByGravity),
@@ -25,6 +24,8 @@ namespace SirHoog
     bounceAmount(bounceAmount),
     frictionAmount(frictionAmount)
     {
+        sprite = sf::Sprite(spriteTexture, sf::IntRect(0, 0, spriteTexture.getSize().x, spriteTexture.getSize().y));
+
         animation = Animation(data, sprite, sf::IntRect(sf::Vector2i(0, 0), (sf::Vector2i)spriteTexture.getSize()), sf::IntRect(sf::Vector2i(0, 0), (sf::Vector2i)spriteTexture.getSize()), 0, false, false, false); // Not changing
     };
     
@@ -34,8 +35,10 @@ namespace SirHoog
 
         Position += Velocity;
 
-        Position.x = std::clamp(Position.x, (float)0, (float)data->window.getSize().x);
-        Position.y = std::clamp(Position.y, (float)0, (float)data->window.getSize().y);
+        Position = sf::Vector2f(
+            std::clamp(Position.x, (float)0, (float)WindowWidth),
+            std::clamp(Position.y, (float)0, (float)WindowHeight)
+        );
     
         if (bounces)
         {
@@ -43,7 +46,7 @@ namespace SirHoog
             {
                 Velocity.x = std::abs(Velocity.x);
             };
-            if (Position.x == data->window.getSize().x)
+            if (Position.x == WindowWidth)
             {
                 Velocity.x = std::abs(Velocity.x);
             };
@@ -51,7 +54,7 @@ namespace SirHoog
             {
                 Velocity.y = std::abs(Velocity.y);
             };
-            if (Position.y == data->window.getSize().y)
+            if (Position.y == WindowHeight)
             {
                 Velocity.y = -std::abs(Velocity.y);
             };
@@ -62,7 +65,7 @@ namespace SirHoog
         {
             Velocity.y -= Gravity; // PURPOSE: Not negative because SFML uses an inverted Y axis
         };
-        if (Position.y == data->window.getSize().y)
+        if (Position.y == WindowHeight)
         {
             if (friction)
             {
@@ -76,8 +79,7 @@ namespace SirHoog
     };
     void Entity::Render(float interpolation)
     {
-        sprite.setTexture(spriteTexture);
-        sprite.setOrigin(spriteTexture.getSize().x / 2.f, spriteTexture.getSize().y); // Middle bottom
+        sprite.setOrigin(sprite.getTexture()->getSize().x / 2.f, sprite.getTexture()->getSize().y); // Middle bottom
 
         animation.Render(interpolation);
 

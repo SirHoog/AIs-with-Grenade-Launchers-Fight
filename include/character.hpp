@@ -31,9 +31,9 @@ namespace SirHoog
 
             void LaunchGrenade(float aimAngle, float power);
         protected:
-            std::vector<Grenade> grenadeList = {};
+            std::vector<Grenade*> grenadeList = {};
             sf::Clock grenadeCooldown;
     };
 
-    static std::vector<Character> CharacterList;
+    static std::vector<Character*> CharacterList;
 }

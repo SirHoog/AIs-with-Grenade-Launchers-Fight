@@ -14,8 +14,7 @@ namespace SirHoog
         sf::Clock _clock;
         sf::View cameraView;
         sf::View UI_View;
-
-        sf::RectangleShape grid;
+        std::vector<sf::RectangleShape> Grid;
         sf::Sprite mainMenuButton;
 
         int generation = 0;
@@ -29,6 +28,6 @@ namespace SirHoog
             void Update(float dt);
             void Render(float Interpolation);
 
-            void GameSpeed(int _TPS);
+            void Pause();
     };
 }

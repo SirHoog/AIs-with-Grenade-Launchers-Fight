@@ -8,8 +8,10 @@ namespace SirHoog
     {
         const int distance = 50; // ANOTHER NAME: Distance between buttons
 
-        cameraView = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
-        UI_View = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
+        cameraView = sf::View(sf::FloatRect(0, 0, WindowWidth, WindowHeight));
+        UI_View = sf::View(sf::FloatRect(0, 0, WindowWidth, WindowHeight));
+
+        WindowResize(cameraView, sf::Vector2f(WindowWidth, WindowHeight));
 
         data->assetManager.reset_cd("assets/StatesUI/MainMenu/");
 
@@ -55,12 +57,16 @@ namespace SirHoog
 
                 if (Fullscreen)
                 {
-                    data->window.create(sf::VideoMode(ScreenWidth, ScreenHeight), "Boom Bots", sf::Style::Fullscreen);
+                    data->window.create(sf::VideoMode(WindowWidth, WindowHeight), "Boom Bots", sf::Style::Fullscreen);
                 }
                 else
                 {
-                    data->window.create(sf::VideoMode(ScreenWidth, ScreenHeight), "Boom Bots", sf::Style::Default);
-                }
+                    data->window.create(sf::VideoMode(WindowWidth, WindowHeight), "Boom Bots", sf::Style::Default);
+                };
+
+                WindowResize(cameraView, sf::Vector2f(event.size.width, event.size.height));
+                
+                UI_View = sf::View(sf::FloatRect(0, 0, WindowWidth, WindowHeight));
             };
             if (data->inputManager.IsSpriteClicked(playButton, sf::Mouse::Left, data->window))
             {
@@ -76,37 +82,19 @@ namespace SirHoog
             };
             if (event.type == sf::Event::Resized)
             {
-                float windowRatio = event.size.width / (float)event.size.height;
-                float cameraViewRatio = cameraView.getSize().x / (float)cameraView.getSize().y;
-                
-                float sizeX = 1;
-                float sizeY = 1;
+                WindowHeight = data->window.getSize().x;
+                WindowWidth = data->window.getSize().y;
 
-                float posX = 0;
-                float posY = 0;
+                WindowResize(cameraView, sf::Vector2f(event.size.width, event.size.height));
 
-                if (cameraViewRatio < windowRatio)
-                {
-                    sizeX = cameraViewRatio / windowRatio;
-                    posX = (1 - sizeX) / 2;
-                }
-                else
-                {
-                    sizeY = windowRatio / cameraViewRatio;
-                    posY = (1 - sizeY) / 2;
-                };
-
-                cameraView.setViewport(sf::FloatRect(posX, posY, sizeX, sizeY));
-        UI_View = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
+                UI_View = sf::View(sf::FloatRect(0, 0, WindowWidth, WindowHeight));
             }
         }
     };
     void MainMenuState::Update(float dt) {};
     void MainMenuState::Render(float Interpolation)
     {
-        data->window.clear();
-
-        data->window.draw(background);
+        data->window.clear(UI_ViewColor);
 
         data->window.setView(cameraView);
 
@@ -118,5 +106,5 @@ namespace SirHoog
         data->window.display();
     };
 
-    void MainMenuState::GameSpeed(int _TPS) {};
+    void MainMenuState::Pause() {};
 }

@@ -15,10 +15,13 @@ namespace SirHoog
     {
         sf::Texture texture;
 
-        if (texture.loadFromFile(cdPath + fileName))
+        if (textures.find(cdPath + fileName) == textures.end())
         {
-            textures[name] = texture;
-        };
+            if (texture.loadFromFile(cdPath + fileName))
+            {
+                textures[name] = texture;
+            };
+        }
     };
     sf::Texture& AssetManager::GetTexture(std::string name)
     {

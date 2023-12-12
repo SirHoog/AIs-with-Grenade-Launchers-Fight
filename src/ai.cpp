@@ -31,7 +31,7 @@ namespace SirHoog
         frictionAmount
     )
     {
-        AI_List.push_back(*this);
+        AI_List.push_back(this);
     };
     void AI::Update(float dt)
     {
@@ -47,14 +47,14 @@ namespace SirHoog
         float closestCharacterDistance;
         Character closestCharacter(data);
 
-        for (Character character : CharacterList)
+        for (Character* character : CharacterList)
         {
-            float distance = std::sqrt(std::pow(Position.x - character.Position.x, 2) + std::pow(Position.y - character.Position.y, 2));
+            float distance = std::sqrt(std::pow(Position.x - character->Position.x, 2) + std::pow(Position.y - character->Position.y, 2));
 
             if (distance < closestCharacterDistance)
             {
                 closestCharacterDistance = distance;
-                closestCharacter = character;
+                closestCharacter = *character;
             };
         };
 
@@ -64,14 +64,14 @@ namespace SirHoog
         float closestGrenadeDistance;
         Grenade closestGrenade(data);
 
-        for (Grenade grenade : grenadeList)
+        for (Grenade* grenade : grenadeList)
         {
-            float distance = std::sqrt(std::pow(grenade.Position.x - Position.x, 2) + std::pow(grenade.Position.y - Position.y, 2));
+            float distance = std::sqrt(std::pow(grenade->Position.x - Position.x, 2) + std::pow(grenade->Position.y - Position.y, 2));
 
             if (distance < closestGrenadeDistance)
             {
                 closestGrenadeDistance = distance;
-                closestGrenade = grenade;
+                closestGrenade = *grenade;
             }
         };
 
@@ -82,9 +82,9 @@ namespace SirHoog
 
         Layer output = brain.Update(input);
 
-        for (Grenade grenade : grenadeList)
+        for (Grenade* grenade : grenadeList)
         {
-            grenade.Update(dt, *this);
+            grenade->Update(dt, *this);
         };
 
         // MAKES: AI move

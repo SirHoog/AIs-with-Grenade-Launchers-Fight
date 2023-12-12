@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <vector>
 #include "animation.hpp"
 
 namespace SirHoog
@@ -16,7 +17,6 @@ namespace SirHoog
         
         public:
             sf::Sprite sprite = sf::Sprite();
-            sf::Texture spriteTexture;
             Animation animation = Animation();
             sf::Vector2f Position = sf::Vector2f(0, 0);
             sf::Vector2f Velocity = sf::Vector2f(0, 0);
@@ -41,4 +41,6 @@ namespace SirHoog
         protected:
             GameDataRef data;
     };
+
+    static std::vector<Entity*> EntityList = {};
 }

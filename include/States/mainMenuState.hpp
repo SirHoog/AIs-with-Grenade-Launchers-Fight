@@ -30,6 +30,6 @@ namespace SirHoog
             void Update(float dt);
             void Render(float Interpolation);
 
-            void GameSpeed(int _TPS);
+            void Pause();
     };
 }

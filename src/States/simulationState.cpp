@@ -5,8 +5,10 @@ namespace SirHoog
 {
     SimulationState::SimulationState(GameDataRef data) : data(data)
     {
-        cameraView = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
-        UI_View = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
+        cameraView = sf::View(sf::FloatRect(0, 0, GridSize.x, GridSize.y));
+        UI_View = sf::View(sf::FloatRect(0, 0, WindowWidth, WindowHeight));
+        
+        WindowResize(cameraView, sf::Vector2f(WindowWidth, WindowHeight));
         
         data->assetManager.reset_cd("assets/StatesUI/Simulation/");
 
@@ -16,15 +18,29 @@ namespace SirHoog
     };
     void SimulationState::Init()
     {
-        // TODO: Draw grid
+        for (int row = 0; row < std::round(GridSize.x / (float)GridTileSize.x); row++)
+        {
+            for (int col = 0; col < std::round(GridSize.y / (float)GridTileSize.y); col++)
+            {
+                sf::RectangleShape GridTile(GridTileSize - sf::Vector2f(GridOutlineThickness * 2, GridOutlineThickness * 2));
+
+                GridTile.setPosition(sf::Vector2f(row * GridTileSize.x + GridOutlineThickness, col * GridTileSize.y + GridOutlineThickness));
+                GridTile.setFillColor(CameraViewColor);
+                GridTile.setOutlineColor(GridOutlineColor);
+                GridTile.setOutlineThickness(GridOutlineThickness);
+
+                Grid.push_back(GridTile);
+            };
+        };
 
         for (int i = 0; i < 50; i++)
         {
-            AI *ai = new AI(data, Animation(), NeuralNetwork("", 6, 3, 8, 4), generation, sf::Vector2f(data->window.getSize().x / 2, data->window.getSize().y / 2));
+            AI *ai = new AI(data, Animation(), NeuralNetwork("", 6, 3, 8, 4), generation, sf::Vector2f(WindowWidth / 2, WindowHeight / 2));
 
-            AI_List.push_back(*ai);
+            AI_List.push_back(ai);
         }
     };
+
     void SimulationState::HandleInput()
     {
         sf::Event event;
@@ -39,9 +55,9 @@ namespace SirHoog
             {
                 data->stateMachine.AddState(StateRef(new MainMenuState(data)));
             };
-            for (AI ai : AI_List)
+            for (AI* ai : AI_List)
             {
-                if (data->inputManager.IsSpriteClicked(ai.sprite, sf::Mouse::Left, data->window))
+                if (data->inputManager.IsSpriteClicked(ai->sprite, sf::Mouse::Left, data->window))
                 {
                     // TODO: Display AI's neural network and other stats
                 }
@@ -53,66 +69,57 @@ namespace SirHoog
 
                 if (Fullscreen)
                 {
-                    data->window.create(sf::VideoMode(ScreenWidth, ScreenHeight), "Boom Bots", sf::Style::Fullscreen);
+                    data->window.create(sf::VideoMode(WindowWidth, WindowHeight), "Boom Bots", sf::Style::Fullscreen);
                 }
                 else
                 {
-                    data->window.create(sf::VideoMode(ScreenWidth, ScreenHeight), "Boom Bots", sf::Style::Default);
-                }
+                    data->window.create(sf::VideoMode(WindowWidth, WindowHeight), "Boom Bots", sf::Style::Default);
+                };
+
+                WindowResize(cameraView, sf::Vector2f(event.size.width, event.size.height));
+                
+                UI_View = sf::View(sf::FloatRect(0, 0, WindowWidth, WindowHeight));
             };
             if (event.type == sf::Event::Resized)
             {
-                float windowRatio = event.size.width / (float)event.size.height;
-                float viewRatio = cameraView.getSize().x / (float)cameraView.getSize().y;
+                WindowHeight = data->window.getSize().x;
+                WindowWidth = data->window.getSize().y;
+
+                WindowResize(cameraView, sf::Vector2f(event.size.width, event.size.height));
                 
-                float sizeX = 1;
-                float sizeY = 1;
-
-                float posX = 0;
-                float posY = 0;
-
-                if (viewRatio < windowRatio)
-                {
-                    sizeX = viewRatio / windowRatio;
-                    posX = (1 - sizeX) / 2;
-                }
-                else
-                {
-                    sizeY = windowRatio / viewRatio;
-                    posY = (1 - sizeY) / 2;
-                };
-
-                cameraView.setViewport(sf::FloatRect(posX, posY, sizeX, sizeY));
-                UI_View = sf::View(sf::FloatRect(0, 0, data->window.getSize().x, data->window.getSize().y));
+                UI_View = sf::View(sf::FloatRect(0, 0, WindowWidth, WindowHeight));
             };
         }
     };
     void SimulationState::Update(float dt)
     {
-        for (Character character : CharacterList)
+        for (Entity* entity : EntityList)
         {
-            character.Update(dt);
+            entity->Update(dt);
         }
     };
     void SimulationState::Render(float interpolation)
     {
-        data->window.clear();
+        data->window.clear(UI_ViewColor);
+
+        data->window.setView(cameraView);
+        
+        for (sf::RectangleShape GridTile : Grid)
+        {
+            data->window.draw(GridTile);
+        };
+
+        for (Entity* entity : EntityList)
+        {
+            entity->Render(interpolation);
+        };
 
         data->window.setView(UI_View);
 
         data->window.draw(mainMenuButton);
 
-        data->window.setView(cameraView);
-
-        data->window.draw(grid);
-
-        for (Character character : CharacterList)
-        {
-            character.Render(interpolation);
-        };
-
         data->window.display();
     };
 
-    void SimulationState::GameSpeed(int _TPS) {};
+    void SimulationState::Pause() {};
 }

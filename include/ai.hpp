@@ -38,5 +38,5 @@ namespace SirHoog
             void Mutate();
     };
 
-    static std::vector<AI> AI_List;
+    static std::vector<AI*> AI_List;
 }

@@ -23,7 +23,7 @@ namespace SirHoog
             }
             else
             {
-                states.top()->GameSpeed(0);
+                states.top()->Pause();
             }
         };
 

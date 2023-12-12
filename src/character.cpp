@@ -17,7 +17,7 @@ namespace SirHoog
     Entity
     (
         data,
-        spriteTexture,
+        sf::Texture(),
         animation,
         Position,
         Velocity,
@@ -38,10 +38,10 @@ namespace SirHoog
         data->assetManager.LoadTexture("AIML", "Move/Left.png");
         data->assetManager.LoadTexture("AIMR", "Move/Right.png");
 
-        spriteTexture = data->assetManager.GetTexture("AIIR");
+        sprite.setTexture(data->assetManager.GetTexture("AIIR"));
         animation.Playing = true;
         
-        CharacterList.push_back(*this);
+        CharacterList.push_back(this);
     };
     void Character::Update(float dt)
     {
@@ -50,31 +50,31 @@ namespace SirHoog
 
         if (Velocity.x > WalkSpeed / 2)
         {
-            spriteTexture = data->assetManager.GetTexture("AIMR");
+            sprite.setTexture(data->assetManager.GetTexture("AIMR"));
         }
         else if (Velocity.x < -WalkSpeed / 2)
         {
-            spriteTexture = data->assetManager.GetTexture("AIIR");
+            sprite.setTexture(data->assetManager.GetTexture("AIIR"));
         };
 
         if (Velocity.x < -WalkSpeed / 2)
         {
-            spriteTexture = data->assetManager.GetTexture("AIML");
+            sprite.setTexture(data->assetManager.GetTexture("AIML"));
         }
         else if (Velocity.x > WalkSpeed / 2)
         {
-            spriteTexture = data->assetManager.GetTexture("AIIL");
+            sprite.setTexture(data->assetManager.GetTexture("AIIL"));
         };
 
         if (Velocity.y > JumpPower / 2)
         {
             if (Velocity.x > WalkSpeed / 2)
             {
-                spriteTexture = data->assetManager.GetTexture("AIMR");
+                sprite.setTexture(data->assetManager.GetTexture("AIMR"));
             };
             if (Velocity.x < -WalkSpeed / 2)
             {
-                spriteTexture = data->assetManager.GetTexture("AIML");
+                sprite.setTexture(data->assetManager.GetTexture("AIML"));
             }
         };
         
@@ -92,8 +92,8 @@ namespace SirHoog
 
     void Character::LaunchGrenade(float aimAngle, float power)
     {
-        Grenade *grenade = new Grenade(data, Animation(), Position, sf::Vector2f(std::sin(aimAngle), std::cos(aimAngle)) * power);
+        Grenade* grenade = new Grenade(data, Animation(), Position, sf::Vector2f(std::sin(aimAngle), std::cos(aimAngle)) * power);
 
-        grenadeList.push_back(*grenade);
+        grenadeList.push_back(grenade);
     }
 }
